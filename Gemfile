@@ -8,7 +8,7 @@ gem 'rails', '~> 5.2.3'
 
 # Use postgres as the databse for Active Record
 gem 'pg'
-
+gem 'jquery-rails'
 # Use Puma as the app server
 gem 'puma', '~> 3.11'
 # Use SCSS for stylesheets
@@ -54,7 +54,7 @@ group :development do
   gem 'pry-rails'
   gem 'annotate'
   gem 'bcrypt'
-  gem 'jquery-rails'
+  
 end
 
 group :test do
