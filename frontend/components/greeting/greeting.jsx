@@ -11,6 +11,9 @@ class Greeting extends React.Component {
     this.props.logout(this.props.currentUser);
   }
   render() {
+    const buttonPath = (this.props.location.pathname === "/signup") ? "/login" : "/signup"
+    const buttonText = (this.props.location.pathname === "/signup") ? "Sign In" : "Sign Up"
+    const buttonStyle = (this.props.location.pathname === "/") ? "greeting-button" : "greeting-nav-button"
 
 
     if (this.props.currentUser) {
@@ -27,7 +30,7 @@ class Greeting extends React.Component {
           <div className="greeting-nav">
             <img src={window.logoURL} />
           </div>
-          <Link className="greeting-button" to="/signup">Sign Up</Link>
+          <Link className={buttonStyle} to={buttonPath}>{buttonText}</Link>
         </div>
       );
     }
