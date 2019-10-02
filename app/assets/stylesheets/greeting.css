@@ -20,6 +20,17 @@
   background-color: RGB(73, 13, 75);
 }
 
+.greeting-nav-button {
+  border: 2px solid RGB(128, 128, 128);
+  color: RGB(128, 128, 128);
+  box-sizing: border-box;
+  padding: 10px 15px;
+  text-align: center;
+  text-decoration: none; 
+  border-radius: 5px;
+  margin: 20px 100px 0px 0px;
+}
+
 .greeting img{
   margin: 20px 0px 0px 100px;
   width: 106px;
