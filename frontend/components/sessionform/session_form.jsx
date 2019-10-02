@@ -40,7 +40,9 @@ class SessionForm extends React.Component {
 
   render() {
     const directionBig = (this.props.formType === "Sign Up") ? "Sign up for Flack" : "Sign in to Flack";
-    const directionSmall = (this.props.formType === "Sign Up") ? "Enter your email address, password, and display name." : "Enter your email address and password.";
+    const directionSmallUp = <p>Enter your <span>email address</span>, <span>password</span>, and <span>display name</span>.</p>
+    const directionSmallIn = <p>Enter your <span>email address</span> and <span>password</span></p>;
+    const directionSmall = (this.props.formType === "Sign Up") ? directionSmallUp : directionSmallIn;
     return ( 
       
       <div className="session-wrapper">
