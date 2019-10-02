@@ -21,9 +21,9 @@ class Greeting extends React.Component {
       );
     } else {
       return (
-        <div>
-          <Link to="/signup">Sign Up</Link>
-          <Link to="/login">Sign In</Link>
+        <div className="greeting">
+          <img src={window.logoURL} />
+          <Link className="greeting-button" to="/signup">Sign Up</Link>
         </div>
       );
     }
