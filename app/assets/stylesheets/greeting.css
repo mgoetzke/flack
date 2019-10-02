@@ -1,0 +1,26 @@
+.greeting{
+  font-family: 'Lato';
+  display: flex;
+  justify-content: space-between;
+
+}
+
+.greeting-button {
+  background-color: RGB(96, 20, 105);
+  color: white;
+  box-sizing: border-box;
+  padding: 10px 45px;
+  text-align: center;
+  text-decoration: none; 
+  border-radius: 5px;
+}
+
+.greeting-button:hover{
+  background-color: RGB(73, 13, 75);
+}
+
+.greeting img{
+  width: 10%;
+  height: 10%;
+}
+
