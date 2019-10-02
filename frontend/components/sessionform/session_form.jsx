@@ -20,22 +20,20 @@ class SessionForm extends React.Component {
   }
 
   renderErrors() {
-    console.log(this.props.errors);
     const errors = this.props.errors.map((error, i) => {
      return <li key={`errors-${i}`}> {error} </li>
     });
     return(
       <div>
-        <h1>errors</h1>
-      <ul>
-        {errors}
-      </ul> 
-
+        <ul>
+          {errors}
+        </ul> 
       </div>
     );
   }
 
   render() {
+    //const for class names if else
     return (
       <form onSubmit={this.handleSubmit}>
         {this.renderErrors()}
@@ -52,7 +50,7 @@ class SessionForm extends React.Component {
 
         }
         
-        <input type="submit" value={this.props.formType} />
+        <input className="session-button" type="submit" value={this.props.formType} />
       </form>
     )
   }

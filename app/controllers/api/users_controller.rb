@@ -1,6 +1,4 @@
 class Api::UsersController < ApplicationController
-
-  rescue_from ActiveRecord::RecordNotUnique, with: :render_duplicate_email_response
   def create
     @user = User.new(user_params)
     if @user.save
@@ -26,7 +24,4 @@ class Api::UsersController < ApplicationController
     params.require(:user).permit(:email, :display_name, :password)
   end
 
-  def render_duplicate_email_response
-    render json: ["Account already exists for this email"], status: :not_found
-  end
 end

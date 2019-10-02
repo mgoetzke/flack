@@ -10,7 +10,7 @@ const mapState = ({ session, entities: { users } }) => {
 
 const mapDispatch = dispatch => {
   return ({
-    logout: user => dispatch(logout(user))
+    logout: user => dispatch(logout(user)) 
   });
 }
 
