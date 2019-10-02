@@ -4,7 +4,6 @@ export const signup = (formUser) => {
     url: "/api/users",
     data: {
       user: {
-        username: formUser.username,
         password: formUser.password,
         email: formUser.email,
         display_name: formUser.display_name
@@ -17,7 +16,7 @@ export const login = formUser => {
   return $.ajax({
     method: "POST",
     url: "/api/session",
-    data: { user: { username: formUser.username, password: formUser.password } }
+    data: { user: { email: formUser.email, password: formUser.password } }
   });
 };
 

@@ -7,7 +7,7 @@ class ApplicationController < ActionController::Base
 
   def ensure_logged_in
     if (!logged_in?)
-      render json: {:errors => "not login Json error"}
+      render json: { base: ['invalid credentials'] }, status: 401
     end
   end
 

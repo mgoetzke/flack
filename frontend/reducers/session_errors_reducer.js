@@ -3,18 +3,13 @@ import {
   RECEIVE_SESSION_ERRORS
 } from "../actions/session_actions";
 
-import merge from "lodash/merge";
-
-export default (state = {errors: null}, action) => {
+export default (state = [], action) => {
   Object.freeze(state);
-  let newState;
   switch (action.type) {
     case RECEIVE_SESSION_ERRORS:
-      newState = merge({}, state, { errors: action.errors });
-      return newState;
+      return action.errors;
     case RECEIVE_CURRENT_USER:
-      newState = merge({}, state, { errors: null });
-      return newState;
+      return [];
     default:
       return state;
   }
