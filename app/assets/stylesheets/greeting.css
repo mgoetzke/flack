@@ -2,7 +2,7 @@
   font-family: 'Lato';
   display: flex;
   justify-content: space-between;
-
+  padding-bottom: 15px;
 }
 
 .greeting-button {
@@ -13,6 +13,7 @@
   text-align: center;
   text-decoration: none; 
   border-radius: 5px;
+  margin: 20px 100px 0px 0px;
 }
 
 .greeting-button:hover{
@@ -20,7 +21,19 @@
 }
 
 .greeting img{
-  width: 10%;
-  height: 10%;
+  margin: 20px 0px 0px 100px;
+  width: 106px;
+  height: 28px;
+}
+
+.greeting-nav{
+  display:flex;
+  flex-direction: row;
+}
+
+.greeting-nav Link{
+  margin: 5px;
+  padding: 5px;
+  color: blue;
 }
 

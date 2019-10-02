@@ -16,7 +16,7 @@ class Splash extends React.Component {
         </div>
         <p>Flack gives your team the power and alignment you need to do your best work.</p>
         <div className="splash-form">
-          <input type="text" value="Your work email"/>
+          <input type="text" placeholder="Your work email"/>
           <Link className="splash-button" to="/signup">TRY FOR FREE</Link>
         </div>
         <span>Already using Flack? <Link className="splash-link" to="/login">Sign in</Link>.</span>
