@@ -5,7 +5,8 @@ import { login } from '../../actions/session_actions';
 const mapState = ({errors}, ownProps)=> {
   return ({
     errors: errors.session,
-    formType: "Sign In"
+    formType: "Sign in",
+    demoUser: { email: "demo-user@demo.com", password: "password" }
   });
 }
 

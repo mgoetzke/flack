@@ -11,6 +11,8 @@ class Greeting extends React.Component {
     this.props.logout(this.props.currentUser);
   }
   render() {
+
+
     if (this.props.currentUser) {
       let name = this.props.currentUser.display_name;
       return (
@@ -22,7 +24,9 @@ class Greeting extends React.Component {
     } else {
       return (
         <div className="greeting">
-          <img src={window.logoURL} />
+          <div className="greeting-nav">
+            <img src={window.logoURL} />
+          </div>
           <Link className="greeting-button" to="/signup">Sign Up</Link>
         </div>
       );

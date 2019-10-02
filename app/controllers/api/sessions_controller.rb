@@ -15,7 +15,7 @@ class Api::SessionsController < ApplicationController
       login(@user)
       render @user
     else
-      render :json => {:error => "invalid credentials"}.to_json, :status => 404
+      render json: ['Sorry, you entered an incorrect email address or password.'], status: 404
     end
   end
 end
