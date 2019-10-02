@@ -156,8 +156,6 @@ GEM
     rb-inotify (0.10.0)
       ffi (~> 1.0)
     regexp_parser (1.6.0)
-    rescue_unique_constraint (1.5.0)
-      activerecord (>= 3.2, < 6)
     ruby_dep (1.5.0)
     rubyzip (1.2.4)
     sass (3.7.4)
@@ -225,7 +223,6 @@ DEPENDENCIES
   pry-rails
   puma (~> 3.11)
   rails (~> 5.2.3)
-  rescue_unique_constraint
   sass-rails (~> 5.0)
   selenium-webdriver
   spring
