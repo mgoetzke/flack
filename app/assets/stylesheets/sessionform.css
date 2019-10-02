@@ -10,6 +10,9 @@
   font-family: 'Lato';
   box-sizing: border-box;
 }
+.session-form-form h2 p span{
+  font-weight: bold;
+}
 
 .session-errors{
   padding: 5px;
