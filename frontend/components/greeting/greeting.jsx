@@ -6,6 +6,7 @@ class Greeting extends React.Component {
     super(props);
     this.handleLogout = this.handleLogout.bind(this);
     this.handleMenu = this.handleMenu.bind(this);
+    this.clearSessionErrors = this.clearSessionErrors.bind(this);
   }
 
   handleLogout() {
@@ -16,7 +17,13 @@ class Greeting extends React.Component {
     const popup = document.getElementById("menuPopup");
     popup.classList.toggle("show");
   }
+
+  clearSessionErrors(){
+    this.props.clearSessionErrors();
+  }
+
   render() {
+    const onRoot = this.props.location.pathname === "/";
     const buttonPath = (this.props.location.pathname === "/signup") ? "/login" : "/signup"
     const buttonText = (this.props.location.pathname === "/signup") ? "Sign in" : "Sign up"
     const buttonStyle = (this.props.location.pathname === "/") ? "greeting-button" : "greeting-nav-button"
@@ -41,7 +48,12 @@ class Greeting extends React.Component {
           <div className="greeting-nav">
             <Link to="/"><img src={window.logoURL} /></Link>
           </div>
-          <Link className={buttonStyle} to={buttonPath}>{buttonText}</Link>
+          <div className="greeting-right"> 
+            {onRoot &&
+              <Link className="greeting-link" to="/">Sign in</Link>
+            }
+            <Link onClick={this.clearSessionErrors} className={buttonStyle} to={buttonPath}>{buttonText}</Link>
+          </div>
         </div>
       );
     }
