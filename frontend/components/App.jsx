@@ -11,10 +11,13 @@ const App = () => (
       < GreetingContainer />
     </header>
     <div>
-      <Route exact path="/" component={SplashContainer}/>
+      <Switch>
+        <AuthRoute path="/signup" component={SignUpFormContainer} />
+        <AuthRoute path="/login" component={LogInFormContainer} />
+        <Route path="/channels"/>
+        <Route exact path="/" component={SplashContainer}/>
+      </Switch>
     </div>
-    <AuthRoute path="/login" component={LogInFormContainer} />
-    <AuthRoute path="/signup" component={SignUpFormContainer} />
   </div>
 );
 

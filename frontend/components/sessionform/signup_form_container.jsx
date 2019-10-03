@@ -5,7 +5,7 @@ import { signup } from '../../actions/session_actions';
 const mapState = ({errors}, ownProps) => {
   return ({
     errors: errors.session,
-    formType: "Sign Up"
+    formType: "Sign up"
   });
 }
 

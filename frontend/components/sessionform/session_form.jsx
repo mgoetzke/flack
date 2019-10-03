@@ -41,10 +41,10 @@ class SessionForm extends React.Component {
   }
 
   render() {
-    const directionBig = (this.props.formType === "Sign Up") ? "Sign up for Flack" : "Sign in to Flack";
+    const directionBig = (this.props.formType === "Sign up") ? "Sign up for Flack" : "Sign in to Flack";
     const directionSmallUp = <p>Enter your <span>email address</span>, <span>password</span>, and <span>display name</span>.</p>
     const directionSmallIn = <p>Enter your <span>email address</span> and <span>password</span></p>;
-    const directionSmall = (this.props.formType === "Sign Up") ? directionSmallUp : directionSmallIn;
+    const directionSmall = (this.props.formType === "Sign up") ? directionSmallUp : directionSmallIn;
     const passedEmail = (this.props.location.state !== undefined && 'email' in this.props.location.state) ? this.props.location.state.email : "";
     return ( 
       
@@ -65,7 +65,7 @@ class SessionForm extends React.Component {
             <input type="text" onChange={this.update("email")} placeholder="you@example.com" defaultValue={ passedEmail }/>
 
             <input type="password" onChange={this.update("password")} placeholder="password"/>
-            {this.props.formType === "Sign Up" &&
+            {this.props.formType === "Sign up" &&
               <div>
                 <input type="text" onChange={this.update("display_name")} placeholder="display name"/>
               </div>
