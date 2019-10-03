@@ -11,7 +11,13 @@ class Api::ChannelsController < ApplicationController
   end
 
   def show
-    render :show
+    @channel = Channel.find(params[:id])
+    if @channel
+      render :show
+    else
+      render json: ['Sorry, that channel does not exist.'], status: 404  
+    end
+
   end
 
   def index
@@ -20,9 +26,18 @@ class Api::ChannelsController < ApplicationController
   end
 
   def update
+    @channel = Channel.find(params[:id])
+    if @channel.update_attributes(channel_params)
+      render :show
+    else
+      render json: ['Sorry, your update did not work.'], status: 400   
+    end
+
   end
 
   def destroy
+    @channel = Channel.find(params[:id])
+    @channel.destroy
   end
 
   private 

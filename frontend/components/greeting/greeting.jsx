@@ -6,7 +6,7 @@ class Greeting extends React.Component {
     super(props);
     this.handleLogout = this.handleLogout.bind(this);
     this.handleMenu = this.handleMenu.bind(this);
-    this.clearSessionErrors = this.clearSessionErrors.bind(this);
+
   }
 
   handleLogout() {
@@ -52,7 +52,7 @@ class Greeting extends React.Component {
             {onRoot &&
               <Link className="greeting-link" to="/login">Sign in</Link>
             }
-            <Link onClick={this.clearSessionErrors} className={buttonStyle} to={buttonPath}>{buttonText}</Link>
+            <Link className={buttonStyle} to={buttonPath}>{buttonText}</Link>
           </div>
         </div>
       );

@@ -5,23 +5,23 @@ export const RECEIVE_CHANNEL = "RECEIVE_CHANNEL";
 export const REMOVE_CHANNEL = "REMOVE_CHANNEL";
 
 export const fetchAllChannels = () => dispatch => {
-  ChannelApiUtil.fetchAllChannels()
+  return ChannelApiUtil.fetchAllChannels()
     .then(channels => dispatch(receiveChannels(channels)))
 }
 export const fetchChannel = (id) => dispatch => {
-  ChannelApiUtil.fetchChannel(id)
+  return ChannelApiUtil.fetchChannel(id)
     .then(channel => dispatch(receiveChannel(channel)))
 }
 export const createChannel = (channel) => dispatch => {
-  ChannelApiUtil.createChannel(channel)
+  return ChannelApiUtil.createChannel(channel)
     .then(channel => dispatch(receiveChannel(channel)))
 } 
 export const destroyChannel = (id) => dispatch => {
-  ChannelApiUtil.destroyChannel(id)
-    .then(channel => dispatch(removeChannel(channel.id)))
+  return ChannelApiUtil.destroyChannel(id)
+    .then(id => dispatch(removeChannel(id)))
 }
 export const updateChannel = (channel) => dispatch => {
-  ChannelApiUtil.updateChannel(channel)
+  return ChannelApiUtil.updateChannel(channel)
     .then(channel => dispatch(receiveChannel(channel)))
 } 
 

@@ -22,3 +22,4 @@ export const AuthRoute = withRouter(
         null
     )(Auth)
 );
+
