@@ -2,8 +2,6 @@ Known bugs
   * screen flicker -> change js script order? DOMContentLoaded issue?
 
 Splash
-  /login sign up botton in header is off
-
   sign up as text on footer**
 
   On focus

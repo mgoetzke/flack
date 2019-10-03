@@ -7,3 +7,4 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 demoUser = User.create(email: "demo-user@demo.com", password: "password", display_name:"Demo User");
+testChannel = Channel.create(name: "Test channel", topic: "testing", is_private: false, admin_id: 1);
