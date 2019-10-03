@@ -3,6 +3,7 @@
   display: flex;
   justify-content: space-between;
   padding-bottom: 15px;
+  align-items: center;
 }
 
 .greeting-button {
@@ -46,6 +47,17 @@
   margin: 5px;
   padding: 5px;
   color: blue;
+}
+
+.greeting-link {
+  color: RGB(29, 29, 29);
+  box-sizing: border-box;
+  padding: 10px 45px;
+  text-align: center;
+}
+
+.greeting-link:hover{
+  color: RGB(96, 20, 105);
 }
 
 .greeting-loggedIn{

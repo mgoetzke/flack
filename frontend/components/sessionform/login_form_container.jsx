@@ -1,6 +1,7 @@
 import { connect } from "react-redux";
 import SessionForm from './session_form';
 import { login } from '../../actions/session_actions';
+import { withRouter } from 'react-router-dom';
 
 const mapState = ({errors}, ownProps)=> {
   return ({
@@ -15,4 +16,4 @@ const mapDispatch = dispatch => {
     processForm: (user) => dispatch(login(user)),
   });
 }
-export default connect(mapState, mapDispatch)(SessionForm);
+export default withRouter(connect(mapState, mapDispatch)(SessionForm));

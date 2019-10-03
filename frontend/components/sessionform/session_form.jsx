@@ -2,11 +2,10 @@ import React from 'react';
 class SessionForm extends React.Component {
   constructor(props) {
     super(props);
-
     this.state = {
       password: "",
       display_name: "",
-      email: "",
+      email: ""
 
     };
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -16,7 +15,7 @@ class SessionForm extends React.Component {
     e.preventDefault;
     this.props.processForm(this.state);
   }
-  
+
   handleDemo(){
     this.props.processForm(this.props.demoUser);
   }

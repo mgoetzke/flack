@@ -1,6 +1,6 @@
 import { connect } from "react-redux";
 import Greeting from "./greeting";
-import { logout } from "../../actions/session_actions";
+import { logout, clearSessionErrors} from "../../actions/session_actions";
 import {withRouter} from 'react-router-dom';
 
 const mapState = ({ session, entities: { users } }, ownProps) => {
@@ -11,7 +11,8 @@ const mapState = ({ session, entities: { users } }, ownProps) => {
 
 const mapDispatch = dispatch => {
   return ({
-    logout: user => dispatch(logout(user)) 
+    logout: user => dispatch(logout(user)),
+    clearSessionErrors: () => dispatch(clearSessionErrors())
   });
 }
 
