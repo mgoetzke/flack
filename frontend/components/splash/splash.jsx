@@ -29,13 +29,13 @@ class Splash extends React.Component {
           }}>TRY FOR FREE</Link>
         </div>
         <span>Already using Flack? <Link className="splash-link" to="/login">Sign in</Link>.</span>
-        <img class="normie" id="asana" src={window.asana_iconURL} />
-        <img class="reversereverse" id="atlassian" src={window.atlassian_iconURL} />
-        <img class="reversereverse" id="dropbox" src={window.dropbox_iconURL} />
-        <img class="reversereverse" id="google" src={window.google_iconURL} />
-        <img class="normie" id="hubspot" src={window.hubspot_iconURL} />
-        <img class="reversereverse" id="zendesk" src={window.zendesk_iconURL} />
-        <img class="normie" id="zoom" src={window.zoom_iconURL} />
+        <img className="normie" id="asana" src={window.asana_iconURL} />
+        <img className="reversereverse" id="atlassian" src={window.atlassian_iconURL} />
+        <img className="reversereverse" id="dropbox" src={window.dropbox_iconURL} />
+        <img className="reversereverse" id="google" src={window.google_iconURL} />
+        <img className="normie" id="hubspot" src={window.hubspot_iconURL} />
+        <img className="reversereverse" id="zendesk" src={window.zendesk_iconURL} />
+        <img className="normie" id="zoom" src={window.zoom_iconURL} />
       </div>
     );
   }
