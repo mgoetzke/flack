@@ -50,7 +50,7 @@ class Greeting extends React.Component {
           </div>
           <div className="greeting-right"> 
             {onRoot &&
-              <Link className="greeting-link" to="/">Sign in</Link>
+              <Link className="greeting-link" to="/login">Sign in</Link>
             }
             <Link onClick={this.clearSessionErrors} className={buttonStyle} to={buttonPath}>{buttonText}</Link>
           </div>
