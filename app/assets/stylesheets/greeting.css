@@ -12,7 +12,7 @@
   padding: 10px 45px;
   text-align: center;
   text-decoration: none; 
-  border-radius: 5px;
+  border-radius: 3px;
   margin: 20px 100px 0px 0px;
 }
 
@@ -48,3 +48,59 @@
   color: blue;
 }
 
+.greeting-loggedIn{
+  font-family: 'Lato';
+  color: white;
+  width: 220px;
+  height: 80px;
+  background-color: RGB(63,14, 64);
+  display: flex;
+  flex-direction: column;
+  padding: 10px 15px 10px 15px;
+  box-sizing: border-box;
+  cursor: pointer;
+}
+
+.greeting-loggedIn:hover{ 
+  background-color: RGB(53,13, 54)
+}
+
+.greeting-loggedIn h2{
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.greeting-loggedIn h2 span{
+  color: RGB(159, 134, 159);
+  font-size: 12px;
+}
+
+.greeting-loggedIn > span{
+  color: RGB(159, 134, 159);
+}
+
+.greeting-loggedIn:hover span{ 
+  color: white;
+}
+
+.greeting-nav-popup {
+ visibility: hidden;
+  width: 300px;
+  height: 500px;
+  background-color: white;
+  border: solid 1px RGB(212, 212, 212);
+  color: black;
+  text-align: center;
+  border-radius: 6px;
+  padding: 8px 0;
+  position: relative;
+  z-index: 5;
+  bottom: 40px;
+  right: 5px;
+  display: flex;
+  flex-direction:column;
+}
+
+.greeting-loggedIn .show{
+  visibility: visible;
+}
