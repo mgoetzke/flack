@@ -4,7 +4,8 @@ import { Route, Switch } from "react-router-dom";
 import LogInFormContainer from "./sessionform/login_form_container";
 import SignUpFormContainer from "./sessionform/signup_form_container";
 import SplashContainer from './splash/splash_container';
-import { AuthRoute }  from '../util/route_util';
+import MainContainer from './main/main_container';
+import { AuthRoute, ProtectedRoute }  from '../util/route_util';
 const App = () => (
   <div>
     <header>
@@ -14,8 +15,8 @@ const App = () => (
       <Switch>
         <AuthRoute path="/signup" component={SignUpFormContainer} />
         <AuthRoute path="/login" component={LogInFormContainer} />
-        <Route path="/channels"/>
-        <AuthRoute exact path="/" component={SplashContainer}/>
+        <Route exact path="/" component={SplashContainer}/>
+        <ProtectedRoute path ="/workspace" component={MainContainer}/>
       </Switch>
     </div>
   </div>

@@ -6,7 +6,7 @@ class Sidebar extends React.Component {
   render (){
     return(
       <div>
-        HELLO IM THE SIDEBAR
+        HAI IM THE SIDEBAR
       </div>
     );
   }

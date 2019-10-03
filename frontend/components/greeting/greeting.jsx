@@ -34,7 +34,7 @@ class Greeting extends React.Component {
       return (
         <div className="greeting-loggedIn" onClick={this.handleMenu}>
 
-          <h2>Flack<span> v </span></h2>
+          <h2>Flack<span> <i className="fas fa-angle-down"></i> </span></h2>
           <span>{name}</span>
           <div className="greeting-nav-popup" id="menuPopup">
             <p>{name}</p>

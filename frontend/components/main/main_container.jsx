@@ -1,5 +1,5 @@
 import { connect } from "react-redux";
-import Channel from './channel';
+import Main from './main';
 
 
 const mapState = state => {
@@ -14,4 +14,4 @@ const mapDispatch = dispatch => {
 
   });
 }
-export default connect(mapState, mapDispatch)(Channel);
+export default connect(mapState, mapDispatch)(Main);

@@ -4,12 +4,14 @@ Known bugs
 Splash
   * No splash on /login -> add protectedroute?
   * add info image >> marketing shtuff
+  * Logout redirect / 
 
 Channels
   #Update
   #Fetch 1
   #Destroy
   Channels contain messages
+  Channels landing page
   
 
 App
