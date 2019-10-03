@@ -1,7 +1,7 @@
 .splash{
   font-family: 'Roboto';
   width: 100%;
-  height: 500px;
+
   margin: 0 auto;
   display: flex;
   flex-direction: column;
@@ -141,4 +141,59 @@
 }
 .splash-link:hover{
   border-bottom:RGB(24, 98, 163) solid 2px;
+}
+
+.splash-marketing{
+  display: flex;  
+  flex-direction: column;
+  align-items: center;
+  font-size: 18px;
+}
+
+.splash-marketing h2{
+  font-family: 'Lato';
+  font-size: 48px;
+  font-weight: bold;
+  margin-bottom: 60px;
+}
+
+.splash-marketing-highlights{
+  flex-direction: column;
+  display: flex;
+  text-align: center;
+  margin-bottom: 125px;
+}
+
+.splash-marketing-highlights img{
+  height: 600px;
+  width: 961px;
+  margin: 0 0 16px;
+  box-shadow: 0 5px 20px 0 rgba(0,0,0,.1);
+}
+
+.splash-marketing-enterprise{
+  display: flex;
+  align-items: center;
+}
+.splash-marketing-enterprise h2{
+  margin-bottom: 35px;
+} 
+
+.splash-marketing-enterprise a{
+  color: RGB(23, 95, 158);
+}
+
+.splash-marketing-enterprise a:hover{
+  text-decoration: underline;
+}
+
+.splash-marketing-enterprise-text{
+  width: 650px;
+  margin: 50px;
+}
+
+.splash-marketing-enterprise img{
+  height: 508px;
+  width: 497px;
+  margin: 0 0 16px;
 }

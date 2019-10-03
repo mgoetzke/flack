@@ -1,0 +1,26 @@
+
+.footer{
+  background-color: RGB(245, 245, 245);
+  height: 86px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0px 50px 0px 50px;
+
+}
+.legal-jank {
+
+}
+.portfolio {
+  display:flex;
+  justify-content: space-between;
+}
+.footer i {
+  color: RGB(69, 69, 69);
+  font-size: 25px;
+  margin: 0 0 0 16px;
+}
+
+.footer i:hover{
+  color: RGB(24, 98, 163);
+}

@@ -25,7 +25,7 @@ class Greeting extends React.Component {
   render() {
     const onRoot = this.props.location.pathname === "/";
     const buttonPath = (this.props.location.pathname === "/signup") ? "/login" : "/signup"
-    const buttonText = (this.props.location.pathname === "/signup") ? "Sign in" : "Sign up"
+    const buttonText = (this.props.location.pathname === "/signup") ? "SIGN IN" : "GET STARTED"
     const buttonStyle = (this.props.location.pathname === "/") ? "greeting-button" : "greeting-nav-button"
 
 

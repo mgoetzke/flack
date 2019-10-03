@@ -5,6 +5,7 @@ import LogInFormContainer from "./sessionform/login_form_container";
 import SignUpFormContainer from "./sessionform/signup_form_container";
 import SplashContainer from './splash/splash_container';
 import MainContainer from './main/main_container';
+import FooterContainer from './footer/footer_container';
 import { AuthRoute, ProtectedRoute }  from '../util/route_util';
 const App = () => (
   <div>
@@ -19,6 +20,9 @@ const App = () => (
         <ProtectedRoute path ="/workspace" component={MainContainer}/>
       </Switch>
     </div>
+    <footer >
+      < FooterContainer />
+    </footer>
   </div>
 );
 

@@ -26,7 +26,7 @@ class Splash extends React.Component {
           <Link className="splash-button" to={{
             pathname: '/signup',
             state: {email: this.state.email}
-          }}>TRY FOR FREE</Link>
+          }}>TRY FLACK</Link>
         </div>
         <span>Already using Flack? <Link className="splash-link" to="/login">Sign in</Link>.</span>
         <img className="normie" id="asana" src={window.asana_iconURL} />
@@ -36,7 +36,28 @@ class Splash extends React.Component {
         <img className="normie" id="hubspot" src={window.hubspot_iconURL} />
         <img className="reversereverse" id="zendesk" src={window.zendesk_iconURL} />
         <img className="normie" id="zoom" src={window.zoom_iconURL} />
+        <div className="splash-marketing">
+          <div className="splash-marketing-highlights">
+            <h2>Put collaboration at your fingertips</h2>
+            <img src={window.highlightsURL} />
+          </div>
+          <div className="splash-marketing-enterprise">
+            <div className="splash-marketing-enterprise-text">
+              <h2>Efficient teamwork for <br></br>every enterprise</h2>
+              <div>Big companies save time with Flack by securely 
+                collaborating across teams, departments, offices and countries.</div>
+              <br/>
+              <Link className="splash-marketing-enterprise-link" to={"/signup"}>Flack trial &#8594;</Link>
+            </div>
+            <div>
+              <img src={window.enterpriseURL} />
+            </div>
+
+          </div>
+        </div>
+
       </div>
+
     );
   }
 

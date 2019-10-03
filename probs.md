@@ -2,9 +2,11 @@ Known bugs
   * screen flicker -> change js script order? DOMContentLoaded issue?
 
 Splash
-  * No splash on /login -> add protectedroute?
-  * add info image >> marketing shtuff
-  * Logout redirect / 
+  /login sign up botton in header is off
+
+  sign up as text on footer**
+
+  On focus
 
 Channels
   #Update

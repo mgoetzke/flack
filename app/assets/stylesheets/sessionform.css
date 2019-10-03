@@ -1,14 +1,11 @@
 .session-wrapper{
   border-top: 1px solid RGB(223, 223, 223);
-  padding-top: 30px;
-  padding-bottom: 150px;
   display:flex;
   flex-direction: column;
-  align-items:center;
-  justify-content: center;
   background-color: RGB(248, 248, 248);
   font-family: 'Lato';
   box-sizing: border-box;
+  height: 100vh;
 }
 .session-form-form h2 p span{
   font-weight: bold;
@@ -34,8 +31,7 @@
   margin: 0 auto;
   border-radius: 3px;
   width: 635px;
-  height: 462px;
-  margin-top:  20px;
+  margin-top: 60px;
   display:flex;
   flex-direction: column;
   font-family: 'Lato';
@@ -58,7 +54,7 @@
 .session-form h1{
   font-size: 30px;
   font-weight: bold;
-  margin: 20px 0px 40px 0px;
+  margin: 20px 0px 20px 0px;
 }
 
 .session-form-form h2{
@@ -97,6 +93,18 @@
   border-radius: 3px;
   margin: 5px;
   font-size: 20px;
+}
+
+.session-form-demo{
+  margin: 40px 0px 60px 0px;
+}
+.session-form-demo a{
+  color:RGB(24, 98, 163);
+  font-weight: bold;
+}
+
+.session-form-demo a:hover{
+  text-decoration: underline;
 }
 
 .session-form-button:hover{

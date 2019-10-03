@@ -1,0 +1,1 @@
+json.extract! membership, :user_id, :memberable_id, :memberable_type
