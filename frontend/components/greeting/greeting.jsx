@@ -28,7 +28,7 @@ class Greeting extends React.Component {
       return (
         <div className="greeting">
           <div className="greeting-nav">
-            <img src={window.logoURL} />
+            <Link to="/"><img src={window.logoURL} /></Link>
           </div>
           <Link className={buttonStyle} to={buttonPath}>{buttonText}</Link>
         </div>

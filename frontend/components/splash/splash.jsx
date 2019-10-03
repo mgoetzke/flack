@@ -1,12 +1,18 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { 
-  
- } from 'react-router-dom';
+
 class Splash extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {email: ""}
   }
+
+  update(field) {
+    return (e) => {
+      this.setState({ [field]: e.target.value });
+    }
+  }
+
   render(){
     return(
       <div className="splash"> 
@@ -16,8 +22,11 @@ class Splash extends React.Component {
         </div>
         <p>Flack gives your team the power and alignment you need to do your best work.</p>
         <div className="splash-form">
-          <input type="text" placeholder="Your work email"/>
-          <Link className="splash-button" to="/signup">TRY FOR FREE</Link>
+          <input type="text" placeholder="Your work email" onChange={this.update("email")}/>
+          <Link className="splash-button" to={{
+            pathname: '/signup',
+            state: {email: this.state.email}
+          }}>TRY FOR FREE</Link>
         </div>
         <span>Already using Flack? <Link className="splash-link" to="/login">Sign in</Link>.</span>
         

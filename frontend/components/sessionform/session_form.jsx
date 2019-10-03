@@ -2,10 +2,12 @@ import React from 'react';
 class SessionForm extends React.Component {
   constructor(props) {
     super(props);
+
     this.state = {
       password: "",
       display_name: "",
-      email: ""
+      email: "",
+
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleDemo = this.handleDemo.bind(this);
@@ -43,6 +45,7 @@ class SessionForm extends React.Component {
     const directionSmallUp = <p>Enter your <span>email address</span>, <span>password</span>, and <span>display name</span>.</p>
     const directionSmallIn = <p>Enter your <span>email address</span> and <span>password</span></p>;
     const directionSmall = (this.props.formType === "Sign Up") ? directionSmallUp : directionSmallIn;
+    const passedEmail = (this.props.location.state !== undefined && 'email' in this.props.location.state) ? this.props.location.state.email : "";
     return ( 
       
       <div className="session-wrapper">
@@ -59,7 +62,7 @@ class SessionForm extends React.Component {
           <form className="session-form-form" onSubmit={this.handleSubmit}>
             <h1>{directionBig}</h1>
             <h2>{directionSmall}</h2>
-            <input type="text" onChange={this.update("email")} placeholder="you@example.com"/>
+            <input type="text" onChange={this.update("email")} placeholder="you@example.com" defaultValue={ passedEmail }/>
 
             <input type="password" onChange={this.update("password")} placeholder="password"/>
             {this.props.formType === "Sign Up" &&
