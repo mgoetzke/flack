@@ -1,23 +1,45 @@
 import React from "react";
+import MessageFormContainer from "../messageform/messageform_container";
 class Channel extends React.Component {
   constructor(props) {
     super(props);
+    this.state = { messages: [] };
+    this.bottom = React.createRef();
   }
   componentDidMount() {
-    this.props.fetchChannel(this.props.match.params.channelId);
-    this.props.fetchAllMessages();
+    App.cable.subscriptions.create(
+      { channel: "ChatChannel" },
+      {
+        received: data => {
+          this.setState({
+            messages: this.state.messages.concat(data.message)
+          });
+        },
+        speak: function(data) {
+          return this.perform("speak", data);
+        }
+      }
+    );
+  }
+
+  componentDidUpdate() {
+    this.bottom.current.scrollIntoView();
   }
   render() {
-    const messages = this.props.messages || [];
-    const message_bodies = messages.map(message => {
-      return <li key={message.id}>{message.body}</li>;
+    const messages = this.state.messages.map(message => {
+      return (
+        <li key={message.id}>
+          {message}
+          <div ref={this.bottom} />
+        </li>
+      );
     });
+
     return (
-      <div>
-        <h1>Channel name: {this.props.channel.name}</h1>
-        <h1>Channel topic: {this.props.channel.topic}</h1>
-        <h1>Messages</h1>
-        <ul>{message_bodies}</ul>
+      <div className="channel-container">
+        <div>Tutorial chatroom</div>
+        <div className="message-list">{messages}</div>
+        <MessageFormContainer />
       </div>
     );
   }

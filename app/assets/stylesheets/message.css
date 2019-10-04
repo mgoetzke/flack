@@ -1,0 +1,8 @@
+.message-form {
+  border: solid 3px red;
+}
+
+.message-submit {
+  background-color: orange;
+  padding: 5px;
+}

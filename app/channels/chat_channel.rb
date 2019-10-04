@@ -1,6 +1,6 @@
 class ChatChannel < ApplicationCable::Channel
   def subscribed
-    stream_from "chat_channel"
+    stream_for "chat_channel"
   end
   def speak(data)
     message = Message.create(body: data['message'])
