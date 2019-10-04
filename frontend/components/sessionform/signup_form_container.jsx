@@ -6,7 +6,8 @@ import { withRouter } from 'react-router-dom';
 const mapState = ({errors}, ownProps) => {
   return ({
     errors: errors.session,
-    formType: "Sign up"
+    formType: "Sign up",
+    demoUser: { email: "demo-user@demo.com", password: "password" }
   });
 }
 
