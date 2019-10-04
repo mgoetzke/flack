@@ -3,8 +3,8 @@ import ReactDOM from 'react-dom';
 import configureStore from './store/store';
 import Root from './components/root';
 
-import { fetchAllMessages, fetchMessage, createMessage, updateMessage } from './actions/message_actions';
-
+import { fetchMessage, createMessage, updateMessage } from './actions/message_actions';
+import { fetchAllMessages } from './util/message_api_util';
 
 document.addEventListener("DOMContentLoaded", () =>{
   const root = document.getElementById("root");

@@ -13,10 +13,6 @@ export default (state = { id: null }, action) => {
             return merge({}, action.messages);
         case RECEIVE_MESSAGE:
             return merge({}, state, { [action.message.id]: action.message });
-        case REMOVE_MESSAGE:
-            newState = merge({}, state);
-            delete newState[action.messageId]
-            return newState;
         default:
             return state;
     }
