@@ -4,10 +4,11 @@ import {fetchChannel} from '../../actions/channel_actions';
 import { withRouter } from 'react-router-dom';
 
 const mapState = (state, ownProps) => {
-  
-  const defaultChannel = {name: "", topic: "", private: true};
-  const channel = state.channels[ownProps.match.params.channel.id] || defaultChannel;
-  return channel;
+  let default_channel = {name: "Default channel", topic: "defaulty", private: false, admin_id: 1};
+  let channel = state.entities.channels[ownProps.match.params.channelId] || default_channel;
+  return ({
+    channel: channel,
+  });
 }
 
 const mapDispatch = dispatch => {

@@ -2,21 +2,19 @@ import React from 'react';
 class Channel extends React.Component {
   constructor(props) {
     super(props);
-    let testId = 4;
     // const messageable_id = this.props.location;
   }
   componentDidMount(){
-    //hardcoded for testing; may need to change based on db updates
-    this.props.fetchChannel(testId);
-    console.log("mounted")
+    this.props.fetchChannel(this.props.match.params.channelId);
   }
   render() {
     const { channel } = this.props;
-  
+
     return (
       <div>
         
-        HAI IM THE Channel
+        <h1>Channel name: {this.props.channel.name}</h1>
+        <h1>Channel topic: {this.props.channel.topic}</h1>
       </div>
     );
   }

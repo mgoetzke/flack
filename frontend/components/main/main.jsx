@@ -15,7 +15,7 @@ class Main extends React.Component {
         </div>
         <div>
           <Switch>
-            <Route path="/workspace/channels" component={ChannelContainer}/>
+            <Route path="/workspace/channels/:channelId" component={ChannelContainer}/>
           </Switch>
 
         </div>
