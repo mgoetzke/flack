@@ -5,7 +5,7 @@ import { withRouter } from 'react-router-dom';
 
 const mapState = (state, ownProps) => {
   
-  const defaultChannel = {name: "", topic: "", is_private: true};
+  const defaultChannel = {name: "", topic: "", private: true};
   const channel = state.channels[ownProps.match.params.channel.id] || defaultChannel;
   return channel;
 }
