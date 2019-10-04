@@ -17,11 +17,11 @@ class Channel extends React.Component {
           switch (data.type) {
             case "message":
               newMessage = {
-                body: data.message,
+                body: data.body,
                 id: data.id,
-                user_id: 3,
-                messageable_id: 1,
-                messageable_type: "Channel"
+                user_id: data.user_id,
+                messageable_id: data.messageable_id,
+                messageable_type: data.messageable_type
               };
               this.setState({
                 messages: this.state.messages.concat([newMessage])
@@ -44,7 +44,7 @@ class Channel extends React.Component {
   }
   render() {
     const { messages } = this.props;
-    const allMessages = this.props.messages.concat(this.state.messages);
+    const allMessages = messages.concat(this.state.messages);
     const format_messages = Object.values(allMessages).map(message => {
       return (
         <li key={message.id}>
@@ -56,10 +56,9 @@ class Channel extends React.Component {
         </li>
       );
     });
-
     return (
       <div className="channel-container">
-        <div>walkthrough</div>
+        <div>{this.props.channel.name}</div>
         <div className="message-list">{format_messages}</div>
         <MessageFormContainer />
       </div>

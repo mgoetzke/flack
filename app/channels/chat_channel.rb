@@ -5,10 +5,14 @@ class ChatChannel < ApplicationCable::Channel
   end
   def speak(data)
     message = Message.new(data["message"])
-    # THIS IS WHERE I HARD CODE THE MESSAGEABLE TYPE
-    message.messageable_type = "Channel"
     if(message.save)
-      socket = {message: message.body, id: message.id,type: 'message'}
+      socket = {
+       id: message.id,
+       body: message.body,
+       user_id: message.user_id,
+       messageable_id: message.messageable_id,
+       messageable_type: message.messageable_type,
+       type: 'message'}
       ChatChannel.broadcast_to('chat_channel', socket)
     else
       ChatChannel.broadcast_to('chat_channel', {message: "db save failed", id: Time.now, type: 'message'})
