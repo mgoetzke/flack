@@ -18,6 +18,7 @@ class User < ApplicationRecord
   validates :email, uniqueness: true
 
   has_many :memberships
+  has_many :messages
   has_many :channels, through: :memberships, source: :memberable, source_type: 'channel'
 
   after_initialize :ensure_session_token
