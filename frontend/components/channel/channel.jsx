@@ -5,7 +5,6 @@ class Channel extends React.Component {
     super(props);
     this.state = { messages: props.messages };
     this.bottom = React.createRef();
-    this.loadChat = this.loadChat.bind(this);
   }
 
   componentDidMount() {
@@ -14,15 +13,18 @@ class Channel extends React.Component {
       { channel: "ChatChannel" },
       {
         received: data => {
+          let newMessage;
           switch (data.type) {
             case "message":
+              newMessage = {
+                body: data.message,
+                id: data.id,
+                user_id: 3,
+                messageable_id: 1,
+                messageable_type: "Channel"
+              };
               this.setState({
-                messages: this.state.messages.concat(data.message)
-              });
-              break;
-            case "messages":
-              this.setState({
-                messages: data.messages
+                messages: this.state.messages.concat([newMessage])
               });
               break;
           }
@@ -36,16 +38,14 @@ class Channel extends React.Component {
       }
     );
   }
-  loadChat(e) {
-    e.preventDefault();
-    App.cable.subscriptions.subscriptions[0].load();
-  }
+
   componentDidUpdate() {
     this.bottom.current.scrollIntoView();
   }
   render() {
     const { messages } = this.props;
-    const format_messages = Object.values(messages).map(message => {
+    const allMessages = this.props.messages.concat(this.state.messages);
+    const format_messages = Object.values(allMessages).map(message => {
       return (
         <li key={message.id}>
           Author:
@@ -60,9 +60,6 @@ class Channel extends React.Component {
     return (
       <div className="channel-container">
         <div>walkthrough</div>
-        <button className="load-button" onClick={this.loadChat}>
-          load history
-        </button>
         <div className="message-list">{format_messages}</div>
         <MessageFormContainer />
       </div>

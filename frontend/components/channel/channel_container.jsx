@@ -16,9 +16,10 @@ const mapState = (state, ownProps) => {
   };
   let channel =
     state.entities.channels[ownProps.match.params.channelId] || default_channel;
-  let messages = Object.keys(state.entities.messages).map(
-    id => state.entities.messages[id]
-  );
+  let messages =
+    Object.keys(state.entities.messages).map(
+      id => state.entities.messages[id]
+    ) || [];
   return {
     channel,
     messages,
