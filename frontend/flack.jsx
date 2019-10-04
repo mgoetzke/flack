@@ -26,7 +26,6 @@ document.addEventListener("DOMContentLoaded", () =>{
   window.fetchAllMessages = fetchAllMessages;
   window.fetchMessage = fetchMessage;
   window.createMessage = createMessage;
-  window.destroyMessage = destroyMessage;
   window.updateMessage = updateMessage;
   window.getState = store.getState;
   window.dispatch = store.dispatch;

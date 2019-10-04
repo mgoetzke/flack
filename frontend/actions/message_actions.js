@@ -4,7 +4,7 @@ export const RECEIVE_ALL_MESSAGES = "RECEIVE_ALL_MESSAGES";
 export const RECEIVE_MESSAGE = "RECEIVE_MESSAGE";
 
 export const fetchAllMessages = () => dispatch => {
-    return MessageApiUtil.fetchMessage()
+    return MessageApiUtil.fetchAllMessages()
         .then(messages => dispatch(receiveMessages(messages)))
 }
 export const fetchMessage = (id) => dispatch => {
