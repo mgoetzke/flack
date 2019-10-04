@@ -2,6 +2,7 @@ import { connect } from "react-redux";
 import Channel from './channel';
 import {fetchChannel} from '../../actions/channel_actions';
 import { withRouter } from 'react-router-dom';
+import {fetchAllMessages} from '../../actions/message_actions';
 
 const mapState = (state, ownProps) => {
   let default_channel = {name: "Default channel", topic: "defaulty", private: false, admin_id: 1};
@@ -14,6 +15,7 @@ const mapState = (state, ownProps) => {
 const mapDispatch = dispatch => {
   return ({
     fetchChannel: (id) => dispatch(fetchChannel(id)),
+    fetchAllMessages: () => dispatch(fetchAllMessages())
 
   });
 }
