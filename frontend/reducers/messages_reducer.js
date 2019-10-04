@@ -5,14 +5,14 @@ import {
 
 import merge from "lodash/merge";
 
-export default (state = [], action) => {
+export default (state = {}, action) => {
   Object.freeze(state);
   let newState;
   switch (action.type) {
     case RECEIVE_ALL_MESSAGES:
-      return merge([], action.messages);
+      return merge({}, action.messages);
     case RECEIVE_MESSAGE:
-      return merge([], state, { [action.message.id]: action.message });
+      return merge({}, state, { [action.message.id]: action.message });
     default:
       return state;
   }

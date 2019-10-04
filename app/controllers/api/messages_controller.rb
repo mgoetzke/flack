@@ -10,16 +10,8 @@ class Api::MessagesController < ApplicationController
     end
 
     def create
-        @message = Message.new(message_params)
-        # TESTING TO DO
-        # @message.user_id = current_user.id
-        @message.messageable_type = Channel
-        if @message.save
-            render :show
-        else
-            render json: @message.errors.full_messages, status: 422
-        end
-
+        # THIS METHOD INTENTIONALLY LEFT BLANK
+        # Messages created via Action Cable websocket
     end
 
     def update
