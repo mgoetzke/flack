@@ -3,7 +3,7 @@ class Api::ChannelsController < ApplicationController
     @channel = Channel.new(channel_params)
     @channel.admin_id = current_user.id
     if @channel.save
-      # add current member to channel
+      # TODO add current member to channel
       render :show
     else
       render json: @channel.errors.full_messages, status: 422
