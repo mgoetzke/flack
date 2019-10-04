@@ -15,6 +15,7 @@ class Channel extends React.Component {
         
         <h1>Channel name: {this.props.channel.name}</h1>
         <h1>Channel topic: {this.props.channel.topic}</h1>
+        <h1>Messages</h1>
       </div>
     );
   }
