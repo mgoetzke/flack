@@ -13,6 +13,6 @@
 class Membership < ApplicationRecord
   belongs_to :memberable, :polymorphic => true
   belongs_to :user,
-    foreign_key: :id,
-    primary_key: :user_id
+    foreign_key: :user_id,
+    primary_key: :id
 end

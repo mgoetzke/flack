@@ -3,8 +3,8 @@ import ReactDOM from 'react-dom';
 import configureStore from './store/store';
 import Root from './components/root';
 
-import { fetchMessage, createMessage, updateMessage } from './actions/message_actions';
-import { fetchAllMessages } from './util/message_api_util';
+import { fetchMessage, fetchAllMessages, createMessage, updateMessage } from './actions/message_actions';
+import {fetchAllChannels} from './actions/channel_actions'
 
 document.addEventListener("DOMContentLoaded", () =>{
   const root = document.getElementById("root");
@@ -23,6 +23,7 @@ document.addEventListener("DOMContentLoaded", () =>{
   }
   
   //TESTING
+  window.fetchAllChannels = fetchAllChannels;
   window.fetchAllMessages = fetchAllMessages;
   window.fetchMessage = fetchMessage;
   window.createMessage = createMessage;

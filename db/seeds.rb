@@ -8,4 +8,12 @@
 
 demoUser = User.create(email: "demo-user@demo.com", password: "password", display_name:"Demo User");
 demoFriend = User.create(email: "demo-friend@demo.com", password: "password", display_name:"Friend of Demo");
-testChannel = Channel.create!(name: "Test channel", topic: "testing", private: false, admin_id: 1);
+testChannel = Channel.create(name: "Test channel", topic: "testing", private: false, admin_id: 1);
+message1 = Message.create!(body: "pepitas are nothing special",
+    user_id: 1,
+    messageable_id: testChannel.id,
+    messageable_type: Channel);
+message2 = Message.create(body: "Raspberry seeds are worse",
+    user_id: 2,
+    messageable_id: testChannel.id,
+    messageable_type: Channel);

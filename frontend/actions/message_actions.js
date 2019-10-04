@@ -16,7 +16,7 @@ export const createMessage = (message) => dispatch => {
         .then(message => dispatch(receiveMessage(message)))
 }
 
-export const updateMessage = () => dispatch => {
+export const updateMessage = (message) => dispatch => {
     return MessageApiUtil.updateMessage(message)
         .then(message => dispatch(receiveMessage(message)))
 }

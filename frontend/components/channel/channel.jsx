@@ -2,7 +2,6 @@ import React from 'react';
 class Channel extends React.Component {
   constructor(props) {
     super(props);
-    // const messageable_id = this.props.location;
   }
   componentDidMount(){
     this.props.fetchChannel(this.props.match.params.channelId);

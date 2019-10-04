@@ -1,4 +1,4 @@
-class Api::ChannelsController < ApplicationController
+class Api::MessagesController < ApplicationController
     def index
         @messages = Message.all
         render :index
@@ -31,6 +31,6 @@ class Api::ChannelsController < ApplicationController
 
     private 
     def message_params
-        params.require(:message).permit(:body, :messageable_id, :messageable_type)
+        params.require(:message).permit(:body, :messageable_id, :messageable_type, :user_id)
     end
 end
