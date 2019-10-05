@@ -13,7 +13,7 @@
 
 
 class User < ApplicationRecord
-  validates :display_name, :email, :session_token, :password_digest, presence: true
+  validates :display_name, :email, :session_token, :password_digest, :image_url, presence: true
   validates :password, length: {minimum: 6, allow_nil: true}
   validates :email, uniqueness: true
 
@@ -21,7 +21,7 @@ class User < ApplicationRecord
   has_many :messages
   has_many :channels, through: :memberships, source: :memberable, source_type: 'channel'
 
-  after_initialize :ensure_session_token
+  after_initialize :ensure_session_token, :ensure_image_url
   attr_reader :password
 
   #IGVAPER
@@ -54,6 +54,22 @@ class User < ApplicationRecord
     self.session_token = self.class.generate_session_token
     self.save!
     self.session_token
+  end
+
+  def ensure_image_url
+    self.image_url ||= self.class.generate_image_url
+  end
+
+  def self.generate_image_url
+              ["avatar1.png",
+              "avatar2.png",
+              "avatar3.png",
+              "avatar4.png",
+              "avatar5.png",
+              "avatar6.png",
+              "avatar7.png",
+              "avatar8.png",
+              "avatar9.png"].sample
   end
 
 end

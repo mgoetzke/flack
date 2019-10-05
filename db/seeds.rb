@@ -6,7 +6,9 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-demoUser = User.create(email: "demo-user@demo.com", password: "password", display_name:"Demo User");
+demoUser = User.create(email: "demo-user@demo.com", 
+password: "password",
+display_name:"Demo User");
 demoFriend = User.create(email: "demo-friend@demo.com", password: "password", display_name:"Friend of Demo");
 testChannel = Channel.create(name: "Test channel", topic: "testing", private: false, admin_id: 1);
 message1 = Message.create!(body: "pepitas are nothing special",
