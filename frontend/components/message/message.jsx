@@ -8,11 +8,11 @@ class Message extends React.Component {
       editing: false,
       currentUser: props.currentUser
     };
-    this.handleEditButton = this.handleEditButton.bind(this);
+    this.toggleEditStatus = this.toggleEditStatus.bind(this);
     this.saveEdit = this.saveEdit.bind(this);
     this.update = this.update.bind(this);
   }
-  handleEditButton() {
+  toggleEditStatus() {
     let newEditState = this.state.editing === false ? true : false;
     this.setState({ editing: newEditState });
   }
@@ -27,6 +27,7 @@ class Message extends React.Component {
 
   saveEdit() {
     this.props.updateMessage(this.state.message);
+    this.setState({ editing: false });
   }
 
   render() {
@@ -61,7 +62,7 @@ class Message extends React.Component {
         <div>
           {messageBody}
           {userEdit && (
-            <button onClick={this.handleEditButton} className="message-edit">
+            <button onClick={this.toggleEditStatus} className="message-edit">
               {editButtonText}
             </button>
           )}
