@@ -36,7 +36,7 @@ const receiveMessages = messages => {
   };
 };
 
-const receiveMessage = message => {
+export const receiveMessage = message => {
   return {
     type: RECEIVE_MESSAGE,
     message

@@ -1,35 +1,30 @@
 import React from "react";
 import MessageFormContainer from "../messageform/messageform_container";
 import MessageContainer from "../message/message";
+
 import merge from "lodash/merge";
 class Channel extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { messages: {} };
+    this.state = { messages: props.messages };
     this.bottom = React.createRef();
   }
 
   componentDidMount() {
     this.props.fetchAllMessages();
+    const { receiveMessage } = this.props;
     App.cable.subscriptions.create(
       { channel: "ChatChannel" },
       {
         received: data => {
           let incomingMessage = JSON.parse(data.message);
+          let test = incomingMessage.id;
           switch (data.type) {
             case "message":
-              this.setState({
-                messages: merge({}, this.state.messages, {
-                  [incomingMessage.id]: incomingMessage
-                })
-              });
+              receiveMessage(incomingMessage);
               break;
             case "edit":
-              this.setState({
-                messages: merge({}, this.state.messages, {
-                  [incomingMessage.id]: incomingMessage
-                })
-              });
+              receiveMessage(incomingMessage);
               break;
           }
         },
@@ -43,25 +38,25 @@ class Channel extends React.Component {
     );
   }
 
-  componentDidUpdate() {
+  componentDidUpdate(prevProps) {
     this.bottom.current.scrollIntoView();
   }
   render() {
-    const { messages } = this.props;
-    const allMessages = merge({}, messages, this.state.messages);
-    debugger;
-    const format_messages = Object.values(allMessages).map(message => {
+    let { messages } = this.props;
+    let formatMessages = messages.map(message => {
       return (
-        <li className="message-item" key={message.id}>
-          <MessageContainer message={message} />
-          <div ref={this.bottom} />
-        </li>
+        <>
+          <li className="message-item" key={message.id}>
+            <MessageContainer message={message} />
+            <div ref={this.bottom} />
+          </li>
+        </>
       );
     });
     return (
       <div className="channel-container">
         <div>{this.props.channel.name}</div>
-        <div className="message-list">{format_messages}</div>
+        <div className="message-list">{formatMessages}</div>
         <MessageFormContainer />
       </div>
     );

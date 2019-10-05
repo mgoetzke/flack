@@ -12,17 +12,18 @@ class Message extends React.Component {
   }
 
   render() {
-    let image_location = this.state.message.image_url.split(".")[0];
+    let { message } = this.props;
+    let image_location = message.image_url.split(".")[0];
     let messageView = (
-      <div>
-        {this.state.message.display_name}
-        <div>{this.state.message.body}</div>
-        {this.state.message.created_at}
-        {this.state.message.updated_at}
-      </div>
+      <li>
+        {message.display_name}
+        <div>{message.body}</div>
+        {message.created_at}
+        {message.updated_at}
+      </li>
     );
     let messageBody = this.state.editing ? (
-      <MessageEditContainer message={this.state.message} />
+      <MessageEditContainer message={message} />
     ) : (
       messageView
     );

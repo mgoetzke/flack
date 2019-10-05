@@ -4,7 +4,8 @@ import { fetchChannel } from "../../actions/channel_actions";
 import { withRouter } from "react-router-dom";
 import {
   fetchAllMessages,
-  fetchChannelMessages
+  fetchChannelMessages,
+  receiveMessage
 } from "../../actions/message_actions";
 
 const mapState = (state, ownProps) => {
@@ -16,10 +17,7 @@ const mapState = (state, ownProps) => {
   };
   let channel =
     state.entities.channels[ownProps.match.params.channelId] || default_channel;
-  let messages =
-    Object.keys(state.entities.messages).map(
-      id => state.entities.messages[id]
-    ) || {};
+  let messages = Object.values(state.entities.messages);
   return {
     channel,
     messages,
@@ -31,7 +29,8 @@ const mapDispatch = dispatch => {
   return {
     fetchChannel: id => dispatch(fetchChannel(id)),
     fetchAllMessages: () => dispatch(fetchAllMessages()),
-    fetchChannelMessages: () => dispatch(fetchChannelMessages())
+    fetchChannelMessages: () => dispatch(fetchChannelMessages()),
+    receiveMessage: message => dispatch(receiveMessage(message))
   };
 };
 export default withRouter(
