@@ -5,8 +5,8 @@
 }
 .message-list {
   overflow-y: scroll;
-  height: 300px;
-  width: 400px;
+  height: 500px;
+  width: 700px;
   border: solid blue 2px;
 }
 

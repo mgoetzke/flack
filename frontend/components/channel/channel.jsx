@@ -1,5 +1,6 @@
 import React from "react";
 import MessageFormContainer from "../messageform/messageform_container";
+import MessageContainer from "../message/message";
 class Channel extends React.Component {
   constructor(props) {
     super(props);
@@ -13,16 +14,9 @@ class Channel extends React.Component {
       { channel: "ChatChannel" },
       {
         received: data => {
-          let newMessage;
+          let newMessage = JSON.parse(data.message);
           switch (data.type) {
-            case "message":
-              newMessage = {
-                body: data.body,
-                id: data.id,
-                user_id: data.user_id,
-                messageable_id: data.messageable_id,
-                messageable_type: data.messageable_type
-              };
+            default:
               this.setState({
                 messages: this.state.messages.concat([newMessage])
               });
@@ -47,11 +41,8 @@ class Channel extends React.Component {
     const allMessages = messages.concat(this.state.messages);
     const format_messages = Object.values(allMessages).map(message => {
       return (
-        <li key={message.id}>
-          Author:
-          {message.user_id}
-          Message:
-          {message.body}
+        <li className="message-item" key={message.id}>
+          <MessageContainer message={message} />
           <div ref={this.bottom} />
         </li>
       );

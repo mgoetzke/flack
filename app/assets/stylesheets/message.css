@@ -6,3 +6,15 @@
   background-color: orange;
   padding: 5px;
 }
+.message-item {
+  border: 1px solid grey;
+  margin: 3px;
+  list-style: none;
+}
+.message-item:hover {
+  background-color: aliceblue;
+}
+.message-delete {
+  background-color: chartreuse;
+  padding: 3px;
+}

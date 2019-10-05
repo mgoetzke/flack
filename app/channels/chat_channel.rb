@@ -6,14 +6,9 @@ class ChatChannel < ApplicationCable::Channel
   def speak(data)
     message = Message.new(data["message"])
     if(message.save)
-      socket = {
-       id: message.id,
-       body: message.body,
-       user_id: message.user_id,
-       messageable_id: message.messageable_id,
-       messageable_type: message.messageable_type,
-       type: 'message'}
+      socket = {message: format(message), type: 'message'}
       ChatChannel.broadcast_to('chat_channel', socket)
+      # socket = format(message)
     else
       ChatChannel.broadcast_to('chat_channel', {message: "db save failed", id: Time.now, type: 'message'})
     end
@@ -25,6 +20,12 @@ class ChatChannel < ApplicationCable::Channel
   end
   def unsubscribed
     # Any cleanup needed when channel is unsubscribed
+  end
+  def format(message)
+    ApplicationController.render(
+      partial: 'api/messages/message',
+      locals: {message: message}
+    )
   end
   private 
   def message_params
