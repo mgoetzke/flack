@@ -8,7 +8,6 @@ class ChatChannel < ApplicationCable::Channel
     if(message.save)
       socket = {message: format(message), type: 'message'}
       ChatChannel.broadcast_to('chat_channel', socket)
-      # socket = format(message)
     else
       ChatChannel.broadcast_to('chat_channel', {message: "db save failed", id: Time.now, type: 'message'})
     end
@@ -18,6 +17,16 @@ class ChatChannel < ApplicationCable::Channel
     socket = { messages: messages, type: 'messages'}
     ChatChannel.broadcast_to('chat_channel', socket)
   end
+  def self.update(message)
+    socket={message: format(message.to_json), type: 'edit'}
+    ChatChannel.broadcast_to('chat_channel', socket)
+  end
+
+  def self.update2(jbuilt)
+    socket={message: jbuilt, type: 'edit'}
+    ChatChannel.broadcast_to('chat_channel', socket)
+  end
+
   def unsubscribed
     # Any cleanup needed when channel is unsubscribed
   end

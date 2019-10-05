@@ -19,7 +19,7 @@ const mapState = (state, ownProps) => {
   let messages =
     Object.keys(state.entities.messages).map(
       id => state.entities.messages[id]
-    ) || [];
+    ) || {};
   return {
     channel,
     messages,

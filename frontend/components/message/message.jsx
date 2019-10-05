@@ -10,9 +10,6 @@ class Message extends React.Component {
     let newEditState = this.state.editing === false ? true : false;
     this.setState({ editing: newEditState });
   }
-  update(field) {
-    return e => this.setState({ [field]: e.currentTarget.value });
-  }
 
   render() {
     let image_location = this.state.message.image_url.split(".")[0];

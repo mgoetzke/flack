@@ -1,10 +1,11 @@
 import React from "react";
 import MessageFormContainer from "../messageform/messageform_container";
 import MessageContainer from "../message/message";
+import merge from "lodash/merge";
 class Channel extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { messages: props.messages };
+    this.state = { messages: {} };
     this.bottom = React.createRef();
   }
 
@@ -14,11 +15,20 @@ class Channel extends React.Component {
       { channel: "ChatChannel" },
       {
         received: data => {
-          let newMessage = JSON.parse(data.message);
+          let incomingMessage = JSON.parse(data.message);
           switch (data.type) {
-            default:
+            case "message":
               this.setState({
-                messages: this.state.messages.concat([newMessage])
+                messages: merge({}, this.state.messages, {
+                  [incomingMessage.id]: incomingMessage
+                })
+              });
+              break;
+            case "edit":
+              this.setState({
+                messages: merge({}, this.state.messages, {
+                  [incomingMessage.id]: incomingMessage
+                })
               });
               break;
           }
@@ -38,7 +48,8 @@ class Channel extends React.Component {
   }
   render() {
     const { messages } = this.props;
-    const allMessages = messages.concat(this.state.messages);
+    const allMessages = merge({}, messages, this.state.messages);
+    debugger;
     const format_messages = Object.values(allMessages).map(message => {
       return (
         <li className="message-item" key={message.id}>
