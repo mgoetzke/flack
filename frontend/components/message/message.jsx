@@ -3,7 +3,11 @@ import MessageEditContainer from "../messagedit/messageedit_container";
 class Message extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { message: props.message, editing: false };
+    this.state = {
+      message: props.message,
+      editing: false,
+      currentUser: props.currentUser
+    };
     this.handleEditButton = this.handleEditButton.bind(this);
   }
   handleEditButton() {
@@ -14,6 +18,7 @@ class Message extends React.Component {
   render() {
     let { message } = this.props;
     let image_location = message.image_url.split(".")[0];
+    let userEdit = this.state.currentUser === message.user_id;
     let messageView = (
       <li>
         {message.display_name}
@@ -32,9 +37,11 @@ class Message extends React.Component {
         <img className="message-avatar" src={window[image_location]} />
         <div>
           {messageBody}
-          <button onClick={this.handleEditButton} className="message-edit">
-            Edit
-          </button>
+          {userEdit && (
+            <button onClick={this.handleEditButton} className="message-edit">
+              Edit
+            </button>
+          )}
         </div>
       </>
     );

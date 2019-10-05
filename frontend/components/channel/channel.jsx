@@ -6,7 +6,7 @@ import merge from "lodash/merge";
 class Channel extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { messages: props.messages };
+    this.state = { messages: props.messages, currentUser: props.currentUser };
     this.bottom = React.createRef();
   }
 
@@ -47,7 +47,10 @@ class Channel extends React.Component {
       return (
         <>
           <li className="message-item" key={message.id}>
-            <MessageContainer message={message} />
+            <MessageContainer
+              currentUser={this.props.currentUser}
+              message={message}
+            />
             <div ref={this.bottom} />
           </li>
         </>

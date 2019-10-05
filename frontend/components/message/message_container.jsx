@@ -3,9 +3,10 @@ import Message from "./message";
 import { withRouter } from "react-router-dom";
 import { updateMessage } from "../../actions/message_actions";
 
-const mapState = ({ message }) => {
+const mapState = state => {
   return {
-    message
+    message: state.message,
+    currentUser: state.currentUser
   };
 };
 

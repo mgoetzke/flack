@@ -18,9 +18,11 @@ const mapState = (state, ownProps) => {
   let channel =
     state.entities.channels[ownProps.match.params.channelId] || default_channel;
   let messages = Object.values(state.entities.messages);
+  let currentUser = state.session.id;
   return {
     channel,
     messages,
+    currentUser,
     error: "error"
   };
 };
