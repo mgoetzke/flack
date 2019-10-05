@@ -1,12 +1,11 @@
 import { connect } from "react-redux";
 import Message from "./message";
-import { withRouter } from "react-router-dom";
 import { updateMessage } from "../../actions/message_actions";
 
-const mapState = state => {
+const mapState = (state, ownProps) => {
   return {
-    message: state.message,
-    currentUser: state.currentUser
+    message: ownProps.message,
+    currentUser: ownProps.currentUser
   };
 };
 
@@ -15,9 +14,7 @@ const mapDispatch = dispatch => {
     updateMessage: message => dispatch(updateMessage(message))
   };
 };
-export default withRouter(
-  connect(
-    mapState,
-    mapDispatch
-  )(Message)
-);
+export default connect(
+  mapState,
+  mapDispatch
+)(Message);

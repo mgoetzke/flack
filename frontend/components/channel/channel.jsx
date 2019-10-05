@@ -1,6 +1,6 @@
 import React from "react";
 import MessageFormContainer from "../messageform/messageform_container";
-import MessageContainer from "../message/message";
+import MessageContainer from "../message/message_container";
 
 import merge from "lodash/merge";
 class Channel extends React.Component {
@@ -45,7 +45,7 @@ class Channel extends React.Component {
     let { messages } = this.props;
     let formatMessages = messages.map(message => {
       return (
-        <>
+        <div>
           <li className="message-item" key={message.id}>
             <MessageContainer
               currentUser={this.props.currentUser}
@@ -53,7 +53,7 @@ class Channel extends React.Component {
             />
             <div ref={this.bottom} />
           </li>
-        </>
+        </div>
       );
     });
     return (
