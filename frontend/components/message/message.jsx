@@ -1,5 +1,5 @@
 import React from "react";
-
+import MessageEditContainer from "../messagedit/messageedit_container";
 class Message extends React.Component {
   constructor(props) {
     super(props);
@@ -16,17 +16,24 @@ class Message extends React.Component {
 
   render() {
     let image_location = this.state.message.image_url.split(".")[0];
-    let testbg = this.state.editing ? "test-blue" : "";
+    let messageView = (
+      <div>
+        {this.state.message.display_name}
+        <div>{this.state.message.body}</div>
+        {this.state.message.created_at}
+        {this.state.message.updated_at}
+      </div>
+    );
+    let messageBody = this.state.editing ? (
+      <MessageEditContainer message={this.state.message} />
+    ) : (
+      messageView
+    );
     return (
       <>
         <img className="message-avatar" src={window[image_location]} />
         <div>
-          <div className={testbg}>
-            {this.state.message.display_name}
-            <div>{this.state.message.body}</div>
-            {this.state.message.created_at}
-            {this.state.message.updated_at}
-          </div>
+          {messageBody}
           <button onClick={this.handleEditButton} className="message-edit">
             Edit
           </button>

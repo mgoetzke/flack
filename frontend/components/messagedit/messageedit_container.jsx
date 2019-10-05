@@ -3,9 +3,9 @@ import MessageEdit from "./messageedit";
 import { withRouter } from "react-router-dom";
 import { updateMessage } from "../../actions/message_actions";
 
-const mapState = ({ message }) => {
+const mapState = (state, ownProps) => {
   return {
-    message
+    message: ownProps.message
   };
 };
 
