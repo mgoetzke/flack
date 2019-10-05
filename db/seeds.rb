@@ -15,7 +15,7 @@ message1 = Message.create!(body: "pepitas are nothing special",
     user_id: 1,
     messageable_id: testChannel.id,
     messageable_type: Channel);
-message2 = Message.create(body: "Raspberry seeds are worse",
+message2 = Message.create(body: "Raspberry seeds stick to my teeth",
     user_id: 2,
     messageable_id: testChannel.id,
     messageable_type: Channel);

@@ -14,7 +14,12 @@
 .message-item:hover {
   background-color: aliceblue;
 }
-.message-delete {
+.message-edit {
   background-color: chartreuse;
   padding: 3px;
+}
+
+.message-avatar {
+  width: 38px;
+  height: 38px;
 }

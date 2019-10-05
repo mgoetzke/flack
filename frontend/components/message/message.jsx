@@ -14,15 +14,15 @@ class Message extends React.Component {
   }
 
   render() {
+    let image_location = this.state.image_url.split(".")[0];
     return (
       <div>
         {this.state.display_name}
-        <div contentEditable="true" onChange={this.update("body")}>
-          {this.state.body}
-        </div>
+        <img className="message-avatar" src={window[image_location]} />
+        <div>{this.state.body}</div>
         {this.state.created_at}
         {this.state.updated_at}
-        <button onClick={this.handleEdit} className="message-delete">
+        <button onClick={this.handleEdit} className="message-edit">
           Edit
         </button>
       </div>
