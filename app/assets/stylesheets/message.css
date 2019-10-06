@@ -6,7 +6,7 @@
 }
 .message-form {
   width: 100%;
-  max-height: calc(60vh - 80px);
+  max-height: 60vh;
   box-sizing: border-box;
   padding: 15px 15px 15px 0 ;
   
