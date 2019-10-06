@@ -9,6 +9,8 @@ class Sidebar extends React.Component {
       <div className="sidebar">
         HAI IM THE SIDEBAR
         <br />
+        Channels Please {this.props.openCreateChannel}
+        <br />
         <Link to="/workspace/channels/1">Click for test channel</Link>
       </div>
     );

@@ -22,7 +22,7 @@ class MessageForm extends React.Component {
   update(field) {
     return e => this.setState({ [field]: e.currentTarget.value });
   }
-
+  // HARD CODE MESSAGEABLE ID AND USER ID HERE
   handleSubmit(e) {
     e.preventDefault();
     App.cable.subscriptions.subscriptions[0].speak({
@@ -34,14 +34,14 @@ class MessageForm extends React.Component {
   render() {
     let channelNameRendered = "Message #" + this.props.channel.name;
     return (
-        <form className="message-form" onSubmit={this.handleSubmit}>
-          <input 
-            type="text"
-            value={this.state.body}
-            onChange={this.update("body")}
-            placeholder= {channelNameRendered}
-          />
-        </form>
+      <form className="message-form" onSubmit={this.handleSubmit}>
+        <input
+          type="text"
+          value={this.state.body}
+          onChange={this.update("body")}
+          placeholder={channelNameRendered}
+        />
+      </form>
     );
   }
 }

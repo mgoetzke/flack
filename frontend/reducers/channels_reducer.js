@@ -6,17 +6,18 @@ import {
 
 import merge from "lodash/merge";
 
-export default (state = { id: null }, action) => {
+export default (state = {}, action) => {
   Object.freeze(state);
   let newState;
   switch (action.type) {
     case RECEIVE_ALL_CHANNELS:
       return merge({}, action.channels);
     case RECEIVE_CHANNEL:
-      return merge({}, state, {[action.channel.id]: action.channel});
+      return merge({}, state, { [action.channel.id]: action.channel });
     case REMOVE_CHANNEL:
+      debugger;
       newState = merge({}, state);
-      delete newState[action.channelId]
+      delete newState[action.channelId];
       return newState;
     default:
       return state;

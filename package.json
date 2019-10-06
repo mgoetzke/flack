@@ -10,6 +10,7 @@
     "lodash": "^4.17.15",
     "react": "^16.10.1",
     "react-dom": "^16.10.1",
+    "react-modal": "^3.10.1",
     "react-redux": "^7.1.1",
     "react-router-dom": "^5.1.2",
     "react-router-redux": "^4.0.8",

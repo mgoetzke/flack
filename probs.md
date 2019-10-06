@@ -19,7 +19,8 @@ App
 
 - change /login to /signin
 
-Workflow
+## Workflow
+
 Database
 Model
 Routes
@@ -31,5 +32,6 @@ Reducers
 Component
 
 THINGS I HARDCODED
-* heighto f container main
-* autoscroll
+
+- heighto f container main
+- autoscroll
