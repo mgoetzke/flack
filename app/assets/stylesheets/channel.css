@@ -3,7 +3,8 @@
   flex-direction: column;
   align-items: center;
   width: 100%;
-  height: calc(100vh - 100px);
+  /* CHECK WITH CSS SIMCHA */
+  height: calc(100% - 100px);
   box-sizing: border-box;
   font-family: 'Lato';
   color: RGB(29, 29, 29);
