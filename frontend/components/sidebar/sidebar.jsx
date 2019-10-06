@@ -1,14 +1,14 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React from "react";
+import { Link } from "react-router-dom";
 class Sidebar extends React.Component {
-  constructor(props){
-    super(props)
+  constructor(props) {
+    super(props);
   }
-  render (){
-    return(
-      <div>
+  render() {
+    return (
+      <div class="sidebar">
         HAI IM THE SIDEBAR
-        <br/>
+        <br />
         <Link to="/workspace/channels/1">Click for test channel</Link>
       </div>
     );

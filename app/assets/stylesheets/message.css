@@ -7,7 +7,7 @@
   padding: 5px;
 }
 .message-item {
-  border: 1px solid grey;
+  border: 1px solid red;
   margin: 3px;
   list-style: none;
 }

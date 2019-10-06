@@ -2,7 +2,6 @@ import React from "react";
 class Message extends React.Component {
   constructor(props) {
     super(props);
-    debugger;
     this.state = {
       message: props.message,
       editing: false,

@@ -14,13 +14,35 @@
  *= require_self
  */
 
- /* PHASE 0: Reset */
+/* PHASE 0: Reset */
 
-html, body, header, nav, h1, a,
-ul, li, strong, main, button, i,
-section, img, div, h2, p, form,
-fieldset, label, input, textarea,
-span, article, footer, time, small {
+html,
+body,
+header,
+nav,
+h1,
+a,
+ul,
+li,
+strong,
+main,
+button,
+i,
+section,
+img,
+div,
+h2,
+p,
+form,
+fieldset,
+label,
+input,
+textarea,
+span,
+article,
+footer,
+time,
+small {
   margin: 0;
   padding: 0;
   border: 0;
@@ -62,7 +84,7 @@ button,
 input[type="submit"] {
   cursor: pointer;
 }
-main{
-  
+.main-container {
+  display: flex;
+  flex-direction: row;
 }
-
