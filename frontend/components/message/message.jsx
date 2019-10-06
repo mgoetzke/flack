@@ -44,7 +44,7 @@ class Message extends React.Component {
       : "message-item-button";
     let editState = message.created_at !== message.updated_at;
     let messageView = (
-      <>
+      <div className="message-item-view">
         <div>
           <span className="message-item-name">{message.display_name}</span>
 
@@ -64,7 +64,7 @@ class Message extends React.Component {
             {editButtonText}
           </button>
         )}
-      </>
+      </div>
     );
     let editView = (
       <div className="message-edit-form">
@@ -94,7 +94,7 @@ class Message extends React.Component {
     return (
       <li className={messageFormat} key={message.id}>
         <img className="message-avatar" src={window[image_location]} />
-        <div>{messageBody}</div>
+        {messageBody}
       </li>
     );
   }
