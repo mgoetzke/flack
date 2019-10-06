@@ -13,7 +13,9 @@
 
 class Channel < ApplicationRecord
   validates :name, :admin_id, presence: true
+  validates :name, uniqueness: true
   validates_inclusion_of :private, :in => [true, false]
+
 
   has_many :memberships, as: :memberable, dependent: :destroy
   has_many :users, through: :memberships

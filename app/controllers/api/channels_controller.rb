@@ -2,7 +2,6 @@ class Api::ChannelsController < ApplicationController
   def create
     @channel = Channel.new(channel_params)
     @channel.admin_id = current_user.id
-    debugger
     if @channel.save
       # TODO add current member to channel
       render :show
