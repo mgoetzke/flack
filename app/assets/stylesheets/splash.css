@@ -137,10 +137,10 @@
 
 .splash-link{
   color: RGB(24, 98, 163);
-  border-bottom:RGB(24, 98, 163) solid 1px;
+  border-bottom: RGB(24, 98, 163) solid 1px;
 }
 .splash-link:hover{
-  border-bottom:RGB(24, 98, 163) solid 2px;
+  border-bottom: RGB(24, 98, 163) solid 2px;
 }
 
 .splash-marketing{
