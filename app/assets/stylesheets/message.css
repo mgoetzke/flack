@@ -6,15 +6,14 @@
 }
 .message-form {
   width: 100%;
-    /* CHECK WITH CSS SIMCHA */
+  /* CHECK WITH CSS SIMCHA */
   max-height: 60vh;
   box-sizing: border-box;
-  padding: 15px 15px 15px 0 ;
-  
+  padding: 15px 15px 15px 0;
 }
 .message-form input[type="text"] {
   border-radius: 4px;
-  border: solid 1px RGB(141,141,141);
+  border: solid 1px RGB(141, 141, 141);
   font-size: 15px;
   width: 100%;
   min-height: 42px;
@@ -24,7 +23,7 @@
 .message-item {
   display: flex;
   list-style: none;
-  padding-top:6px;
+  padding-top: 6px;
   padding-left: 20px;
   padding-bottom: 6px;
   font-size: 15px;
@@ -33,22 +32,18 @@
   background-color: RGB(248, 248, 248);
 }
 
-.message-item-name{
+.message-item-name {
   font-weight: bold;
   padding-right: 3px;
 }
 
-.message-item-editstate{
+.message-item-editstate {
   font-size: 13px;
-  color: RGB(134,134,134);
+  color: RGB(134, 134, 134);
 }
-.message-item-time{
+.message-item-time {
   font-size: 12px;
-  color: RGB(101,101,101);
-}
-.message-edit {
-  background-color: chartreuse;
-  padding: 3px;
+  color: RGB(101, 101, 101);
 }
 
 .message-avatar {
@@ -57,7 +52,68 @@
   border-radius: 3px;
   margin-right: 10px;
 }
+.message-item-button {
+  background-color: chartreuse;
+  padding: 3px;
+}
+.message-edit {
+  display: flex;
+  list-style: none;
+  padding-top: 6px;
+  padding-left: 20px;
+  padding-bottom: 6px;
+  font-size: 15px;
+  background-color: RGB(254, 249, 236);
+}
 
-.test-blue {
-  background-color: cyan;
+.message-edit-form input[type="text"] {
+  border: 1px solid RGB(24, 98, 163);
+  border-radius: 3px;
+  background-color: RGB(255, 255, 255);
+  padding-top: 8px;
+  padding-right: 2px;
+  padding-bottom: 8px;
+  padding-left: 10px;
+}
+
+.message-edit-buttons {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.message-edit-button {
+  background-color: RGB(255, 255, 255);
+  border: 0.5px solid RGB(186, 182, 174);
+  padding: 0 12px 1px 12px;
+  font-size: 13px;
+  height: 28px;
+  min-width: 56px;
+  font-weight: bold;
+  border-radius: 4px;
+  margin-top: 8px;
+  margin-right: 8px;
+}
+
+.message-edit-button:hover {
+  background-color: RGB(245, 240, 227);
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.08);
+}
+
+.message-edit-save {
+  margin-top: 8px;
+  background-color: RGB(18, 124, 90);
+  border-radius: 4px;
+  color: white;
+  font-size: 13px;
+  min-width: 132;
+  padding-left: 15px;
+  padding-right: 12px;
+  height: 28px;
+  font-weight: bold;
+  transition: background-color 0.08s linear;
+}
+
+.message-edit-save:hover {
+  /* background-color: red; */
+  background-color: RGB(31, 135, 103);
 }

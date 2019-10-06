@@ -35,23 +35,39 @@ class Message extends React.Component {
     let userEdit = this.state.currentUser === message.user_id;
     let editButtonText = this.state.editing ? "Cancel" : "Edit";
     let createDate = new Date(message.created_at);
-    let formatTime = createDate.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+    let formatTime = createDate.toLocaleTimeString([], {
+      hour: "2-digit",
+      minute: "2-digit"
+    });
+    let messageButtonFormat = this.state.editing
+      ? "message-edit-button"
+      : "message-item-button";
     let editState = message.created_at !== message.updated_at;
     let messageView = (
       <>
         <div>
           <span className="message-item-name">{message.display_name}</span>
-          
+
           <span className="message-item-time">{formatTime}</span>
         </div>
         <div>
           {message.body}
-          {editState && <span className="message-item-editstate"> (edited)</span>}
+          {editState && (
+            <span className="message-item-editstate"> (edited)</span>
+          )}
         </div>
+        {userEdit && (
+          <button
+            onClick={this.toggleEditStatus}
+            className={messageButtonFormat}
+          >
+            {editButtonText}
+          </button>
+        )}
       </>
     );
     let editView = (
-      <div>
+      <div className="message-edit-form">
         <div>
           <input
             onChange={this.update("body")}
@@ -59,22 +75,27 @@ class Message extends React.Component {
             defaultValue={this.state.message.body}
           />
         </div>
-        <button onClick={this.saveEdit}>&#8626; Save Changes</button>
+        <div className="message-edit-buttons">
+          <button
+            onClick={this.toggleEditStatus}
+            className={messageButtonFormat}
+          >
+            {editButtonText}
+          </button>
+          <button className="message-edit-save" onClick={this.saveEdit}>
+            &#8626; Save Changes
+          </button>
+        </div>
       </div>
     );
     let messageBody = this.state.editing ? editView : messageView;
+    let messageFormat = this.state.editing ? "message-edit" : "message-item";
+
     return (
-      <>
+      <li className={messageFormat} key={message.id}>
         <img className="message-avatar" src={window[image_location]} />
-        <div>
-          {messageBody}
-          {userEdit && (
-            <button onClick={this.toggleEditStatus} className="message-edit">
-              {editButtonText}
-            </button>
-          )}
-        </div>
-      </>
+        <div>{messageBody}</div>
+      </li>
     );
   }
 }
