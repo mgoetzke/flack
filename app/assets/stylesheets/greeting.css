@@ -75,7 +75,7 @@
 }
 
 .greeting-loggedIn:hover{ 
-  background-color: RGB(53,13, 54)
+  background-color: RGB(53,13, 54);
 }
 
 .greeting-loggedIn h2{
