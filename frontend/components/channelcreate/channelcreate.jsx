@@ -28,6 +28,17 @@ class ChannelCreate extends React.Component {
     this.setState({ private: oppState });
   }
 
+  renderErrors() {
+    const errors = this.props.errors.map((error, i) => {
+      return <li key={`errors-${i}`}> {error} </li>;
+    });
+    return (
+      <div>
+        <ul>{errors}</ul>
+      </div>
+    );
+  }
+
   render() {
     let privateStatus = this.state.private === false ? "public" : "private";
     let headText = privateStatus
@@ -56,6 +67,11 @@ class ChannelCreate extends React.Component {
             </div>
             <div className="channel-create.name">
               <h3>Name</h3>
+              {this.props.errors.length > 0 && (
+                <div className="channel-errors">
+                  <ul>{this.renderErrors()}</ul>
+                </div>
+              )}
               <input
                 onChange={this.update("name")}
                 type="text"

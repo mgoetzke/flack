@@ -2,8 +2,10 @@ import { connect } from "react-redux";
 import ChannelCreate from "./channelcreate";
 import { createChannel } from "../../actions/channel_actions";
 import { closeModal } from "../../actions/modal_actions";
-const mapState = state => {
-  return {};
+const mapState = ({ errors }, ownProps) => {
+  return {
+    errors: errors.channel
+  };
 };
 
 const mapDispatch = dispatch => {
