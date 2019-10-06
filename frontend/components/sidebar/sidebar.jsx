@@ -6,7 +6,7 @@ class Sidebar extends React.Component {
   }
   render() {
     return (
-      <div class="sidebar">
+      <div className="sidebar">
         HAI IM THE SIDEBAR
         <br />
         <Link to="/workspace/channels/1">Click for test channel</Link>

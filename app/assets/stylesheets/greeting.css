@@ -5,6 +5,7 @@
   padding-bottom: 15px;
   align-items: center;
   margin: 25px 180px 0px 180px;
+  position: auto;
 }
 
 .greeting-button {

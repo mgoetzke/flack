@@ -34,13 +34,21 @@ class Message extends React.Component {
     let image_location = message.image_url.split(".")[0];
     let userEdit = this.state.currentUser === message.user_id;
     let editButtonText = this.state.editing ? "Cancel" : "Edit";
+    let createDate = new Date(message.created_at);
+    let formatTime = createDate.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+    let editState = message.created_at !== message.updated_at;
     let messageView = (
-      <div>
-        {message.display_name}
-        <div>{message.body}</div>
-        {message.created_at}
-        {message.updated_at}
-      </div>
+      <>
+        <div>
+          <span className="message-item-name">{message.display_name}</span>
+          
+          <span className="message-item-time">{formatTime}</span>
+        </div>
+        <div>
+          {message.body}
+          {editState && <span className="message-item-editstate"> (edited)</span>}
+        </div>
+      </>
     );
     let editView = (
       <div>
@@ -56,7 +64,7 @@ class Message extends React.Component {
     );
     let messageBody = this.state.editing ? editView : messageView;
     return (
-      <div>
+      <>
         <img className="message-avatar" src={window[image_location]} />
         <div>
           {messageBody}
@@ -66,7 +74,7 @@ class Message extends React.Component {
             </button>
           )}
         </div>
-      </div>
+      </>
     );
   }
 }

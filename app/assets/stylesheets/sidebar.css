@@ -1,5 +1,6 @@
 .sidebar {
-  width: 220px;
+  min-width: 220px;
   height: 100vh - 80px;
   border-right: solid 1px red;
+  background-color: purple;
 }

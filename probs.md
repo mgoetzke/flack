@@ -29,3 +29,7 @@ API Util
 Actions
 Reducers
 Component
+
+THINGS I HARDCODED
+* heighto f container main
+* autoscroll

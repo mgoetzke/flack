@@ -9,18 +9,14 @@ class Main extends React.Component {
   }
   render() {
     return (
-      <div class="main-container">
-        <div>
+      <div className="main-container">
           <SidebarContainer />
-        </div>
-        <div>
           <Switch>
             <Route
               path="/workspace/channels/:channelId"
               component={ChannelContainer}
             />
           </Switch>
-        </div>
       </div>
     );
   }

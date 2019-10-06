@@ -6,7 +6,9 @@ import merge from "lodash/merge";
 class Channel extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { messages: props.messages, currentUser: props.currentUser };
+    this.state = { messages: props.messages,
+       currentUser: props.currentUser,
+       channel: props.channel };
     this.bottom = React.createRef();
   }
 
@@ -40,12 +42,12 @@ class Channel extends React.Component {
 
   componentDidUpdate(prevProps) {
     this.bottom.current.scrollIntoView();
+    // window.scrollTo(this.bottom.current);
   }
   render() {
     let { messages } = this.props;
     let formatMessages = messages.map(message => {
       return (
-        <div>
           <li className="message-item" key={message.id}>
             <MessageContainer
               currentUser={this.props.currentUser}
@@ -53,14 +55,12 @@ class Channel extends React.Component {
             />
             <div ref={this.bottom} />
           </li>
-        </div>
       );
     });
     return (
       <div className="channel-container">
-        <div>{this.props.channel.name}</div>
         <div className="message-list">{formatMessages}</div>
-        <MessageFormContainer />
+        <MessageFormContainer channel = {this.props.channel} />
       </div>
     );
   }

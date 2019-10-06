@@ -2,8 +2,9 @@ import { connect } from "react-redux";
 import MessageForm from "./messageform";
 import { withRouter } from "react-router-dom";
 
-const mapState = ({ session }) => {
-  return { currentUser: session.id };
+const mapState = (state, ownProps) => {
+  return { currentUser: state.session.id,
+  channel: ownProps.channel };
 };
 
 const mapDispatch = dispatch => {
