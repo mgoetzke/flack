@@ -2,7 +2,6 @@ import React from "react";
 import MessageFormContainer from "../messageform/messageform_container";
 import MessageContainer from "../message/message_container";
 
-import merge from "lodash/merge";
 class Channel extends React.Component {
   constructor(props) {
     super(props);
@@ -17,14 +16,14 @@ class Channel extends React.Component {
     this.destroyMembership = this.destroyMembership.bind(this);
   }
 
-  channelChat() {
+  configChat() {
     const { receiveMessage } = this.props;
     App.cable.subscriptions.create(
-      { channel: "ChatChannel" }, //slip data inside object and include id there history push
+      { channel: "ChatChannel", id: this.props.channelId }, //slip data inside object and include id there history push
       {
         received: data => {
+          debugger
           let incomingMessage = JSON.parse(data.message);
-          let test = incomingMessage.id;
           switch (data.type) {
             case "message":
               receiveMessage(incomingMessage);
@@ -45,7 +44,7 @@ class Channel extends React.Component {
   }
   componentDidMount() {
     const { channelId, fetchChannelMessages, fetchChannelMembers } = this.props;
-    this.channelChat();
+    this.configChat();
     fetchChannelMembers(channelId);
     fetchChannelMessages(channelId);
   }
@@ -60,7 +59,7 @@ class Channel extends React.Component {
         fetchChannelMessages,
         fetchChannelMembers
       } = this.props;
-      this.channelChat();
+      this.configChat();
       fetchChannelMembers(channelId);
       fetchChannelMessages(channelId);
     }

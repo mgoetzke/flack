@@ -6,10 +6,8 @@ class Sidebar extends React.Component {
   }
   componentDidMount() {
     this.props.fetchAllMemberships;
-    debugger;
   }
   componentDidUpdate(prevProps) {
-    debugger;
     this.props.fetchAllMemberships;
   }
   render() {

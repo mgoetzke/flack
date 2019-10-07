@@ -11,6 +11,14 @@ class ChannelBrowse extends React.Component {
     this.setState({ name: "", topic: "", invites: [], private: false });
   }
 
+  componentDidMount(){
+    this.props.fetchAllChannels();
+  }
+
+  componentDidUpdate(){
+
+  }
+
   render() {
     return (
       <div>
@@ -18,6 +26,9 @@ class ChannelBrowse extends React.Component {
           esc
         </button>
         <h1>Browse Channels</h1>
+        <li>
+
+        </li>
       </div>
     );
   }
