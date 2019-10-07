@@ -79,13 +79,11 @@ class Channel extends React.Component {
     let { messages, channel, memberships } = this.props;
     let formatMessages = messages.map(message => {
       return (
-        <>
-          <MessageContainer
-            currentUser={this.props.currentUser}
-            message={message}
-          />
-          <div ref={this.bottom} />
-        </>
+        <MessageContainer
+          currentUser={this.props.currentUser}
+          message={message}
+          key={message.id}
+        />
       );
     });
     let memberStatus =
@@ -100,7 +98,10 @@ class Channel extends React.Component {
       : this.createMembership;
     return (
       <div className="channel-container">
-        <div className="message-list">{formatMessages}</div>
+        <div className="message-list">
+          <ul>{formatMessages}</ul>
+          <div ref={this.bottom}></div>
+        </div>
         <MessageFormContainer channel={channel} />
         <button onClick={channelMemberToggleFunction}>
           {channelMemberToggleText}

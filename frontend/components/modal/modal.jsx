@@ -4,12 +4,15 @@ import { connect } from "react-redux";
 import ChannelCreate_Container from "../channelcreate/channelcreate_container";
 import ChannelBrowse_Container from "../channelbrowse/channelbrowse_container";
 import MemberAdd_container from "../memberadd/memberadd_container";
-
-function Modal({ modal, closeModal }) {
+import { withRouter } from "react-router-dom";
+function Modal({ modal, history }) {
+  let path = history.location.pathname;
   if (!modal) {
     return null;
   }
   let component;
+  let memberable_type;
+  let memberable_id;
   switch (modal) {
     case "createchannel":
       component = <ChannelCreate_Container />;
@@ -18,7 +21,14 @@ function Modal({ modal, closeModal }) {
       component = <ChannelBrowse_Container />;
       break;
     case "addmembership":
-      component = <MemberAdd_container />;
+      memberable_type = path.split("/")[2];
+      memberable_id = path.split("/")[3];
+      component = (
+        <MemberAdd_container
+          memberable_type={memberable_type}
+          memberable_id={memberable_id}
+        />
+      );
       break;
     default:
       return null;
@@ -30,7 +40,7 @@ function Modal({ modal, closeModal }) {
   );
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state, ownProps) => {
   return {
     modal: state.ui.modal
   };
@@ -42,7 +52,9 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(Modal);
+export default withRouter(
+  connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )(Modal)
+);

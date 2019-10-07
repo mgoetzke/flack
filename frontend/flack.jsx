@@ -10,6 +10,7 @@ import {
   destroyChannel,
   updateChannel
 } from "./actions/channel_actions";
+import { fetchAllUsers } from "./actions/user_actions";
 
 document.addEventListener("DOMContentLoaded", () => {
   const root = document.getElementById("root");
@@ -29,6 +30,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   //TESTING
   window.fetchAllChannels = fetchAllChannels;
+  window.fetchAllUsers = fetchAllUsers;
   window.fetchChannel = fetchChannel;
   window.createChannel = createChannel;
   window.updateChannel = updateChannel;

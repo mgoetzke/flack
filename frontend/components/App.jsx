@@ -23,7 +23,7 @@ const App = () => (
       </Switch>
     </div>
     <footer>
-      <FooterContainer />
+      <Route exact path="/" component={FooterContainer} />
     </footer>
   </div>
 );

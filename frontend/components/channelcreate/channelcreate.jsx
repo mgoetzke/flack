@@ -16,11 +16,10 @@ class ChannelCreate extends React.Component {
   handleSubmit(e) {
     e.preventDefault();
     let { currentUser } = this.props;
-    let memberable_id;
     this.props
       .createChannel(this.state)
       .then(({ channel }) => {
-        memberable_id = channel.id;
+        let memberable_id = channel.id;
         let user_id = currentUser;
         let memberable_type = "Channel";
         let newMembership = { memberable_id, user_id, memberable_type };
@@ -28,7 +27,6 @@ class ChannelCreate extends React.Component {
         return memberable_id;
       })
       .then(memberable_id => {
-        debugger;
         this.props.history.push(`/workspace/channels/${memberable_id}`);
       })
       .then(this.props.closeModal);

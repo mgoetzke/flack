@@ -7,16 +7,19 @@ class Main extends React.Component {
   constructor(props) {
     super(props);
   }
+  componentDidMount() {
+    this.props.fetchAllUsers();
+  }
   render() {
     return (
       <div className="main-container">
-          <SidebarContainer />
-          <Switch>
-            <Route
-              path="/workspace/channels/:channelId"
-              component={ChannelContainer}
-            />
-          </Switch>
+        <SidebarContainer />
+        <Switch>
+          <Route
+            path="/workspace/channels/:channelId"
+            component={ChannelContainer}
+          />
+        </Switch>
       </div>
     );
   }

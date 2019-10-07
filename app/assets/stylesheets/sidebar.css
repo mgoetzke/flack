@@ -1,7 +1,7 @@
 .sidebar {
   min-width: 220px;
   /* ask simcha vh px */
-  height: 100vh;
+  height: 100%;
   border-right: solid 1px red;
   background-color: purple;
 }

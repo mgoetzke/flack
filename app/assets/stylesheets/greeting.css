@@ -1,5 +1,5 @@
-.greeting{
-  font-family: 'Lato';
+.greeting {
+  font-family: "Lato";
   display: flex;
   justify-content: space-between;
   padding-bottom: 15px;
@@ -14,12 +14,11 @@
   box-sizing: border-box;
   padding: 10px 25px;
   text-align: center;
-  text-decoration: none; 
+  text-decoration: none;
   border-radius: 3px;
-  
 }
 
-.greeting-button:hover{
+.greeting-button:hover {
   background-color: RGB(73, 13, 75);
 }
 
@@ -29,22 +28,22 @@
   box-sizing: border-box;
   padding: 10px 15px;
   text-align: center;
-  text-decoration: none; 
+  text-decoration: none;
   border-radius: 5px;
   margin: 20px 100px 0px 0px;
 }
 
-.greeting img{
+.greeting img {
   width: 106px;
   height: 28px;
 }
 
-.greeting-nav{
-  display:flex;
+.greeting-nav {
+  display: flex;
   flex-direction: row;
 }
 
-.greeting-nav Link{
+.greeting-nav link {
   margin: 5px;
   padding: 5px;
   color: blue;
@@ -57,16 +56,16 @@
   text-align: center;
 }
 
-.greeting-link:hover{
+.greeting-link:hover {
   color: RGB(96, 20, 105);
 }
 
-.greeting-loggedIn{
-  font-family: 'Lato';
+.greeting-loggedIn {
+  font-family: "Lato";
   color: white;
   width: 220px;
   height: 80px;
-  background-color: RGB(63,14, 64);
+  background-color: RGB(63, 14, 64);
   display: flex;
   flex-direction: column;
   padding: 10px 15px 10px 15px;
@@ -74,30 +73,29 @@
   cursor: pointer;
 }
 
-.greeting-loggedIn:hover{ 
-  background-color: RGB(53,13, 54);
+.greeting-loggedIn:hover {
+  background-color: RGB(53, 13, 54);
 }
 
-.greeting-loggedIn h2{
+.greeting-loggedIn h2 {
   font-weight: bold;
   font-size: 18px;
 }
 
-.greeting-loggedIn h2 span{
+.greeting-loggedIn h2 span {
   color: RGB(159, 134, 159);
   font-size: 12px;
 }
 
-.greeting-loggedIn > span{
+.greeting-loggedIn > span {
   color: RGB(159, 134, 159);
 }
 
-.greeting-loggedIn:hover span{ 
+.greeting-loggedIn:hover span {
   color: white;
 }
 
 .greeting-nav-popup {
- visibility: hidden;
   width: 300px;
   height: 500px;
   background-color: white;
@@ -111,9 +109,13 @@
   bottom: 40px;
   right: 5px;
   display: flex;
-  flex-direction:column;
+  flex-direction: column;
 }
 
-.greeting-loggedIn .show{
+.menu-hide {
+  display: none;
+}
+
+.greeting-loggedIn .show {
   visibility: visible;
 }

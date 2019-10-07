@@ -5,7 +5,8 @@ import { fetchAllUsers } from "../../actions/channel_actions";
 import { createMembership } from "../../actions/membership_actions";
 const mapState = (state, ownProps) => {
   return {
-    // channels: Object.values(state.entities.channels)
+    users: Object.values(state.entities.users),
+    channels: Object.values(state.entities.channels)
   };
 };
 
@@ -13,7 +14,6 @@ const mapDispatch = dispatch => {
   return {
     closeModal: () => dispatch(closeModal()),
     createMembership: membership => dispatch(createMembership(membership))
-    // fetchAllChannels: () => dispatch(fetchAllChannels())
   };
 };
 export default connect(
