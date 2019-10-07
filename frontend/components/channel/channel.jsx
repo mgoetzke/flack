@@ -22,7 +22,6 @@ class Channel extends React.Component {
       { channel: "ChatChannel", id: this.props.channelId }, //slip data inside object and include id there history push
       {
         received: data => {
-          debugger
           let incomingMessage = JSON.parse(data.message);
           switch (data.type) {
             case "message":
