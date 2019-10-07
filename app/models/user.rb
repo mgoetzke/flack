@@ -19,7 +19,7 @@ class User < ApplicationRecord
 
   has_many :memberships
   has_many :messages
-  has_many :channels, through: :memberships, source: :memberable, source_type: 'channel'
+  has_many :channels, through: :memberships, source: :memberable, source_type: 'Channel'
 
   after_initialize :ensure_session_token, :ensure_image_url
   attr_reader :password

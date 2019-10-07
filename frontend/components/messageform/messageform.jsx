@@ -22,13 +22,17 @@ class MessageForm extends React.Component {
   update(field) {
     return e => this.setState({ [field]: e.currentTarget.value });
   }
-  // HARD CODE MESSAGEABLE ID AND USER ID HERE
+
   handleSubmit(e) {
     e.preventDefault();
     App.cable.subscriptions.subscriptions[0].speak({
       message: this.state
     });
-    this.setState({ body: "", user_id: 1, messageable_id: 1 });
+    this.setState({
+      body: "",
+      user_id: this.state.user_id,
+      messageable_id: this.state.messageable_id
+    });
   }
 
   render() {

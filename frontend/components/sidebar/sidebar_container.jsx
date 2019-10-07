@@ -1,6 +1,7 @@
 import { connect } from "react-redux";
 import Sidebar from "./sidebar";
 import { openModal, closeModal } from "../../actions/modal_actions";
+import { fetchMemberships } from "../../actions/membership_actions";
 import React from "react";
 const mapState = state => {
   return {};
@@ -18,7 +19,8 @@ const mapDispatch = dispatch => {
         Browse Channel
       </button>
     ),
-    closeModal: () => dispatch(closeModal())
+    closeModal: () => dispatch(closeModal()),
+    fetchAllMemberships: () => dispatch(fetchMemberships())
   };
 };
 export default connect(

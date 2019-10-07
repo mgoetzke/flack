@@ -4,6 +4,14 @@ class Sidebar extends React.Component {
   constructor(props) {
     super(props);
   }
+  componentDidMount() {
+    this.props.fetchAllMemberships;
+    debugger;
+  }
+  componentDidUpdate(prevProps) {
+    debugger;
+    this.props.fetchAllMemberships;
+  }
   render() {
     return (
       <div className="sidebar">
