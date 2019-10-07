@@ -9,12 +9,11 @@ class MessageForm extends React.Component {
       ? "Channel"
       : "Direct";
     let msgId = props.location.pathname.includes("channels")
-      ? props.match.params.channelId
-      : props.match.params.directId;
+      ? this.props.match.params.channelId
+      : this.props.match.params.directId;
     this.state = {
       body: "",
       user_id: props.currentUser,
-      messageable_id: msgId,
       messageable_type: msgType
     };
   }
@@ -22,16 +21,19 @@ class MessageForm extends React.Component {
   update(field) {
     return e => this.setState({ [field]: e.currentTarget.value });
   }
+  componentDidUpdate(){
+    // this.setState({ messageable_id: 2})
+  }
 
   handleSubmit(e) {
     e.preventDefault();
+    debugger
     App.cable.subscriptions.subscriptions[0].speak({
-      message: this.state
+      message: { ...this.state, 
+        messageable_id: this.props.match.params.channelId}, 
     });
     this.setState({
       body: "",
-      user_id: this.state.user_id,
-      messageable_id: this.state.messageable_id
     });
   }
 
