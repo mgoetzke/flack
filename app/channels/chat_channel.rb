@@ -20,8 +20,8 @@ class ChatChannel < ApplicationCable::Channel
     # ChatChannel.broadcast_to('chat_channel', socket)
   end
   def self.update(message)
-    channel = Channel.find(message.messageable_id)
     socket={message: format(message.to_json), type: 'edit'}
+    channel = Channel.find(message[:messageable_id])
     ChatChannel.broadcast_to(channel, socket)
   end
 
