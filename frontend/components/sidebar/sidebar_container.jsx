@@ -4,7 +4,9 @@ import { openModal, closeModal } from "../../actions/modal_actions";
 import { fetchMemberships } from "../../actions/membership_actions";
 import React from "react";
 const mapState = state => {
-  return {};
+  return {
+    memberships: state.entities.memberships
+  };
 };
 
 const mapDispatch = dispatch => {

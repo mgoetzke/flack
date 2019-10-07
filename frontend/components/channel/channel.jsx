@@ -5,8 +5,9 @@ import MessageContainer from "../message/message_container";
 class Channel extends React.Component {
   constructor(props) {
     super(props);
+    debugger;
     this.state = {
-      messages: props.messages,
+      messages: [props.messages],
       currentUser: props.currentUser,
       channel: props.channel,
       memberships: props.memberships
@@ -42,9 +43,9 @@ class Channel extends React.Component {
     );
   }
   componentDidMount() {
-    const { channelId, fetchChannelMessages, fetchChannelMembers } = this.props;
+    const { channelId, fetchChannelMessages, fetchAllMembers } = this.props;
     this.configChat();
-    fetchChannelMembers(channelId);
+    fetchAllMembers();
     fetchChannelMessages(channelId);
   }
 
@@ -53,13 +54,9 @@ class Channel extends React.Component {
       this.bottom.current.scrollIntoView();
     }
     if (this.props.location !== prevProps.location) {
-      const {
-        channelId,
-        fetchChannelMessages,
-        fetchChannelMembers
-      } = this.props;
+      const { channelId, fetchChannelMessages, fetchAllMembers } = this.props;
       this.configChat();
-      fetchChannelMembers(channelId);
+      fetchAllMembers();
       fetchChannelMessages(channelId);
     }
   }

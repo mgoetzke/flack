@@ -9,7 +9,7 @@ class Api::MembershipsController < ApplicationController
   end
 
   def index
-    @memberships = Membership.where("memberable_id = ?", params[:channelId])
+    @memberships = Membership.all
     render :index
   end
 

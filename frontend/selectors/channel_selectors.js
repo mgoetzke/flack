@@ -6,6 +6,7 @@ export const getChannelMessages = (state, channelId) => {
 };
 
 export const getChannelMembers = (state, channelId) => {
+  debugger;
   let memberships = Object.values(state.entities.memberships);
   return memberships.filter(
     membership => membership.messageable_id === channelId

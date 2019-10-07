@@ -6,7 +6,7 @@ import {
   fetchChannelMessages,
   receiveMessage
 } from "../../actions/message_actions";
-import { fetchChannelMembers } from "../../actions/membership_actions";
+import { fetchMemberships } from "../../actions/membership_actions";
 import {
   getChannelMessages,
   getChannelMembers
@@ -18,15 +18,14 @@ import {
 } from "../../actions/membership_actions";
 
 const mapState = (state, ownProps) => {
-  // fetchAllMessages();
-  // fetchMemberships();
-
+  let memberships = getChannelMembers(state, ownProps);
+  debugger;
   return {
     channel: state.entities.channels[ownProps.match.params.channelId] || {
       name: "default"
     },
     messages: Object.values(state.entities.messages),
-    memberships: Object.values(state.entities.memberships),
+    memberships: memberships,
     channelId: ownProps.match.params.channelId,
     currentUser: state.entities.users[state.session.id]
   };
@@ -36,7 +35,7 @@ const mapDispatch = dispatch => {
   return {
     fetchChannel: id => dispatch(fetchChannel(id)),
     fetchChannelMessages: id => dispatch(fetchChannelMessages(id)),
-    fetchChannelMembers: id => dispatch(fetchChannelMembers(id)),
+    fetchMemberships: id => dispatch(fetchMemberships()),
     receiveMessage: message => dispatch(receiveMessage(message)),
     createMembership: membership => dispatch(createMembership(membership)),
     destroyMembership: membershipId => dispatch(destroyMembership(membershipId))
