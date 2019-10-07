@@ -1,5 +1,4 @@
 import React from "react";
-import { createMembership } from "../../actions/membership_actions";
 
 class ChannelCreate extends React.Component {
   constructor(props) {
@@ -17,14 +16,20 @@ class ChannelCreate extends React.Component {
   handleSubmit(e) {
     e.preventDefault();
     let { currentUser } = this.props;
+    let memberable_id;
     this.props
       .createChannel(this.state)
       .then(({ channel }) => {
-        let memberable_id = channel.id;
+        memberable_id = channel.id;
         let user_id = currentUser;
         let memberable_type = "Channel";
         let newMembership = { memberable_id, user_id, memberable_type };
         this.props.createMembership(newMembership);
+        return memberable_id;
+      })
+      .then(memberable_id => {
+        debugger;
+        this.props.history.push(`/workspace/channels/${memberable_id}`);
       })
       .then(this.props.closeModal);
 
@@ -93,11 +98,13 @@ class ChannelCreate extends React.Component {
                 onChange={this.update("name")}
                 type="text"
                 placeholder="e.g., flackingoff"
+                pattern="[a-zA-Z0-9-!@#$%^*_|]{1,80}"
               />
               <p>
                 Names must be lowercase, without spaces or periods, and can't be
                 longer than 80 characters.
               </p>
+              <p>{80 - this.state.name.length}</p>
             </div>
             <div className="channel-create.description">
               <h3>Description</h3> <span>(optional)</span>

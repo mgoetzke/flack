@@ -3,6 +3,7 @@ import ChannelCreate from "./channelcreate";
 import { createChannel } from "../../actions/channel_actions";
 import { closeModal } from "../../actions/modal_actions";
 import { createMembership } from "../../actions/membership_actions";
+import { withRouter } from "react-router-dom";
 
 const mapState = ({ errors, session }, ownProps) => {
   return {
@@ -18,7 +19,9 @@ const mapDispatch = dispatch => {
     closeModal: () => dispatch(closeModal())
   };
 };
-export default connect(
-  mapState,
-  mapDispatch
-)(ChannelCreate);
+export default withRouter(
+  connect(
+    mapState,
+    mapDispatch
+  )(ChannelCreate)
+);
