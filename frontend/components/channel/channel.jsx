@@ -9,16 +9,18 @@ class Channel extends React.Component {
     this.state = {
       messages: props.messages,
       currentUser: props.currentUser,
-      channel: props.channel
+      channel: props.channel,
+      memberships: props.memberships
     };
     this.bottom = React.createRef();
+    this.createMembership = this.createMembership.bind(this);
+    this.destroyMembership = this.destroyMembership.bind(this);
   }
 
-  componentDidMount() {
-    this.props.fetchAllMessages();
+  channelChat() {
     const { receiveMessage } = this.props;
     App.cable.subscriptions.create(
-      { channel: "ChatChannel" },
+      { channel: "ChatChannel" }, //slip data inside object and include id there history push
       {
         received: data => {
           let incomingMessage = JSON.parse(data.message);
@@ -41,13 +43,46 @@ class Channel extends React.Component {
       }
     );
   }
+  componentDidMount() {
+    const { channelId, fetchChannelMessages, fetchChannelMembers } = this.props;
+    this.channelChat();
+    fetchChannelMembers(channelId);
+    fetchChannelMessages(channelId);
+  }
 
   componentDidUpdate(prevProps) {
-    this.bottom.current.scrollIntoView();
-    // window.scrollTo(this.bottom.current);
+    if (this.bottom.current) {
+      this.bottom.current.scrollIntoView();
+    }
+    if (this.props.location !== prevProps.location) {
+      const {
+        channelId,
+        fetchChannelMessages,
+        fetchChannelMembers
+      } = this.props;
+      this.channelChat();
+      fetchChannelMembers(channelId);
+      fetchChannelMessages(channelId);
+    }
   }
+
+  createMembership() {
+    let user_id = this.props.currentUser.id;
+    let memberable_id = parseInt(this.props.channelId);
+    let memberable_type = "Channel";
+    this.props.createMembership({ memberable_id, user_id, memberable_type });
+  }
+
+  destroyMembership() {
+    // TO DO JANK EDIT
+    let id = this.props.memberships.filter(
+      membership => membership.user_id === this.state.currentUser.id
+    )[0].id;
+    this.props.destroyMembership(id);
+  }
+
   render() {
-    let { messages } = this.props;
+    let { messages, channel, memberships } = this.props;
     let formatMessages = messages.map(message => {
       return (
         <>
@@ -59,10 +94,23 @@ class Channel extends React.Component {
         </>
       );
     });
+    let memberStatus =
+      memberships.filter(
+        membership => membership.user_id === this.state.currentUser.id
+      ).length > 0;
+    let channelMemberToggleText = memberStatus
+      ? "Leave channel"
+      : "Join channel";
+    let channelMemberToggleFunction = memberStatus
+      ? this.destroyMembership
+      : this.createMembership;
     return (
       <div className="channel-container">
         <div className="message-list">{formatMessages}</div>
-        <MessageFormContainer channel={this.props.channel} />
+        <MessageFormContainer channel={channel} />
+        <button onClick={channelMemberToggleFunction}>
+          {channelMemberToggleText}
+        </button>
       </div>
     );
   }

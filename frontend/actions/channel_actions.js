@@ -61,7 +61,6 @@ const receiveChannel = channel => {
 };
 
 const removeChannel = channel => {
-  debugger;
   return {
     type: REMOVE_CHANNEL,
     channelId: channel.id

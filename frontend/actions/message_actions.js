@@ -8,8 +8,10 @@ export const fetchAllMessages = () => dispatch => {
     dispatch(receiveMessages(messages))
   );
 };
-export const fetchChannelMessages = () => {
-  return MessageApiUtil.fetchAllMessages();
+export const fetchChannelMessages = channelId => dispatch => {
+  return MessageApiUtil.fetchChannelMessages(channelId).then(messages =>
+    dispatch(receiveMessages(messages))
+  );
 };
 
 export const fetchMessage = id => dispatch => {

@@ -10,7 +10,12 @@ const mapDispatch = dispatch => {
   return {
     openCreateChannel: (
       <button onClick={() => dispatch(openModal("createchannel"))}>
-        crete chan
+        Create Channel
+      </button>
+    ),
+    openBrowseChannel: (
+      <button onClick={() => dispatch(openModal("browsechannel"))}>
+        Browse Channel
       </button>
     ),
     closeModal: () => dispatch(closeModal())

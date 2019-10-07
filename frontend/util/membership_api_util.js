@@ -1,7 +1,7 @@
 export const createMembership = membership => {
   return $.ajax({
     method: "POST",
-    url: "api/membership",
+    url: "api/memberships",
     data: { membership }
   });
 };
@@ -24,5 +24,13 @@ export const fetchMemberships = () => {
   return $.ajax({
     method: "GET",
     url: `api/memberships`
+  });
+};
+
+export const fetchChannelMemberships = channelId => {
+  return $.ajax({
+    method: "GET",
+    url: `api/memberships`,
+    data: { channelId }
   });
 };

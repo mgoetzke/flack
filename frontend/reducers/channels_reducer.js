@@ -15,7 +15,6 @@ export default (state = {}, action) => {
     case RECEIVE_CHANNEL:
       return merge({}, state, { [action.channel.id]: action.channel });
     case REMOVE_CHANNEL:
-      debugger;
       newState = merge({}, state);
       delete newState[action.channelId];
       return newState;

@@ -2,6 +2,7 @@ import React from "react";
 import { closeModal } from "../../actions/modal_actions";
 import { connect } from "react-redux";
 import ChannelCreate_Container from "../channelcreate/channelcreate_container";
+import ChannelBrowse_Container from "../channelbrowse/channelbrowse_container";
 
 function Modal({ modal, closeModal }) {
   if (!modal) {
@@ -11,6 +12,9 @@ function Modal({ modal, closeModal }) {
   switch (modal) {
     case "createchannel":
       component = <ChannelCreate_Container />;
+      break;
+    case "browsechannel":
+      component = <ChannelBrowse_Container />;
       break;
     default:
       return null;

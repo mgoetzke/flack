@@ -6,7 +6,7 @@ import {
 
 import merge from "lodash/merge";
 
-export default (state = { id: null }, action) => {
+export default (state = {}, action) => {
   Object.freeze(state);
   let newState;
   switch (action.type) {
