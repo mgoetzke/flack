@@ -98,15 +98,15 @@ class Channel extends React.Component {
       : this.createMembership;
     return (
       <div className="channel-container">
+        <button onClick={channelMemberToggleFunction}>
+          {channelMemberToggleText}
+        </button>
+        {this.props.openAddMembership}
         <div className="message-list">
           <ul>{formatMessages}</ul>
           <div ref={this.bottom}></div>
         </div>
         <MessageFormContainer channel={channel} />
-        <button onClick={channelMemberToggleFunction}>
-          {channelMemberToggleText}
-        </button>
-        {this.props.openAddMembership}
       </div>
     );
   }

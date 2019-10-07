@@ -4,12 +4,11 @@
   align-items: center;
   width: 100%;
   /* CHECK WITH CSS SIMCHA */
-  height: calc(100% - 100px);
+  height: 100%;
   box-sizing: border-box;
-  font-family: 'Lato';
+  font-family: "Lato";
   color: RGB(29, 29, 29);
 }
-
 
 .load-button {
   position: absolute;

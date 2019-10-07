@@ -42,7 +42,9 @@
   display: flex;
   flex-direction: row;
 }
-
+#grabber {
+  width: 220px;
+}
 .greeting-nav link {
   margin: 5px;
   padding: 5px;

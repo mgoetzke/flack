@@ -5,3 +5,7 @@
   border-right: solid 1px red;
   background-color: purple;
 }
+.membership-items {
+  color: red;
+  overflow-x: hidden;
+}

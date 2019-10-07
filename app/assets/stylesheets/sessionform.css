@@ -1,40 +1,43 @@
-.session-wrapper{
+.session-wrapper {
+  /* margin-top: 60px; */
   border-top: 1px solid RGB(223, 223, 223);
-  display:flex;
+  display: flex;
   flex-direction: column;
   background-color: RGB(248, 248, 248);
-  font-family: 'Lato';
+  font-family: "Lato";
   box-sizing: border-box;
-  height: 100vh;
+  height: calc(100vh - 80px);
+  align-items: center;
+  padding-top: 60px;
 }
-.session-form-form h2 p span{
+.session-form-form h2 p span {
   font-weight: bold;
 }
 
-.session-errors{
-  padding: 5px;
+.session-errors {
+  padding: 15px;
   width: 635px;
   background-color: RGB(255, 255, 255);
   border: 1px solid RGB(221, 221, 221);
   border-left: 5px solid RGB(221, 0, 90);
   border-radius: 3px;
   display: flex;
-  align-items:center;
+  align-items: center;
+  margin-bottom: 20px;
 }
 
-.session-errors img{
+.session-errors img {
   width: 20px;
   height: 20px;
   margin-right: 10px;
 }
-.session-form{
+.session-form {
   margin: 0 auto;
   border-radius: 3px;
   width: 635px;
-  margin-top: 60px;
-  display:flex;
+  display: flex;
   flex-direction: column;
-  font-family: 'Lato';
+  font-family: "Lato";
   align-items: center;
   align-content: center;
   justify-content: center;
@@ -43,26 +46,26 @@
   box-shadow: 0 1px 0 RGB(221, 221, 221);
   background-color: RGB(255, 255, 255);
 }
-.session-form-form{
-  display:flex;
+.session-form-form {
+  display: flex;
   flex-direction: column;
   align-items: center;
   align-content: center;
   justify-content: center;
 }
 
-.session-form h1{
+.session-form h1 {
   font-size: 30px;
   font-weight: bold;
   margin: 20px 0px 20px 0px;
 }
 
-.session-form-form h2{
+.session-form-form h2 {
   align-self: flex-start;
   font-size: 15px;
   margin: 5px;
 }
-.session-form input[type=text]{
+.session-form input[type="text"] {
   width: 375px;
   height: 50px;
   border: 1px solid RGB(105, 105, 105);
@@ -71,7 +74,7 @@
   padding: 15px;
   box-sizing: border-box;
 }
-.session-form input[type=password]{
+.session-form input[type="password"] {
   width: 375px;
   height: 50px;
   border: 1px solid RGB(105, 105, 105);
@@ -95,18 +98,18 @@
   font-size: 20px;
 }
 
-.session-form-demo{
+.session-form-demo {
   margin: 40px 0px 60px 0px;
 }
-.session-form-demo a{
-  color:RGB(24, 98, 163);
+.session-form-demo a {
+  color: RGB(24, 98, 163);
   font-weight: bold;
 }
 
-.session-form-demo a:hover{
+.session-form-demo a:hover {
   text-decoration: underline;
 }
 
-.session-form-button:hover{
-  box-shadow: 0 1px 4px rgba(0,0,0,.3);
+.session-form-button:hover {
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
 }

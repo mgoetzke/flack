@@ -17,7 +17,10 @@ class Sidebar extends React.Component {
   render() {
     let membershipItems = this.props.memberships.map(membership => {
       return (
-        <Link to={`/workspace/channels/${membership.memberable_id}`}>
+        <Link
+          key={membership.id}
+          to={`/workspace/channels/${membership.memberable_id}`}
+        >
           {membership.name}
         </Link>
       );
@@ -32,7 +35,7 @@ class Sidebar extends React.Component {
         Channels Browse {this.props.openBrowseChannel}
         <br />
         <Link to="/workspace/channels/1">Click for test channel</Link>
-        <ul>{membershipItems}</ul>
+        <ul className="membership-items">{membershipItems}</ul>
       </div>
     );
   }
