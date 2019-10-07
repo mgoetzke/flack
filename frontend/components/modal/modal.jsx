@@ -3,6 +3,7 @@ import { closeModal } from "../../actions/modal_actions";
 import { connect } from "react-redux";
 import ChannelCreate_Container from "../channelcreate/channelcreate_container";
 import ChannelBrowse_Container from "../channelbrowse/channelbrowse_container";
+import MemberAdd_container from "../memberadd/memberadd_container";
 
 function Modal({ modal, closeModal }) {
   if (!modal) {
@@ -15,6 +16,9 @@ function Modal({ modal, closeModal }) {
       break;
     case "browsechannel":
       component = <ChannelBrowse_Container />;
+      break;
+    case "addmembership":
+      component = <MemberAdd_container />;
       break;
     default:
       return null;

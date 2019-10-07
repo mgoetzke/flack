@@ -1,9 +1,13 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 class ChannelBrowse extends React.Component {
   constructor(props) {
     super(props);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.state = {
+      channels: props.channels
+    };
   }
   handleSubmit(e) {
     e.preventDefault();
@@ -11,24 +15,31 @@ class ChannelBrowse extends React.Component {
     this.setState({ name: "", topic: "", invites: [], private: false });
   }
 
-  componentDidMount(){
+  componentDidMount() {
     this.props.fetchAllChannels();
   }
 
-  componentDidUpdate(){
-
-  }
+  componentDidUpdate() {}
 
   render() {
+    let allChannels = this.props.channels;
+    let channels = allChannels.map(channel => {
+      return (
+        <Link
+          onClick={this.props.closeModal}
+          to={`/workspace/channels/${channel.id}`}
+        >
+          {channel.name}
+        </Link>
+      );
+    });
     return (
       <div>
         <button onClick={this.props.closeModal} className="channel-create-esc">
           esc
         </button>
         <h1>Browse Channels</h1>
-        <li>
-
-        </li>
+        <ul>{channels}</ul>
       </div>
     );
   }

@@ -2,9 +2,10 @@ import { connect } from "react-redux";
 import ChannelBrowse from "./channelbrowse";
 import { closeModal } from "../../actions/modal_actions";
 import { fetchAllChannels } from "../../actions/channel_actions";
-const mapState = (state) => {
+const mapState = (state, ownProps) => {
+  fetchAllChannels();
   return {
-    channels: state.entities.channels,
+    channels: Object.values(state.entities.channels)
   };
 };
 
@@ -12,7 +13,6 @@ const mapDispatch = dispatch => {
   return {
     closeModal: () => dispatch(closeModal()),
     fetchAllChannels: () => dispatch(fetchAllChannels())
-
   };
 };
 export default connect(

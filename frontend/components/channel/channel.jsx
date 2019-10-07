@@ -5,7 +5,6 @@ import MessageContainer from "../message/message_container";
 class Channel extends React.Component {
   constructor(props) {
     super(props);
-    debugger;
     this.state = {
       messages: [props.messages],
       currentUser: props.currentUser,
@@ -43,9 +42,9 @@ class Channel extends React.Component {
     );
   }
   componentDidMount() {
-    const { channelId, fetchChannelMessages, fetchAllMembers } = this.props;
+    const { channelId, fetchChannelMessages, fetchMemberships } = this.props;
     this.configChat();
-    fetchAllMembers();
+    fetchMemberships();
     fetchChannelMessages(channelId);
   }
 
@@ -54,9 +53,9 @@ class Channel extends React.Component {
       this.bottom.current.scrollIntoView();
     }
     if (this.props.location !== prevProps.location) {
-      const { channelId, fetchChannelMessages, fetchAllMembers } = this.props;
+      const { channelId, fetchChannelMessages, fetchMemberships } = this.props;
       this.configChat();
-      fetchAllMembers();
+      fetchMemberships();
       fetchChannelMessages(channelId);
     }
   }
@@ -106,6 +105,7 @@ class Channel extends React.Component {
         <button onClick={channelMemberToggleFunction}>
           {channelMemberToggleText}
         </button>
+        {this.props.openAddMembership}
       </div>
     );
   }

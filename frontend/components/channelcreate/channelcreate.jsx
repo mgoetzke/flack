@@ -1,4 +1,5 @@
 import React from "react";
+import { createMembership } from "../../actions/membership_actions";
 
 class ChannelCreate extends React.Component {
   constructor(props) {
@@ -15,9 +16,25 @@ class ChannelCreate extends React.Component {
   }
   handleSubmit(e) {
     e.preventDefault();
-    this.props.createChannel(this.state).then(this.props.closeModal);
+    let { currentUser } = this.props;
+    this.props
+      .createChannel(this.state)
+      .then(({ channel }) => {
+        let memberable_id = channel.id;
+        let user_id = currentUser;
+        let memberable_type = "Channel";
+        let newMembership = { memberable_id, user_id, memberable_type };
+        this.props.createMembership(newMembership);
+      })
+      .then(this.props.closeModal);
+
     this.setState({ name: "", topic: "", invites: [], private: false });
   }
+
+  // handleInvites(ids){
+  //   ids.forEach(id =>
+  //     )
+  // }
 
   update(field) {
     return e => this.setState({ [field]: e.currentTarget.value });

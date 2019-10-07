@@ -7,19 +7,19 @@ import {
   receiveMessage
 } from "../../actions/message_actions";
 import { fetchMemberships } from "../../actions/membership_actions";
-import {
-  getChannelMessages,
-  getChannelMembers
-} from "../../selectors/channel_selectors";
-
+import { getChannelMemberships } from "../../selectors/membership_selectors";
+import { openModal, closeModal } from "../../actions/modal_actions";
+import React from "react";
 import {
   createMembership,
   destroyMembership
 } from "../../actions/membership_actions";
 
 const mapState = (state, ownProps) => {
-  let memberships = getChannelMembers(state, ownProps);
-  debugger;
+  let memberships = getChannelMemberships(
+    state,
+    ownProps.match.params.channelId
+  );
   return {
     channel: state.entities.channels[ownProps.match.params.channelId] || {
       name: "default"
@@ -35,10 +35,16 @@ const mapDispatch = dispatch => {
   return {
     fetchChannel: id => dispatch(fetchChannel(id)),
     fetchChannelMessages: id => dispatch(fetchChannelMessages(id)),
-    fetchMemberships: id => dispatch(fetchMemberships()),
+    fetchMemberships: () => dispatch(fetchMemberships()),
     receiveMessage: message => dispatch(receiveMessage(message)),
     createMembership: membership => dispatch(createMembership(membership)),
-    destroyMembership: membershipId => dispatch(destroyMembership(membershipId))
+    destroyMembership: membershipId =>
+      dispatch(destroyMembership(membershipId)),
+    openAddMembership: (
+      <button onClick={() => dispatch(openModal("addmembership"))}>
+        Add Member
+      </button>
+    )
   };
 };
 export default withRouter(

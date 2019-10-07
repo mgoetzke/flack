@@ -2,10 +2,12 @@ import { connect } from "react-redux";
 import Sidebar from "./sidebar";
 import { openModal, closeModal } from "../../actions/modal_actions";
 import { fetchMemberships } from "../../actions/membership_actions";
+import { getUserMemberships } from "../../selectors/membership_selectors";
 import React from "react";
 const mapState = state => {
+  let memberships = getUserMemberships(state, state.session.id);
   return {
-    memberships: state.entities.memberships
+    memberships: memberships
   };
 };
 

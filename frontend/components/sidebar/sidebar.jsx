@@ -3,7 +3,11 @@ import { Link } from "react-router-dom";
 class Sidebar extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      memberships: props.memberships
+    };
   }
+
   componentDidMount() {
     this.props.fetchAllMemberships;
   }
@@ -11,6 +15,13 @@ class Sidebar extends React.Component {
     this.props.fetchAllMemberships;
   }
   render() {
+    let membershipItems = this.props.memberships.map(membership => {
+      return (
+        <Link to={`/workspace/channels/${membership.memberable_id}`}>
+          {membership.name}
+        </Link>
+      );
+    });
     return (
       <div className="sidebar">
         HAI IM THE SIDEBAR
@@ -21,6 +32,7 @@ class Sidebar extends React.Component {
         Channels Browse {this.props.openBrowseChannel}
         <br />
         <Link to="/workspace/channels/1">Click for test channel</Link>
+        <ul>{membershipItems}</ul>
       </div>
     );
   }
