@@ -31,8 +31,9 @@ class Message extends React.Component {
 
   render() {
     let { message } = this.props;
+    debugger
     let image_location = message.image_url.split(".")[0];
-    let userEdit = this.state.currentUser === message.user_id;
+    let userEdit = this.state.currentUser.id === message.user_id;
     let editButtonText = this.state.editing ? "Cancel" : "Edit";
     let createDate = new Date(message.created_at);
     let formatTime = createDate.toLocaleTimeString([], {
