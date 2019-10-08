@@ -4,19 +4,25 @@ import { Link } from "react-router-dom";
 class MemberAdd extends React.Component {
   constructor(props) {
     super(props);
-    this.handleSubmit = this.handleSubmit.bind(this);
-    this.state = {};
+    // this.handleSubmit = this.handleSubmit.bind(this);
+    this.state = {
+      newMembers: []
+    };
     this.createOtherMembership = this.createOtherMembership.bind(this);
+    this.handleMemberships = this.handleMemberships.bind(this);
   }
-  handleSubmit(e) {}
-
   componentDidMount() {
     this.nameInput.focus();
   }
 
   componentDidUpdate() {}
 
-  handleMembership() {
+  toggleAdded(e) {
+    debugger;
+    // this.setState({ newMembers: e.target });
+  }
+  handleMemberships(e) {
+    debugger;
     this.props.createMembership();
   }
   createOtherMembership(userId) {
@@ -29,9 +35,14 @@ class MemberAdd extends React.Component {
   render() {
     let allUsers = this.props.users;
     let userItems = allUsers.map(user => {
-      return <option key={user.id}>{user.display_name}</option>;
+      let image_location = user.image_url.split(".")[0];
+      return (
+        <li onClick={this.toggleAdded} key={user.id}>
+          <img className="message-avatar" src={window[image_location]} />
+          {user.display_name}
+        </li>
+      );
     });
-
     return (
       <>
         <div className="modal-header">
@@ -52,11 +63,15 @@ class MemberAdd extends React.Component {
                 type="text"
                 placeholder="Search by name"
               />
-              <button className="add-button modal-button-submit">
-                <p>Add</p>
+              <button
+                type="submit"
+                onClick={this.handleMemberships}
+                className="add-button modal-button-submit"
+              >
+                Add
               </button>
             </span>
-            <select multiple>{userItems}</select>
+            <ul>{userItems}</ul>
           </div>
         </div>
       </>
