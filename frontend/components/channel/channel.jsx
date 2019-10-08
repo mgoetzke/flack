@@ -104,7 +104,7 @@ class Channel extends React.Component {
         {this.props.openAddMembership}
         <div className="message-list">
           <ul>{formatMessages}</ul>
-          <div ref={this.bottom}></div>
+          {/* <div ref={this.bottom}></div> */}
         </div>
         <MessageFormContainer channel={channel} />
       </div>
