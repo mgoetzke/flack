@@ -10,7 +10,9 @@ class MemberAdd extends React.Component {
   }
   handleSubmit(e) {}
 
-  componentDidMount() {}
+  componentDidMount() {
+    this.nameInput.focus();
+  }
 
   componentDidUpdate() {}
 
@@ -27,19 +29,37 @@ class MemberAdd extends React.Component {
   render() {
     let allUsers = this.props.users;
     let userItems = allUsers.map(user => {
-      return <li key={user.id}>{user.display_name}</li>;
+      return <option key={user.id}>{user.display_name}</option>;
     });
 
     return (
-      <div>
-        <button onClick={this.props.closeModal} className="channel-create-esc">
-          esc
-        </button>
-        <h1>Add people to NAME OF CHANNEL HARD CODE</h1>
-        <p>Need to add someone who's not yet in this workspace?</p>
-        <input type="text" placeholder="Search by name" />
-        <ul>{userItems}</ul>
-      </div>
+      <>
+        <div className="modal-header">
+          <button onClick={this.props.closeModal} className="modal-esc">
+            <i class="fas fa-times"></i>
+            <span>esc</span>
+          </button>
+        </div>
+        <div className="modal-member">
+          <div className="modal-body">
+            <h1>Add people to NAME OF CHANNEL HARD CODE</h1>
+            <p>Need to add someone who's not yet in this workspace?</p>
+            <span className="modal-search">
+              <input
+                ref={input => {
+                  this.nameInput = input;
+                }}
+                type="text"
+                placeholder="Search by name"
+              />
+              <button className="add-button modal-button-submit">
+                <p>Add</p>
+              </button>
+            </span>
+            <select multiple>{userItems}</select>
+          </div>
+        </div>
+      </>
     );
   }
 }

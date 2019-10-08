@@ -229,3 +229,37 @@
 .modal-button-submit:hover {
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
 }
+.modal-body p {
+  font-size: 15px;
+  margin-bottom: 25px;
+}
+
+.add-button {
+  width: 100px;
+  height: 44px;
+  border-radius: 5px;
+  margin-right: 5px;
+  justify-content: center;
+  display: flex;
+}
+.add-button p {
+  margin: 0;
+  font-size: 20px;
+}
+.modal-member {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.modal-member input[type="text"] {
+  width: 537px;
+  margin-right: 10px;
+  height: 45px;
+  box-sizing: border-box;
+  padding: 10px;
+}
+.modal-member .modal-body {
+  display: flex;
+  flex-direction: column;
+  align-self: center;
+}
