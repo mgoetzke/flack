@@ -1,5 +1,5 @@
 import { connect } from "react-redux";
-import MemberAdd from "./memberddd";
+import MemberAdd from "./memberadd";
 import { closeModal } from "../../actions/modal_actions";
 import { fetchAllUsers } from "../../actions/channel_actions";
 import { createMembership } from "../../actions/membership_actions";
