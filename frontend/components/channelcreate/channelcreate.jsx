@@ -44,8 +44,7 @@ class ChannelCreate extends React.Component {
   }
 
   togglePrivate() {
-    let oppState = this.state.private === false ? true : false;
-    this.setState({ private: oppState });
+    return () => this.setState({ private: this.state.private === false });
   }
 
   renderErrors() {
@@ -60,7 +59,7 @@ class ChannelCreate extends React.Component {
   }
 
   render() {
-    let privateStatus = this.state.private === false ? "public" : "private";
+    let privateStatus = this.state.private === false ? true : false;
     let headText = privateStatus
       ? "Create a channel"
       : "Create a private channel";
@@ -68,86 +67,94 @@ class ChannelCreate extends React.Component {
       ? "When a channel is set to private, it can only be viewed or joined by invitation."
       : "This can't be undone. A private channel cannot be made public later on.";
     return (
-      <div>
-        <form onSubmit={this.handleSubmit} className="channel-create">
-          <button
-            onClick={this.props.closeModal}
-            className="channel-create-esc"
-          >
-            esc
+      <>
+        <div className="modal-header">
+          <button onClick={this.props.closeModal} className="modal-esc">
+            <i className="fas fa-times"></i>
+            <span>esc</span>
           </button>
-          <div className="channel-create-contents">
-            <div className="channel-create-header">
-              <h1>{headText}</h1>
-              <p>
-                Channels are where your members communicate. They're best when
-                organized around a topic - #flackingoff, for example. Learn more
-                about how to create and name channels for your team.
-              </p>
-            </div>
-            <div className="channel-create.name">
-              <h3>Name</h3>
-              {this.props.errors.length > 0 && (
-                <div className="channel-errors">
-                  <ul>{this.renderErrors()}</ul>
-                </div>
-              )}
-              <input
-                onChange={this.update("name")}
-                type="text"
-                placeholder="e.g., flackingoff"
-                pattern="[a-zA-Z0-9-!@#$%^*_|]{1,80}"
-              />
-              <p>
-                Names must be lowercase, without spaces or periods, and can't be
-                longer than 80 characters.
-              </p>
-              <p>{80 - this.state.name.length}</p>
-            </div>
-            <div className="channel-create.description">
-              <h3>Description</h3> <span>(optional)</span>
-              <input onChange={this.update("description")} type="text" />
-              <p>What's this channel about?</p>
-            </div>
-            <div className="channel-create.invites">
-              <h3>Send invites to</h3> <span>(optional)</span>
-              <input type="text" placeholder="Search by name" />
-              <p>Select up to 1000 people to add to this channel.</p>
-            </div>
-            <div className="channel-create.private">
-              <div className="channel-create.private-text">
-                <h3>Make private</h3>
-                <p>{privateText}</p>
+        </div>
+        <div className="modal-channel-create">
+          <form onSubmit={this.handleSubmit} className="modal-body">
+            <div className="modal-body-create">
+              <div className="channel-create-header">
+                <h1>{headText}</h1>
+                <p>
+                  Channels are where your members communicate. They're best when
+                  organized around a topic - #flackingoff, for example.
+                </p>
               </div>
-              <input
-                onClick={this.togglePrivate}
-                type="checkbox"
-                id="toggle"
-                className="checkbox"
-              />
-              <label htmlFor="toggle" className="switch"></label>
-            </div>
-            <div className="channel-create.buttons">
-              <button
-                onClick={this.props.closeModal}
-                className="channel-button.cancel"
-              >
-                Cancel
-              </button>
-              {this.state.name !== "" && (
+              <div className="channel-create.name">
+                <h3>Name</h3>
+                {this.props.errors.length > 0 && (
+                  <div className="channel-errors">
+                    <ul>{this.renderErrors()}</ul>
+                  </div>
+                )}
                 <input
-                  className="channel-button.create"
-                  type="submit"
-                  value="Create"
+                  onChange={this.update("name")}
+                  type="text"
+                  placeholder="e.g. flackingoff"
+                  pattern="[a-zA-Z0-9-!@#$%^*_|]{1,80}"
                 />
-              )}
-              {this.state.name === "" && (
-                <div className="channel-button-createblank">Create</div>
-              )}
+                <p>{80 - this.state.name.length}</p>
+              </div>
+              <div className="modal-input-block">
+                <div className="modal-label-title">
+                  <h3>Description </h3> <span> (optional)</span>
+                </div>
+                <input onChange={this.update("description")} type="text" />
+                <p>What's this channel about?</p>
+              </div>
+              <div className="modal-input-block">
+                <div className="modal-label-title">
+                  <h3>Send invites to </h3> <span> (optional)</span>
+                </div>
+                <input type="text" placeholder="Search by name" />
+                <p>Select up to 1000 people to add to this channel.</p>
+              </div>
+              <div className="modal-input-private">
+                <div className="modal-input-block private-text">
+                  <div className="modal-label-title">
+                    <h3>Make private</h3>
+                  </div>
+                  <p>{privateText}</p>
+                </div>
+                <div className="container">
+                  <label className="switch" htmlFor="checkbox">
+                    <input
+                      onClick={this.togglePrivate}
+                      type="checkbox"
+                      id="checkbox"
+                    />
+                    <div class="sliderRound"></div>
+                  </label>
+                </div>
+              </div>
+              <div className="modal-create-buttons">
+                <button
+                  onClick={this.props.closeModal}
+                  className="modal-button modal-button-cancel"
+                >
+                  Cancel
+                </button>
+                {this.state.name !== "" && (
+                  <input
+                    className="modal-button modal-button-submit"
+                    type="submit"
+                    value="Create"
+                  />
+                )}
+                {this.state.name === "" && (
+                  <span className="modal-button modal-button-invalid">
+                    <p>Create</p>
+                  </span>
+                )}
+              </div>
             </div>
-          </div>
-        </form>
-      </div>
+          </form>
+        </div>
+      </>
     );
   }
 }

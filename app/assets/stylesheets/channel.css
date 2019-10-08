@@ -92,13 +92,70 @@
 .channel-header-popup {
   background-color: RGB(248, 248, 248);
   position: relative;
-  padding: 20px;
   z-index: 1;
   right: 5px;
   top: 50px;
   display: flex;
   flex-direction: column;
+  justify-content: space-around;
   width: 220px;
   border-radius: 5px;
   border: 1px solid RGB(212, 212, 212);
+}
+
+.channel-header-popup li {
+  list-style: none;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-top: 10px;
+  padding-bottom: 5px;
+}
+
+.channel-header-popup li:hover {
+  background-color: RGB(24, 98, 163);
+  color: RGB(254, 254, 254);
+}
+
+.channel-join-banner {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+  height: 150px;
+  background-color: RGB(248, 248, 248);
+}
+
+.channel-join-text {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: column;
+}
+
+.channel-join-text .title {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+.channel-join-text .creator {
+  color: RGB(94, 94, 94);
+  font-size: 14px;
+}
+
+.joinName {
+  font-weight: bold;
+}
+
+.join-banner-button {
+  background-color: RGB(18, 124, 90);
+  width: 110px;
+  height: 37px;
+  color: white;
+  box-sizing: border-box;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  border-radius: 3px;
+  margin: 5px;
+  font-size: 16px;
 }

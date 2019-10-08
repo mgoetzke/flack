@@ -14,7 +14,6 @@
   position: absolute;
   height: 100vh;
   width: 100vw;
-  justify-content: center;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -23,8 +22,8 @@
 .modal-body {
   padding: 0 32px 32px 32px;
 }
-.modal-body > h1 {
-  font-size: 25px;
+.modal-body h1 {
+  font-size: 28px;
   align-self: flex-start;
   padding-bottom: 20px;
   font-weight: bold;
@@ -56,21 +55,24 @@
 
 .modal-esc:hover {
   color: RGB(29, 29, 29);
-  background-color: RGB(97, 97, 97);
+  background-color: RGB(221, 221, 221);
 }
 .modal-search {
   display: flex;
   align-items: center;
 }
-.modal-search input[type="text"] {
+.modal-child input[type="text"] {
   width: 640px;
   height: 40px;
   border: 1px solid RGB(134, 134, 134);
   border-radius: 4px;
-  padding-left: 50px;
-  font-size: 15px;
+  padding-left: 15px;
+  font-size: 17px;
 }
-.modal-search input[type="text"]:focus {
+.modal-search input[type="text"] {
+  padding-left: 50px;
+}
+.modal-child input[type="text"]:focus {
   box-shadow: 0 0 0 4px RGB(190, 225, 241);
   border: 1px solid RGB(24, 98, 163);
 }
@@ -82,7 +84,11 @@
   position: relative;
   left: 35px;
 }
-.modal-body p {
+
+.modal-body-create {
+  width: 640px;
+}
+.modal-search-list > p {
   font-size: 12px;
   padding-top: 25px;
   color: RGB(104, 104, 104);
@@ -90,5 +96,136 @@
 }
 
 .modal-search-result {
+  padding: 10px;
   border-bottom: 1px solid RGB(221, 221, 221);
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 15px;
+  color: RGB(28, 28, 28);
+}
+
+.modal-search-result-body {
+  display: flex;
+  flex-direction: column;
+  align-items: space-between;
+}
+.modal-search-result-preview {
+  display: none;
+  color: RGB(94, 94, 94);
+  flex-direction: column;
+  align-items: space-between;
+}
+.modal-search-result-title {
+  padding-bottom: 5px;
+}
+.modal-search-result-topic {
+  color: RGB(140, 140, 140);
+  padding-bottom: 5px;
+}
+.modal-search-result-creation {
+  font-size: 12px;
+  color: RGB(140, 140, 140);
+}
+
+.modal-search-result:hover {
+  background-color: RGB(246, 246, 246);
+}
+
+.modal-search-result:hover .modal-search-result-preview {
+  display: flex;
+}
+
+.channel-create-header p {
+  color: RGB(51, 51, 51);
+  font-size: 15px;
+}
+
+.modal-body-create h3 {
+  color: RGB(29, 29, 29);
+  font-size: 15px;
+  margin-bottom: 10px;
+  white-space: pre;
+}
+.modal-input-block {
+  display: flex;
+  flex-direction: column;
+  color: RGB(112, 112, 112);
+  font-size: 13px;
+}
+.modal-label-title {
+  display: flex;
+  flex-direction: row;
+  align-items: baseline;
+  color: RGB(29, 29, 29);
+}
+
+.modal-label-title > span {
+  color: RGB(112, 112, 112);
+  font-size: 13px;
+}
+.modal-input-block input {
+  margin-bottom: 5px;
+}
+.modal-input-block p {
+  font-size: 13px;
+}
+
+.modal-input-private {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.private-text {
+  width: 420px;
+}
+.private-text p {
+  font-size: 15px;
+}
+.modal-create-buttons {
+  display: flex;
+  flex-direction: row;
+  font-size: 15px;
+  text-align: center;
+  margin-top: 50px;
+}
+
+.modal-channel-create {
+  justify-content: center;
+}
+
+.modal-channel-create .modal-esc {
+  align-self: flex-end;
+}
+
+.modal-button {
+  width: 82px;
+  height: 38px;
+  border-radius: 3px;
+  margin-right: 5px;
+}
+
+.modal-button-invalid {
+  background-color: RGB(221, 221, 221);
+  justify-content: center;
+  margin-bottom: 0;
+  display: flex;
+  flex-direction: column;
+  font-weight: bold;
+  color: RGB(78, 78, 78);
+}
+.modal-button-cancel {
+  border: 1px solid RGB(187, 187, 187);
+  background-color: white;
+  font-weight: bold;
+  box-sizing: border-box;
+}
+.modal-button-submit {
+  background-color: RGB(18, 124, 90);
+  color: RGB(254, 254, 254);
+}
+.modal-button-submit:hover {
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
 }

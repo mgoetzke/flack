@@ -19,6 +19,9 @@ class Channel < ApplicationRecord
 
   has_many :memberships, as: :memberable, dependent: :destroy
   has_many :users, through: :memberships
+  belongs_to :user,
+    foreign_key: :admin_id,
+    primary_key: :id
 
   has_many :messages, as: :messageable, dependent: :destroy
 end

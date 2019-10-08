@@ -21,7 +21,6 @@ class Channel extends React.Component {
     this.hideMenu2 = this.hideMenu2.bind(this);
   }
   showMenu(e) {
-    debugger;
     if (this.state) {
       this.setState({ cogPopUpVisibility: "" });
     }
@@ -30,12 +29,10 @@ class Channel extends React.Component {
     if (!e.relatedTarget) {
       this.setState({ cogPopUpVisibility: "menu-hide" });
     } else {
-      debugger;
     }
   }
 
   hideMenu2() {
-    debugger;
     this.setState({ cogPopUpVisibility: "menu-hide" });
   }
 
@@ -153,6 +150,36 @@ class Channel extends React.Component {
     let channelMemberToggleText = memberStatus
       ? `Leave ${privacyIcon}${channel.name}`
       : `Join ${privacyIcon}${channel.name}`;
+    let channelCreator = channel.admin;
+    let channelCreation = new Date(channel.created_at);
+    var options = { year: "numeric", month: "long", day: "numeric" };
+    let formatCreation = channelCreation.toLocaleDateString([], options);
+    let footer = memberStatus ? (
+      <MessageFormContainer channel={channel} />
+    ) : (
+      <div className="channel-join-banner">
+        <div className="channel-join-text">
+          <div className="title">
+            <span>
+              You are viewing{" "}
+              <span className="joinName">
+                {privacyIcon}
+                {channel.name}
+              </span>
+            </span>
+          </div>
+          <div className="creator">
+            Created by {channelCreator} on {formatCreation}
+          </div>
+        </div>
+        <button
+          onClick={channelMemberToggleFunction}
+          className="join-banner-button"
+        >
+          Join Channel
+        </button>
+      </div>
+    );
 
     return (
       <div className="channel-container">
@@ -184,23 +211,27 @@ class Channel extends React.Component {
             <div
               className={`channel-header-popup ${this.state.cogPopUpVisibility}`}
             >
-              <button
-                onClick={channelMemberToggleFunction}
-                className="channelMemberToggleFunction"
-              >
-                {channelMemberToggleText}
-              </button>
-              <div className="testt4" onClick={this.hideMenu2}>
-                {this.props.openAddMembership}
-              </div>
+              <li>
+                <button
+                  onClick={channelMemberToggleFunction}
+                  className="channelMemberToggleFunction"
+                >
+                  {channelMemberToggleText}
+                </button>
+              </li>
+              <li>
+                <div onClick={this.hideMenu2}>
+                  {this.props.openAddMembership}
+                </div>
+              </li>
             </div>
           </div>
         </div>
         <div className="message-list">
           <ul>{formatMessages}</ul>
-          {/* <div ref={this.bottom}></div> */}
+          <div ref={this.bottom}></div>
         </div>
-        <MessageFormContainer channel={channel} />
+        {footer}
       </div>
     );
   }

@@ -17,6 +17,7 @@ class ChannelBrowse extends React.Component {
 
   componentDidMount() {
     this.props.fetchAllChannels();
+    this.nameInput.focus();
   }
 
   componentDidUpdate() {}
@@ -24,14 +25,36 @@ class ChannelBrowse extends React.Component {
   render() {
     let allChannels = this.props.channels;
     let channels = allChannels.map(channel => {
-      debugger;
+      let channelName = channel.name;
+      let privacyIcon =
+        channel.private === false ? "#" : <i className="fas fa-lock"></i>;
+      let channelTopic = channel.topic;
+      let channelCreator = channel.admin;
+      let channelCreation = new Date(channel.created_at);
+      var options = { year: "numeric", month: "long", day: "numeric" };
+      let formatCreation = channelCreation.toLocaleDateString([], options);
+
       return (
-        <li className="modal-search-result" key={channel.id}>
+        <li key={channel.id}>
           <Link
             onClick={this.props.closeModal}
             to={`/workspace/channels/${channel.id}`}
+            className="modal-search-result"
           >
-            {channel.name}
+            <div className="modal-search-result-body">
+              <span className="modal-search-result-title">
+                {privacyIcon}
+                {channelName}
+              </span>
+              <span className="modal-search-result-topic">{channelTopic}</span>
+              <span className="modal-search-result-creation">
+                Created by {channelCreator} on {formatCreation}
+              </span>
+            </div>
+            <div className="modal-search-result-preview">
+              <i className="fas fa-level-down-alt fa-rotate-90 fa-fw"></i>
+              <span>preview</span>
+            </div>
           </Link>
         </li>
       );
@@ -48,7 +71,13 @@ class ChannelBrowse extends React.Component {
           <h1>Browse Channels</h1>
           <span className="modal-search">
             <img src={window.searchIcon} />
-            <input type="text" placeholder="Search channels" />
+            <input
+              ref={input => {
+                this.nameInput = input;
+              }}
+              type="text"
+              placeholder="Search channels"
+            />
           </span>
           <span className="modal-search-list">
             <p>Channels you can join</p>

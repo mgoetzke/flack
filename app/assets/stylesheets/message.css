@@ -49,7 +49,7 @@
 }
 
 .message-item-view-content {
-  display:flex;
+  display: flex;
   flex-direction: column;
 }
 
@@ -85,14 +85,14 @@
   right: 20px;
   bottom: 18px;
   box-sizing: border-box;
-  align-items:center;
-  padding-bottom:12px;
+  align-items: center;
+  padding-bottom: 12px;
   border-radius: 5px;
   border: 1px solid RGB(240, 240, 240);
   font-size: 20px;
 }
-.message-item-button:hover{
-  color:RGB(18, 100, 63);
+.message-item-button:hover {
+  color: RGB(18, 100, 63);
   font-weight: bold;
   box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.08);
 }
