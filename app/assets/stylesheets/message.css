@@ -38,6 +38,14 @@
 
 .message-item-view {
   display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: space-between;
+  align-content: space-between;
+}
+
+.message-item-view-content {
+  display:flex;
   flex-direction: column;
 }
 
@@ -61,15 +69,31 @@
   border-radius: 3px;
   margin-right: 10px;
 }
-.message-item-view .message-item-button {
-  background-color: chartreuse;
-  padding: 3px;
+.message-item .message-item-button {
+  background-color: RGB(255, 255, 255);
+  text-align: center;
+  justify-content: center;
   display: none;
+  width: 35px;
+  height: 25px;
+  /* justify-self: end; */
   position: relative;
-  /* right: -15px; */
+  right: 20px;
+  bottom: 18px;
+  box-sizing: border-box;
+  align-items:center;
+  padding-bottom:12px;
+  border-radius: 5px;
+  border: 1px solid RGB(240, 240, 240);
+  font-size: 20px;
 }
-.message-item-view:hover .message-item-button {
-  display: block;
+.message-item-button:hover{
+  color:RGB(18, 100, 63);
+  font-weight: bold;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.08);
+}
+.message-item:hover .message-item-button {
+  display: flex;
 }
 
 .message-edit {

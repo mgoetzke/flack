@@ -33,7 +33,7 @@ class Message extends React.Component {
     let { message } = this.props;
     let image_location = message.image_url.split(".")[0];
     let userEdit = this.state.currentUser.id === message.user_id;
-    let editButtonText = this.state.editing ? "Cancel" : "Edit";
+    let editButtonText = this.state.editing ? "Cancel" : <span>&#8230;</span>;
     let createDate = new Date(message.created_at);
     let formatTime = createDate.toLocaleTimeString([], {
       hour: "2-digit",
@@ -45,16 +45,18 @@ class Message extends React.Component {
     let editState = message.created_at !== message.updated_at;
     let messageView = (
       <div className="message-item-view">
-        <div>
-          <span className="message-item-name">{message.display_name}</span>
+        <div className="message-item-view-content">
+          <div>
+            <span className="message-item-name">{message.display_name}</span>
 
-          <span className="message-item-time">{formatTime}</span>
-        </div>
-        <div>
-          {message.body}
-          {editState && (
-            <span className="message-item-editstate"> (edited)</span>
-          )}
+            <span className="message-item-time">{formatTime}</span>
+          </div>
+          <div>
+            {message.body}
+            {editState && (
+              <span className="message-item-editstate"> (edited)</span>
+            )}
+          </div>
         </div>
         {userEdit && (
           <button
@@ -83,7 +85,7 @@ class Message extends React.Component {
             {editButtonText}
           </button>
           <button className="message-edit-save" onClick={this.saveEdit}>
-            &#8626; Save Changes
+            <i class="fas fa-level-down-alt fa-rotate-90 fa-fw"></i> Save Changes
           </button>
         </div>
       </div>

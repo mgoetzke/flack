@@ -90,3 +90,6 @@ input[type="submit"] {
   display: flex;
   flex-direction: row;
 }
+.test{
+  background-color: blue;
+}
