@@ -121,7 +121,6 @@ class Channel extends React.Component {
     let channelMemberToggleFunction = memberStatus
       ? this.destroyMembership
       : this.createMembership;
-      debugger
     let privacyIcon = channel.private === false ? "# " : <i className="fas fa-lock"></i>;
 
     return (
