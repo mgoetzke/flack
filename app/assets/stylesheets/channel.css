@@ -13,9 +13,36 @@
   height: 60px;
   width: 100%;
   border: 1px solid RGB(225, 225, 225);
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 15px 20px 10px 20px;
+  align-items: center;
 }
 .load-button {
   position: absolute;
   top: 5px;
   right: 5px;
+}
+
+.channel-header-deets {
+  display: flex;
+  flex-direction: column;
+}
+
+.channel-header-name {
+  display: flex;
+  flex-direction: row;
+}
+
+.channel-header-deets h3{
+  margin-top:0;
+  margin-bottom:0;
+
+}
+
+.channel-header-icons {
+  display: flex;
+  flex-direction: row;
+  font-size: 13px;
 }

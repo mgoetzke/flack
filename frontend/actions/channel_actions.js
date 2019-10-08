@@ -12,9 +12,7 @@ export const fetchAllChannels = () => dispatch => {
   );
 };
 export const fetchChannel = id => dispatch => {
-  debugger
   return ChannelApiUtil.fetchChannel(id).then(channel => {
-    debugger
     dispatch(receiveChannel(channel))
   }
   );

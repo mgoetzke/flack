@@ -121,17 +121,31 @@ class Channel extends React.Component {
     let channelMemberToggleFunction = memberStatus
       ? this.destroyMembership
       : this.createMembership;
+      debugger
+    let privacyIcon = channel.private === false ? "# " : <i className="fas fa-lock"></i>;
+
     return (
       <div className="channel-container">
         <div className="channel-header">
           <div className="channel-header-deets">
+            <div className="channel-header-name">
+              {privacyIcon} <h3>{channel.name}</h3>
+            </div>
+            <div className="channel-header-icons">
+              <i class="far fa-user"></i> #|
+              <i class="far fa-edit"></i> 
+              {channel.topic}
 
+            </div>
           </div>
           <div className="channel-header-functions">
-            <button onClick={channelMemberToggleFunction}>
-              {channelMemberToggleText}
-            </button>
-            {this.props.openAddMembership}
+            <i class="fas fa-cog"></i>
+            <div>
+              <button onClick={channelMemberToggleFunction}>
+                {channelMemberToggleText}
+              </button>
+              {this.props.openAddMembership}
+            </div>
           </div>
         </div>
         <div className="message-list">
