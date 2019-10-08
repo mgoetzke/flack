@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import GreetingContainer from "../greeting/greeting_container";
 class SessionForm extends React.Component {
   constructor(props) {
     super(props);
@@ -51,7 +52,8 @@ class SessionForm extends React.Component {
     const directionSmall = (this.props.formType === "Sign up") ? directionSmallUp : directionSmallIn;
     const passedEmail = (this.props.location.state !== undefined && 'email' in this.props.location.state) ? this.props.location.state.email : "";
     return ( 
-      
+      <>
+      <GreetingContainer />   
       <div className="session-wrapper">
         {this.props.errors.length > 0 &&
           <div className="session-errors">
@@ -83,6 +85,8 @@ class SessionForm extends React.Component {
 
         </div>
       </div>
+
+      </>
     )
   }
 }

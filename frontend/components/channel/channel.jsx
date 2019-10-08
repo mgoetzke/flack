@@ -1,6 +1,7 @@
 import React from "react";
 import MessageFormContainer from "../messageform/messageform_container";
 import MessageContainer from "../message/message_container";
+import { fetchChannel } from "../../util/channel_api_util";
 
 class Channel extends React.Component {
   constructor(props) {
@@ -42,10 +43,33 @@ class Channel extends React.Component {
     );
   }
   componentDidMount() {
-    const { channelId, fetchChannelMessages, fetchMemberships } = this.props;
-    this.configChat();
-    fetchMemberships();
-    fetchChannelMessages(channelId);
+    const { channelId, fetchChannelMessages, fetchMemberships, fetchChannel } = this.props;
+    const { receiveMessage } = this.props;
+    App.cable.subscriptions.create(
+      { channel: "ChatChannel", id: this.props.channelId }, //slip data inside object and include id there history push
+      {
+        received: data => {
+          let incomingMessage = JSON.parse(data.message);
+          switch (data.type) {
+            case "message":
+              receiveMessage(incomingMessage);
+              break;
+            case "edit":
+              receiveMessage(incomingMessage);
+              break;
+          }
+        },
+        speak: function (message) {
+          return this.perform("speak", message);
+        },
+        load: function () {
+          return this.perform("load");
+        }
+      }
+    )
+      fetchMemberships()
+      .then(fetchChannel(channelId))
+      .then(fetchChannelMessages(channelId));
   }
 
   componentDidUpdate(prevProps) {
@@ -56,6 +80,7 @@ class Channel extends React.Component {
       const { channelId, fetchChannelMessages, fetchMemberships } = this.props;
       this.configChat();
       fetchMemberships();
+      fetchChannel(channelId);
       fetchChannelMessages(channelId);
     }
   }
@@ -98,10 +123,17 @@ class Channel extends React.Component {
       : this.createMembership;
     return (
       <div className="channel-container">
-        <button onClick={channelMemberToggleFunction}>
-          {channelMemberToggleText}
-        </button>
-        {this.props.openAddMembership}
+        <div className="channel-header">
+          <div className="channel-header-deets">
+
+          </div>
+          <div className="channel-header-functions">
+            <button onClick={channelMemberToggleFunction}>
+              {channelMemberToggleText}
+            </button>
+            {this.props.openAddMembership}
+          </div>
+        </div>
         <div className="message-list">
           <ul>{formatMessages}</ul>
           {/* <div ref={this.bottom}></div> */}

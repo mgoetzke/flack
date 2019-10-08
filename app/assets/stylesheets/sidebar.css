@@ -1,11 +1,56 @@
 .sidebar {
-  min-width: 220px;
+  max-width: 220px;
   /* ask simcha vh px */
-  height: 100%;
-  border-right: solid 1px red;
-  background-color: purple;
+  height: calc(100vh - 60px);
+  background-color: RGB(63,14,64);
+  overflow-y: hidden;
+  color: RGB(207,195,207);
+  font-family: 'Lato';
+  font-size: 15px;
+
 }
-.membership-items {
-  color: red;
-  overflow-x: hidden;
+.sidebar-channels {
+  margin-top: 25px;
+  margin-bottom: 25px;
+}
+
+.sidebar li {
+  padding-top: 3px;
+  padding-bottom: 3px;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+.sidebar li:hover{
+  background-color: RGB(53, 13, 54);
+}
+
+
+.sidebar-header{
+  display:flex;
+  justify-content: space-between;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+.sidebar-header i{
+  font-size: 10px;
+  color: RGB(148,123,149);
+  border: 2px solid RGB(148,123,149);
+  width: 12px;
+  height: 12px;
+  padding: 1px;
+  border-radius: 50%; 
+  text-align: center;
+}
+
+.sidebar-header h2:hover {
+  color: RGB(255,255,255);
+  transition: color 0.08s linear;
+}
+
+.sidebar-header i:hover{
+  color: RGB(255,255,255);
+  border: 2px solid RGB(255,255,255);
+  transition: color 0.08s linear;
+  transition: border 0.08s linear;
 }

@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import GreetingContainer from "../greeting/greeting_container";
 
 class Splash extends React.Component {
   constructor(props) {
@@ -15,6 +16,8 @@ class Splash extends React.Component {
 
   render(){
     return(
+      <>
+      <GreetingContainer />
       <div className="splash"> 
         <div className="splash-header">
           <h1>Whatever work you do,</h1> 
@@ -57,7 +60,7 @@ class Splash extends React.Component {
         </div>
 
       </div>
-
+          </>
     );
   }
 

@@ -15,12 +15,12 @@ const mapDispatch = dispatch => {
   return {
     openCreateChannel: (
       <button onClick={() => dispatch(openModal("createchannel"))}>
-        Create Channel
+        <i className="fas fa-plus"></i>
       </button>
     ),
     openBrowseChannel: (
       <button onClick={() => dispatch(openModal("browsechannel"))}>
-        Browse Channel
+        Channels
       </button>
     ),
     closeModal: () => dispatch(closeModal()),

@@ -1,15 +1,19 @@
+
 .channel-container {
   display: flex;
   flex-direction: column;
   align-items: center;
   width: 100%;
-  /* CHECK WITH CSS SIMCHA */
   height: 100%;
   box-sizing: border-box;
   font-family: "Lato";
   color: RGB(29, 29, 29);
 }
-
+.channel-header {
+  height: 60px;
+  width: 100%;
+  border: 1px solid RGB(225, 225, 225);
+}
 .load-button {
   position: absolute;
   top: 5px;

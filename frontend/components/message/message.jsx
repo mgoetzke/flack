@@ -85,7 +85,7 @@ class Message extends React.Component {
             {editButtonText}
           </button>
           <button className="message-edit-save" onClick={this.saveEdit}>
-            <i class="fas fa-level-down-alt fa-rotate-90 fa-fw"></i> Save Changes
+            <i className="fas fa-level-down-alt fa-rotate-90 fa-fw"></i> Save Changes
           </button>
         </div>
       </div>

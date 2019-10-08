@@ -15,27 +15,35 @@ class Sidebar extends React.Component {
     this.props.fetchAllMemberships;
   }
   render() {
+    //HARD CODED THE ICONS
     let membershipItems = this.props.memberships.map(membership => {
+    let privacyIcon = membership.memberable_type === "Channel" ? "# " : <i className="fas fa-lock"></i>;
       return (
-        <Link
-          key={membership.id}
-          to={`/workspace/channels/${membership.memberable_id}`}
-        >
-          {membership.name}
-        </Link>
+        <li key={membership.id}>
+          {privacyIcon}
+          <Link to={`/workspace/channels/${membership.memberable_id}`}>
+            {membership.name}
+          </Link>
+        </li>
       );
     });
     return (
       <div className="sidebar">
-        HAI IM THE SIDEBAR
-        <br />
-        Channels Create {this.props.openCreateChannel}
-        <br />
-        <br />
-        Channels Browse {this.props.openBrowseChannel}
-        <br />
-        <Link to="/workspace/channels/1">Click for test channel</Link>
-        <ul className="membership-items">{membershipItems}</ul>
+        <div className="sidebar-channels">
+          <div className="sidebar-header">
+            <h2>{this.props.openBrowseChannel}</h2>
+            {this.props.openCreateChannel}
+          </div>
+            <ul className="membership-items">{membershipItems}</ul>
+        </div>
+        <div className="sidebar-directs"> 
+          <div className="sidebar-header">
+            <h2>Direct Messages</h2>
+            {this.props.openCreateChannel}
+          </div>
+
+        </div>
+
       </div>
     );
   }

@@ -2,6 +2,7 @@ import React from "react";
 import SidebarContainer from "../sidebar/sidebar_container";
 import ChannelContainer from "../channel/channel_container";
 import { Route, Switch } from "react-router-dom";
+import GreetingContainer from "../greeting/greeting_container";
 
 class Main extends React.Component {
   constructor(props) {
@@ -13,7 +14,10 @@ class Main extends React.Component {
   render() {
     return (
       <div className="main-container">
-        <SidebarContainer />
+        <div>
+          <GreetingContainer/>
+          <SidebarContainer />
+        </div>
         <Switch>
           <Route
             path="/workspace/channels/:channelId"
