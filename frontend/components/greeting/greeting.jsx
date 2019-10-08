@@ -29,6 +29,7 @@ class Greeting extends React.Component {
       this.setState({ popUpVisibility: "menu-hide" });
     } else if (e.relatedTarget.className === "log-out-button") {
       this.handleLogout();
+    } else {
     }
   }
 
@@ -56,7 +57,6 @@ class Greeting extends React.Component {
             tabIndex="0"
             onClick={this.showMenu}
             onBlur={this.hideMenu}
-            // onClick={this.handleMenu}
           >
             <h2>
               Flack

@@ -24,23 +24,38 @@ class ChannelBrowse extends React.Component {
   render() {
     let allChannels = this.props.channels;
     let channels = allChannels.map(channel => {
+      debugger;
       return (
-        <Link
-          onClick={this.props.closeModal}
-          to={`/workspace/channels/${channel.id}`}
-        >
-          {channel.name}
-        </Link>
+        <li className="modal-search-result" key={channel.id}>
+          <Link
+            onClick={this.props.closeModal}
+            to={`/workspace/channels/${channel.id}`}
+          >
+            {channel.name}
+          </Link>
+        </li>
       );
     });
     return (
-      <div>
-        <button onClick={this.props.closeModal} className="channel-create-esc">
-          esc
-        </button>
-        <h1>Browse Channels</h1>
-        <ul>{channels}</ul>
-      </div>
+      <>
+        <div className="modal-header">
+          <button onClick={this.props.closeModal} className="modal-esc">
+            <i class="fas fa-times"></i>
+            <span>esc</span>
+          </button>
+        </div>
+        <div className="modal-body">
+          <h1>Browse Channels</h1>
+          <span className="modal-search">
+            <img src={window.searchIcon} />
+            <input type="text" placeholder="Search channels" />
+          </span>
+          <span className="modal-search-list">
+            <p>Channels you can join</p>
+            <ul>{channels}</ul>
+          </span>
+        </div>
+      </>
     );
   }
 }

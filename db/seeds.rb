@@ -6,13 +6,12 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-demoUser = User.create(email: "demo-user@demo.com", 
+demoUser = User.create!(email: "demo-user@demo.com", 
 password: "password",
 display_name:"Demo User");
+testChannel = Channel.create(name: "general", topic: "testing", private: false, admin_id: 1);
+testChannel2 = Channel.create(name: "random", topic: "Second testing", private: false, admin_id: 1);
 demoFriend = User.create(email: "demo-friend@demo.com", password: "password", display_name:"Friend of Demo");
-testChannel = Channel.create(name: "Test channel", topic: "testing", private: false, admin_id: 1);
-testChannel2 = Channel.create(name: "Second channel", topic: "Second testing", private: false, admin_id: 1);
-membership = Membership.create(user_id: demoUser.id, memberable_id: testChannel.id, memberable_type: Channel)
 message1 = Message.create!(body: "pepitas are nothing special",
     user_id: 1,
     messageable_id: testChannel.id,

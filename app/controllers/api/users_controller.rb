@@ -2,6 +2,8 @@ class Api::UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
+      Membership.create(user_id: @user.id, memberable_id: Channel.first, memberable_type: Channel)
+      Membership.create(user_id: @user.id, memberable_id: Channel.second, memberable_type: Channel)
       login(@user)
       render :show
     else

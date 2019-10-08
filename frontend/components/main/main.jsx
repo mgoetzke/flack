@@ -10,12 +10,14 @@ class Main extends React.Component {
   }
   componentDidMount() {
     this.props.fetchAllUsers();
+    this.props.fetchAllChannels();
+    this.props.fetchMemberships();
   }
   render() {
     return (
       <div className="main-container">
         <div>
-          <GreetingContainer/>
+          <GreetingContainer />
           <SidebarContainer />
         </div>
         <Switch>

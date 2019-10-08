@@ -42,7 +42,7 @@ const mapDispatch = dispatch => {
       dispatch(destroyMembership(membershipId)),
     openAddMembership: (
       <button onClick={() => dispatch(openModal("addmembership"))}>
-        Add Member
+        Add people to channel
       </button>
     )
   };

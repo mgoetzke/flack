@@ -29,6 +29,7 @@ class MemberAdd extends React.Component {
     let userItems = allUsers.map(user => {
       return <li key={user.id}>{user.display_name}</li>;
     });
+
     return (
       <div>
         <button onClick={this.props.closeModal} className="channel-create-esc">

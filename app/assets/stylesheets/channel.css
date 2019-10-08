@@ -1,4 +1,3 @@
-
 .channel-container {
   display: flex;
   flex-direction: column;
@@ -16,7 +15,7 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  padding: 15px 20px 10px 20px;
+  padding: 0 20px 0 20px;
   align-items: center;
 }
 .load-button {
@@ -26,8 +25,10 @@
 }
 
 .channel-header-deets {
+  height: 100%;
   display: flex;
   flex-direction: column;
+  justify-content: center;
 }
 
 .channel-header-name {
@@ -35,14 +36,69 @@
   flex-direction: row;
 }
 
-.channel-header-deets h3{
-  margin-top:0;
-  margin-bottom:0;
-
+.channel-header-deets h3 {
+  margin-top: 0;
+  margin-bottom: 0;
 }
 
 .channel-header-icons {
   display: flex;
   flex-direction: row;
-  font-size: 13px;
+  font-size: 12px;
+  justify-content: space-between;
+  align-items: center;
+  color: RGB(143, 143, 143);
+}
+.channel-header-name {
+  margin-bottom: 5px;
+}
+.channel-header-icons i {
+  padding-right: 5px;
+}
+
+.channel-header-icons > i {
+  padding-right: 10px;
+}
+
+.channel-header-icons span {
+  padding-left: 5px;
+  display: flex;
+  /* border-left: 1px solid RGB(143, 143, 143); */
+  padding-right: 8px;
+  align-items: center;
+}
+
+.channel-header-icons .fa-star:hover {
+  color: RGB(241, 203, 89);
+}
+
+.channel-header-user:hover {
+  color: RGB(35, 105, 167);
+}
+
+.fa-cog:hover {
+  color: RGB(35, 105, 167);
+}
+
+.channel-header-functions {
+  align-content: center;
+  display: block;
+}
+
+.channel-header-functions > i {
+  font-size: 20px;
+}
+
+.channel-header-popup {
+  background-color: RGB(248, 248, 248);
+  position: relative;
+  padding: 20px;
+  z-index: 1;
+  right: 5px;
+  top: 50px;
+  display: flex;
+  flex-direction: column;
+  width: 220px;
+  border-radius: 5px;
+  border: 1px solid RGB(212, 212, 212);
 }

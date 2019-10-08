@@ -10,11 +10,33 @@ class Channel extends React.Component {
       messages: [props.messages],
       currentUser: props.currentUser,
       channel: props.channel,
-      memberships: props.memberships
+      memberships: props.memberships,
+      cogPopUpVisibility: "menu-hide"
     };
     this.bottom = React.createRef();
     this.createMembership = this.createMembership.bind(this);
     this.destroyMembership = this.destroyMembership.bind(this);
+    this.showMenu = this.showMenu.bind(this);
+    this.hideMenu = this.hideMenu.bind(this);
+    this.hideMenu2 = this.hideMenu2.bind(this);
+  }
+  showMenu(e) {
+    debugger;
+    if (this.state) {
+      this.setState({ cogPopUpVisibility: "" });
+    }
+  }
+  hideMenu(e) {
+    if (!e.relatedTarget) {
+      this.setState({ cogPopUpVisibility: "menu-hide" });
+    } else {
+      debugger;
+    }
+  }
+
+  hideMenu2() {
+    debugger;
+    this.setState({ cogPopUpVisibility: "menu-hide" });
   }
 
   configChat() {
@@ -43,7 +65,12 @@ class Channel extends React.Component {
     );
   }
   componentDidMount() {
-    const { channelId, fetchChannelMessages, fetchMemberships, fetchChannel } = this.props;
+    const {
+      channelId,
+      fetchChannelMessages,
+      fetchMemberships,
+      fetchChannel
+    } = this.props;
     const { receiveMessage } = this.props;
     App.cable.subscriptions.create(
       { channel: "ChatChannel", id: this.props.channelId }, //slip data inside object and include id there history push
@@ -59,15 +86,15 @@ class Channel extends React.Component {
               break;
           }
         },
-        speak: function (message) {
+        speak: function(message) {
           return this.perform("speak", message);
         },
-        load: function () {
+        load: function() {
           return this.perform("load");
         }
       }
-    )
-      fetchMemberships()
+    );
+    fetchMemberships()
       .then(fetchChannel(channelId))
       .then(fetchChannelMessages(channelId));
   }
@@ -79,9 +106,9 @@ class Channel extends React.Component {
     if (this.props.location !== prevProps.location) {
       const { channelId, fetchChannelMessages, fetchMemberships } = this.props;
       this.configChat();
-      fetchMemberships();
-      fetchChannel(channelId);
-      fetchChannelMessages(channelId);
+      fetchMemberships()
+        .then(fetchChannel(channelId))
+        .then(fetchChannelMessages(channelId));
     }
   }
 
@@ -89,11 +116,13 @@ class Channel extends React.Component {
     let user_id = this.props.currentUser.id;
     let memberable_id = parseInt(this.props.channelId);
     let memberable_type = "Channel";
+    this.setState({ cogPopUpVisibility: "menu-hide" });
     this.props.createMembership({ memberable_id, user_id, memberable_type });
   }
 
   destroyMembership() {
     // TO DO JANK EDIT
+    this.setState({ cogPopUpVisibility: "menu-hide" });
     let id = this.props.memberships.filter(
       membership => membership.user_id === this.state.currentUser.id
     )[0].id;
@@ -115,13 +144,15 @@ class Channel extends React.Component {
       memberships.filter(
         membership => membership.user_id === this.state.currentUser.id
       ).length > 0;
-    let channelMemberToggleText = memberStatus
-      ? "Leave channel"
-      : "Join channel";
+    let memberCount = memberships.length;
     let channelMemberToggleFunction = memberStatus
       ? this.destroyMembership
       : this.createMembership;
-    let privacyIcon = channel.private === false ? "# " : <i className="fas fa-lock"></i>;
+    let privacyIcon =
+      channel.private === false ? "#" : <i className="fas fa-lock"></i>;
+    let channelMemberToggleText = memberStatus
+      ? `Leave ${privacyIcon}${channel.name}`
+      : `Join ${privacyIcon}${channel.name}`;
 
     return (
       <div className="channel-container">
@@ -131,19 +162,37 @@ class Channel extends React.Component {
               {privacyIcon} <h3>{channel.name}</h3>
             </div>
             <div className="channel-header-icons">
-              <i class="far fa-user"></i> #|
-              <i class="far fa-edit"></i> 
-              {channel.topic}
-
+              <i className="far fa-star star-icon"></i>|
+              <span className="channel-header-user">
+                <i className="far fa-user"></i>
+                {memberCount}
+              </span>
+              |
+              <span>
+                <i class="far fa-edit"></i>
+                {channel.topic}
+              </span>
             </div>
           </div>
           <div className="channel-header-functions">
-            <i class="fas fa-cog"></i>
-            <div>
-              <button onClick={channelMemberToggleFunction}>
+            <i
+              className="fas fa-cog"
+              tabIndex="0"
+              onFocus={this.showMenu}
+              onBlur={this.hideMenu}
+            ></i>
+            <div
+              className={`channel-header-popup ${this.state.cogPopUpVisibility}`}
+            >
+              <button
+                onClick={channelMemberToggleFunction}
+                className="channelMemberToggleFunction"
+              >
                 {channelMemberToggleText}
               </button>
-              {this.props.openAddMembership}
+              <div className="testt4" onClick={this.hideMenu2}>
+                {this.props.openAddMembership}
+              </div>
             </div>
           </div>
         </div>

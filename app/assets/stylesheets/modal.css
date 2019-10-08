@@ -5,16 +5,90 @@
   right: 0;
   left: 0;
   background: rgba(0, 0, 255, 0.3);
-  z-index: 10;
+  font-family: "Lato";
 }
 
 .modal-child {
-  background: rgba(187, 247, 22, 0.3);
+  background: rgba(255, 255, 255);
+  font-family: "Lato";
   position: absolute;
   height: 100vh;
   width: 100vw;
+  justify-content: center;
   display: flex;
-  align-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+
+.modal-body {
+  padding: 0 32px 32px 32px;
+}
+.modal-body > h1 {
+  font-size: 25px;
+  align-self: flex-start;
+  padding-bottom: 20px;
+  font-weight: bold;
+}
+.modal-header {
+  padding-top: 60px;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  width: 100%;
+  padding-right: 60px;
+}
+.modal-esc {
+  font-size: 40px;
+  display: flex;
+  flex-direction: column;
+  color: RGB(97, 97, 97);
   align-items: center;
   justify-content: center;
+  width: 66px;
+  height: 66px;
+  border-radius: 50%;
+  align-self: flex-end;
+}
+.modal-esc > span {
+  font-family: "Lato";
+  font-size: 14px;
+}
+
+.modal-esc:hover {
+  color: RGB(29, 29, 29);
+  background-color: RGB(97, 97, 97);
+}
+.modal-search {
+  display: flex;
+  align-items: center;
+}
+.modal-search input[type="text"] {
+  width: 640px;
+  height: 40px;
+  border: 1px solid RGB(134, 134, 134);
+  border-radius: 4px;
+  padding-left: 50px;
+  font-size: 15px;
+}
+.modal-search input[type="text"]:focus {
+  box-shadow: 0 0 0 4px RGB(190, 225, 241);
+  border: 1px solid RGB(24, 98, 163);
+}
+
+.modal-search > img {
+  width: 15px;
+  height: 15px;
+  color: RGB(134, 134, 134);
+  position: relative;
+  left: 35px;
+}
+.modal-body p {
+  font-size: 12px;
+  padding-top: 25px;
+  color: RGB(104, 104, 104);
+  border-bottom: 1px solid RGB(221, 221, 221);
+}
+
+.modal-search-result {
+  border-bottom: 1px solid RGB(221, 221, 221);
 }

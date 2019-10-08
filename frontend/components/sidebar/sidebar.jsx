@@ -9,15 +9,24 @@ class Sidebar extends React.Component {
   }
 
   componentDidMount() {
-    this.props.fetchAllMemberships;
+    this.props.fetchAllMemberships,
+      this.props.fetchAllUsers,
+      this.props.fetchAllChannels;
   }
   componentDidUpdate(prevProps) {
-    this.props.fetchAllMemberships;
+    this.props.fetchAllMemberships,
+      this.props.fetchAllUsers,
+      this.props.fetchAllChannels;
   }
   render() {
     //HARD CODED THE ICONS
     let membershipItems = this.props.memberships.map(membership => {
-    let privacyIcon = membership.memberable_type === "Channel" ? "# " : <i className="fas fa-lock"></i>;
+      let privacyIcon =
+        membership.memberable_type === "Channel" ? (
+          "# "
+        ) : (
+          <i className="fas fa-lock"></i>
+        );
       return (
         <li key={membership.id}>
           {privacyIcon}
@@ -34,16 +43,14 @@ class Sidebar extends React.Component {
             <h2>{this.props.openBrowseChannel}</h2>
             {this.props.openCreateChannel}
           </div>
-            <ul className="membership-items">{membershipItems}</ul>
+          <ul className="membership-items">{membershipItems}</ul>
         </div>
-        <div className="sidebar-directs"> 
+        <div className="sidebar-directs">
           <div className="sidebar-header">
             <h2>Direct Messages</h2>
             {this.props.openCreateChannel}
           </div>
-
         </div>
-
       </div>
     );
   }
