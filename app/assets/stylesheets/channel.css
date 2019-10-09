@@ -83,7 +83,7 @@
 .channel-header-functions {
   align-content: center;
   display: block;
-  position: relative;
+  /* position: relative; */
 }
 
 .channel-header-functions > i {
@@ -94,8 +94,8 @@
   background-color: RGB(248, 248, 248);
   position: absolute;
   z-index: 1;
-  left: -192px;
-  top: 24px;
+  right: 15px;
+  top: 38px;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
