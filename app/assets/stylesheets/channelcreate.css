@@ -6,51 +6,59 @@
 .channel-create-contents {
   padding: 50px;
 }
-.switch {
-  display: inline-block;
-  height: 34px;
+
+.privacyCheckbox input[type="checkbox"] {
+  visibility: hidden;
+}
+
+.privacyCheckbox {
+  width: 55px;
+  height: 31px;
+  border: 1px solid RGB(165, 165, 165);
+  margin: 20px 60px;
+  box-sizing: border-box;
+  border-radius: 50px;
   position: relative;
-  width: 60px;
 }
 
-.switch input {
-  /* display: none; */
-}
-
-.slider {
-  background-color: red;
-  bottom: 0;
-  cursor: pointer;
-  left: 0;
-  position: absolute;
-  right: 0;
-  top: 0;
-  transition: 0.4s;
-}
-
-.slider:before {
-  background-color: blue;
-  bottom: 4px;
-  content: "";
-  height: 26px;
-  left: 4px;
-  position: absolute;
-  transition: 0.4s;
-  width: 26px;
-}
-
-input:checked + .slider {
-  background-color: #66bb6a;
-}
-
-input:checked + .slider:before {
-  transform: translateX(26px);
-}
-
-.slider.round {
-  border-radius: 34px;
-}
-
-.slider.round:before {
+.privacyCheckbox label {
+  display: block;
+  width: 20px;
+  height: 20px;
   border-radius: 50%;
+  transition: all 0.5s ease;
+  cursor: pointer;
+  position: absolute;
+  top: 5px;
+  z-index: 1;
+  left: 7px;
+  background-color: rgb(95, 95, 95);
+}
+
+.privacyCheckbox input[type="checkbox"]:checked + label {
+  left: 28px;
+  background-color: RGB(255, 255, 255);
+}
+
+.privateOn {
+  background-color: rgb(18, 124, 90);
+  border: none;
+}
+.channel-create-name-input {
+  position: relative;
+}
+
+#channel-create-name-input-text {
+  padding-left: 30px !important;
+}
+
+.channel-create-name-input .channel-create-privacy-icon {
+  font-size: 15px;
+  color: RGB(97, 97, 97);
+  left: 12px;
+}
+
+.modal-search-box input[type="text"]:focus {
+  box-shadow: none !important;
+  border: none !important;
 }

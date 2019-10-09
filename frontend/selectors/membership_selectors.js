@@ -10,6 +10,10 @@ export const getChannelMemberships = (state, channelId) => {
   return memberships.filter(membership => membership.memberable_id === channel);
 };
 
-export const getAllUsers = (state) => (
-  Object.values(state.entities.users)
-);
+export const getChannelMemberIds = (state, channelId) => {
+  return getChannelMemberships(state, channelId).map(membership => {
+    return membership.user_id;
+  });
+};
+
+export const getAllUsers = state => Object.values(state.entities.users);

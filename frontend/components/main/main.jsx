@@ -9,6 +9,7 @@ class Main extends React.Component {
     super(props);
   }
   componentDidMount() {
+    debugger;
     this.props.fetchAllUsers();
     this.props.fetchAllChannels();
     this.props.fetchMemberships();

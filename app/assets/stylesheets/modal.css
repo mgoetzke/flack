@@ -189,7 +189,6 @@
   flex-direction: row;
   font-size: 15px;
   text-align: center;
-  margin-top: 50px;
 }
 
 .modal-channel-create {
@@ -316,22 +315,61 @@ ul.search-invited {
   display: flex;
   flex-wrap: wrap;
 }
-
-.modal-member .modal-search-box {
+.modal-search {
   width: 640px;
+}
+.modal-search-box {
+  width: 540px;
   min-height: 40px;
   border: 1px solid RGB(134, 134, 134);
   border-radius: 4px;
   padding-left: 15px;
+  padding-top: 5px;
   font-size: 17px;
+  margin-right: 10px;
 }
 
-.modal-member input[type="text"] {
+.modal-search-box input[type="text"] {
   border: none;
-  padding: 0 0 0 0;
 }
 
-.modal-member input[type="text"]:focus {
+.modal-search-box input[type="text"]:focus {
+  box-shadow: none;
+  border: none;
+}
+.modal-channel-create .modal-search-box {
+  width: 660px;
+}
+.modal-channel-create .modal-search-box input[type="text"] {
+  padding: 0px;
+}
+
+.modal-channel-create .modal-search-box {
+  width: 660px;
+}
+.modal-search-box input:focus {
+  box-shadow: 0 0 0 4px RGB(190, 225, 241);
+  border: 1px solid RGB(24, 98, 163);
+}
+.modal-button-invalid p {
+  margin: 0 0 0 0;
+}
+
+.channel-create-name-input span {
+  position: absolute;
+  top: 11px;
+  right: 14px;
+  color: RGB(117, 117, 117);
+  font-size: 18px;
+}
+
+.channel-create-name-input {
+  display: flex;
+  position: relative;
+  width: 660px;
+}
+
+.modal-child input[type="text"]:focus {
   box-shadow: 0 0 0 4px RGB(190, 225, 241);
   border: 1px solid RGB(24, 98, 163);
 }

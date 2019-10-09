@@ -102,13 +102,16 @@
   width: 220px;
   border-radius: 5px;
   border: 1px solid RGB(212, 212, 212);
+  padding-top: 13px;
+  padding-bottom: 13px;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.08);
 }
 
 .channel-header-popup li {
   list-style: none;
   padding-left: 20px;
   padding-right: 20px;
-  padding-top: 10px;
+  padding-top: 5px;
   padding-bottom: 5px;
 }
 

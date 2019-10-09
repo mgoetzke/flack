@@ -14,6 +14,7 @@ class MemberAdd extends React.Component {
     this.handleInvites = this.handleInvites.bind(this);
     this.addUser = this.addUser.bind(this);
     this.removeUser = this.removeUser.bind(this);
+    this.handleMemberships = this.handleMemberships.bind(this);
   }
   componentDidMount() {
     this.nameInput.focus();
@@ -22,19 +23,21 @@ class MemberAdd extends React.Component {
   componentDidUpdate() {}
 
   handleMemberships() {
-    let memberable_id = channel.id;
+    let memberable_id = this.props.memberable_id;
     let memberable_type = "Channel";
     this.handleInvites(
       this.state.invitedUsersIds,
       memberable_type,
       memberable_id
     );
+    this.props.closeModal();
   }
   handleInvites(userIds, memberable_type, memberable_id) {
     userIds.forEach(user_id => {
       let newMembership = { memberable_id, user_id, memberable_type };
       this.props.createMembership(newMembership);
     });
+    return 4;
   }
   addUser(user) {
     this.setState({ invitedUsers: this.state.invitedUsers.concat(user) });
@@ -71,8 +74,12 @@ class MemberAdd extends React.Component {
     });
     let notInvitedUsers = this.state.users.map(user => {
       let image_location = user.image_url.split(".")[0];
-      if (this.state.invitedUsersIds.includes(user.id)) {
-        return "";
+      if (
+        this.state.invitedUsersIds.includes(user.id) ||
+        this.props.currentUserId === user.id ||
+        this.props.memberableUsers.includes(user.id)
+      ) {
+        return null;
       } else if (
         user.display_name
           .toLowerCase()
@@ -95,6 +102,9 @@ class MemberAdd extends React.Component {
     let channelName = this.props.channels.filter(
       channel => channel.id === parseInt(this.props.memberable_id)
     )[0].name;
+    let remainingInvites = notInvitedUsers.filter(user => {
+      return user !== null;
+    });
     return (
       <>
         <div className="modal-header">
@@ -129,7 +139,10 @@ class MemberAdd extends React.Component {
                 Add
               </button>
             </span>
-            <ul className="search-uninvited">{notInvitedUsers}</ul>
+            {remainingInvites.length > 0 &&
+              this.state.searchInput.length > 0 && (
+                <ul className="search-uninvited">{notInvitedUsers}</ul>
+              )}
           </div>
         </div>
       </>

@@ -14,8 +14,8 @@ class ChannelBrowse extends React.Component {
     this.props.fetchAllChannels();
     this.nameInput.focus();
   }
-  updateField(field){
-    return e => this.setState({[field]: e.target.value});
+  updateField(field) {
+    return e => this.setState({ [field]: e.target.value });
   }
 
   componentDidUpdate() {}
@@ -31,38 +31,43 @@ class ChannelBrowse extends React.Component {
       let channelCreation = new Date(channel.created_at);
       var options = { year: "numeric", month: "long", day: "numeric" };
       let formatCreation = channelCreation.toLocaleDateString([], options);
-      if (channelName.toLowerCase().includes(this.state.searchInput) && channel.private === false){
-      return (
-        <li key={channel.id}>
-          <Link
-            onClick={this.props.closeModal}
-            to={`/workspace/channels/${channel.id}`}
-            className="modal-search-result"
-          >
-            <div className="modal-search-result-body">
-              <span className="modal-search-result-title">
-                {privacyIcon}
-                {channelName}
-              </span>
-              <span className="modal-search-result-topic">{channelTopic}</span>
-              <span className="modal-search-result-creation">
-                Created by {channelCreator} on {formatCreation}
-              </span>
-            </div>
-            <div className="modal-search-result-preview">
-              <i className="fas fa-level-down-alt fa-rotate-90 fa-fw"></i>
-              <span>preview</span>
-            </div>
-          </Link>
-        </li>
-      );
+      if (
+        channelName.toLowerCase().includes(this.state.searchInput) &&
+        channel.private === false
+      ) {
+        return (
+          <li key={channel.id}>
+            <Link
+              onClick={this.props.closeModal}
+              to={`/workspace/channels/${channel.id}`}
+              className="modal-search-result"
+            >
+              <div className="modal-search-result-body">
+                <span className="modal-search-result-title">
+                  {privacyIcon}
+                  {channelName}
+                </span>
+                <span className="modal-search-result-topic">
+                  {channelTopic}
+                </span>
+                <span className="modal-search-result-creation">
+                  Created by {channelCreator} on {formatCreation}
+                </span>
+              </div>
+              <div className="modal-search-result-preview">
+                <i className="fas fa-level-down-alt fa-rotate-90 fa-fw"></i>
+                <span>preview</span>
+              </div>
+            </Link>
+          </li>
+        );
       }
     });
     return (
       <>
         <div className="modal-header">
           <button onClick={this.props.closeModal} className="modal-esc">
-            <i class="fas fa-times"></i>
+            <i className="fas fa-times"></i>
             <span>esc</span>
           </button>
         </div>
@@ -81,7 +86,7 @@ class ChannelBrowse extends React.Component {
           </span>
           <span className="modal-search-list">
             <p>Channels you can join</p>
-            <ul>{channels}</ul>
+            <ul className="modal-search-channels">{channels}</ul>
           </span>
         </div>
       </>

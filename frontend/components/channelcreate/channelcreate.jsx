@@ -5,7 +5,6 @@ class ChannelCreate extends React.Component {
     super(props);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.update = this.update.bind(this);
-    this.togglePrivate = this.togglePrivate.bind(this);
     this.state = {
       name: "",
       topic: "",
@@ -13,10 +12,12 @@ class ChannelCreate extends React.Component {
       invitedUsers: [],
       invitedUsersIds: [],
       private: false,
-      users: props.users
+      users: props.users,
+      privacyButton: ""
     };
     this.addUser = this.addUser.bind(this);
     this.removeUser = this.removeUser.bind(this);
+    this.handleChecked = this.handleChecked.bind(this);
   }
   handleSubmit(e) {
     e.preventDefault();
@@ -29,7 +30,11 @@ class ChannelCreate extends React.Component {
         let memberable_type = "Channel";
         let newMembership = { memberable_id, user_id, memberable_type };
         this.props.createMembership(newMembership);
-        this.handleInvites(this.state.invitedUsersIds, memberable_type, memberable_id);
+        this.handleInvites(
+          this.state.invitedUsersIds,
+          memberable_type,
+          memberable_id
+        );
         return memberable_id;
       })
       .then(memberable_id => {
@@ -40,31 +45,34 @@ class ChannelCreate extends React.Component {
     this.setState({ name: "", topic: "", invites: [], private: false });
   }
 
-  handleInvites(userIds, memberable_type, memberable_id){
-    userIds.forEach((user_id) => {
+  handleInvites(userIds, memberable_type, memberable_id) {
+    userIds.forEach(user_id => {
       let newMembership = { memberable_id, user_id, memberable_type };
       this.props.createMembership(newMembership);
-
     });
   }
 
-  addUser(user){
-    this.setState({invitedUsers: this.state.invitedUsers.concat(user) });
-    this.setState({ invitedUsersIds: this.state.invitedUsersIds.concat(user.id) });
-  };
-  removeUser(user){
+  addUser(user) {
+    this.setState({ invitedUsers: this.state.invitedUsers.concat(user) });
+    this.setState({
+      invitedUsersIds: this.state.invitedUsersIds.concat(user.id)
+    });
+  }
+  removeUser(user) {
     let userIndex = this.state.invitedUsers.indexOf(user);
-    this.state.invitedUsers.splice(userIndex, 1)
-    this.state.invitedUsersIds.splice(userIndex, 1)
+    this.state.invitedUsers.splice(userIndex, 1);
+    this.state.invitedUsersIds.splice(userIndex, 1);
     this.setState({ invitedUsers: this.state.invitedUsers });
     this.setState({ invitedUsersIds: this.state.invitedUsersIds });
-  };
+  }
   update(field) {
     return e => this.setState({ [field]: e.currentTarget.value });
   }
 
-  togglePrivate() {
-    return () => this.setState({ private: this.state.private === false });
+  handleChecked() {
+    let oppState = this.state.privacyButton === "" ? "privateOn" : "";
+    this.setState({ private: !this.state.private });
+    this.setState({ privacyButton: oppState });
   }
 
   renderErrors() {
@@ -86,25 +94,49 @@ class ChannelCreate extends React.Component {
     let privateText = privateStatus
       ? "When a channel is set to private, it can only be viewed or joined by invitation."
       : "This can't be undone. A private channel cannot be made public later on.";
-    let invitedUsers = this.state.invitedUsers.map((user)=> {
+    let invitedUsers = this.state.invitedUsers.map(user => {
       let image_location = user.image_url.split(".")[0];
-      return (<li onClick={() => this.removeUser(user)} key={user.id}>
-        <img className="message-avatar" src={window[image_location]} />
-        {user.display_name}
-      </li>);
-    });
-    let notInvitedUsers = this.state.users.map((user) => {
-      let image_location = user.image_url.split(".")[0];
-      if (this.state.invitedUsersIds.includes(user.id)){
-        return "";
-      } 
-      else if (user.display_name.toLowerCase().includes(this.state.searchInput.toLowerCase())){
-      return (<li onClick={() => this.addUser(user)} key={user.id}>
-        <img className="message-avatar" src={window[image_location]} />
-        {user.display_name}
-      </li>)};
-    });
       return (
+        <li
+          className="invited-user-item"
+          onClick={() => this.removeUser(user)}
+          key={user.id}
+        >
+          <img className="message-avatar" src={window[image_location]} />
+          {user.display_name}
+        </li>
+      );
+    });
+    let notInvitedUsers = this.state.users.map(user => {
+      let image_location = user.image_url.split(".")[0];
+      if (
+        this.state.invitedUsersIds.includes(user.id) ||
+        this.props.currentUserId === user.id
+      ) {
+        return null;
+      } else if (
+        user.display_name
+          .toLowerCase()
+          .includes(this.state.searchInput.toLowerCase())
+      ) {
+        return (
+          <li
+            className="uninvited-user-item"
+            onClick={() => this.addUser(user)}
+            key={user.id}
+          >
+            <img className="message-avatar" src={window[image_location]} />
+            {user.display_name}
+          </li>
+        );
+      }
+    });
+    let remainingInvites = notInvitedUsers.filter(user => {
+      return user !== null;
+    });
+    let privacyIcon =
+      this.state.private === false ? "#" : <i className="fas fa-lock"></i>;
+    return (
       <>
         <div className="modal-header">
           <button onClick={this.props.closeModal} className="modal-esc">
@@ -129,13 +161,19 @@ class ChannelCreate extends React.Component {
                     <ul>{this.renderErrors()}</ul>
                   </div>
                 )}
-                <input
-                  onChange={this.update("name")}
-                  type="text"
-                  placeholder="e.g. flackingoff"
-                  pattern="[a-zA-Z0-9-!@#$%^*_|]{1,80}"
-                />
-                <p>{80 - this.state.name.length}</p>
+                <div className="channel-create-name-input">
+                  <span className="channel-create-privacy-icon">
+                    {privacyIcon}
+                  </span>
+                  <input
+                    id="channel-create-name-input-text"
+                    onChange={this.update("name")}
+                    type="text"
+                    placeholder="e.g. flackingoff"
+                    pattern="[a-zA-Z0-9-!@#$%^*_|]{1,80}"
+                  />
+                  <span>{80 - this.state.name.length}</span>
+                </div>
               </div>
               <div className="modal-input-block">
                 <div className="modal-label-title">
@@ -148,14 +186,23 @@ class ChannelCreate extends React.Component {
                 <div className="modal-label-title">
                   <h3>Send invites to </h3> <span> (optional)</span>
                 </div>
-                <ul>
-                  {invitedUsers}
-                </ul>
-                <input onChange={this.update("searchInput")}type="text" placeholder="Search by name" />
-                <p>Select up to 1000 people to add to this channel.</p>
-                <ul>
-                  {notInvitedUsers}
-                </ul>
+                <span className="modal-search">
+                  <div className="modal-search-box">
+                    <ul className="search-invited">{invitedUsers}</ul>
+                    <input
+                      ref={input => {
+                        this.nameInput = input;
+                      }}
+                      type="text"
+                      placeholder="Search by name"
+                      onChange={this.update("searchInput")}
+                    />
+                  </div>
+                </span>
+                {remainingInvites.length > 0 &&
+                  this.state.searchInput.length > 0 && (
+                    <ul className="search-uninvited">{notInvitedUsers}</ul>
+                  )}
               </div>
               <div className="modal-input-private">
                 <div className="modal-input-block private-text">
@@ -163,16 +210,16 @@ class ChannelCreate extends React.Component {
                     <h3>Make private</h3>
                   </div>
                   <p>{privateText}</p>
-                </div>
-                <div className="container">
-                  <label className="switch" htmlFor="checkbox">
+                  <div
+                    className={`privacyCheckbox ${this.state.privacyButton}`}
+                  >
                     <input
-                      onClick={this.togglePrivate}
                       type="checkbox"
-                      id="checkbox"
+                      id="privacyCheckboxInput"
+                      onChange={this.handleChecked}
                     />
-                    <div className="sliderRound"></div>
-                  </label>
+                    <label htmlFor="privacyCheckboxInput"></label>
+                  </div>
                 </div>
               </div>
               <div className="modal-create-buttons">
