@@ -1,11 +1,12 @@
 import { connect } from "react-redux";
 import MemberAdd from "./memberadd";
 import { closeModal } from "../../actions/modal_actions";
-import { fetchAllUsers } from "../../actions/channel_actions";
 import { createMembership } from "../../actions/membership_actions";
+import { getAllUsers } from "../../selectors/membership_selectors";
+
 const mapState = (state, ownProps) => {
   return {
-    users: Object.values(state.entities.users),
+    users: getAllUsers(state),
     channels: Object.values(state.entities.channels)
   };
 };

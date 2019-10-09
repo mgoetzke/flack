@@ -9,22 +9,27 @@
 demoUser = User.create!(email: "demo-user@demo.com", 
 password: "password",
 display_name:"Demo User");
-testChannel = Channel.create(name: "general", topic: "testing", private: false, admin_id: 1);
-testChannel2 = Channel.create(name: "random", topic: "Second testing", private: false, admin_id: 1);
 demoFriend = User.create(email: "demo-friend@demo.com", password: "password", display_name:"Friend of Demo");
+generalChannel = Channel.create(name: "general", topic: "general discussion", private: false, admin_id: 1);
+randomChannel = Channel.create(name: "random", topic: "random discussion", private: false, admin_id: 1);
+Membership.create(user_id: demoUser.id, memberable_id: generalChannel.id, memberable_type: Channel)
+Membership.create(user_id: demoUser.id, memberable_id: randomChannel.id, memberable_type: Channel)
+Membership.create(user_id: demoFriend.id, memberable_id: generalChannel.id, memberable_type: Channel)
+Membership.create(user_id: demoFriend.id, memberable_id: randomChannel.id, memberable_type: Channel)
+                        
 message1 = Message.create!(body: "pepitas are nothing special",
     user_id: 1,
-    messageable_id: testChannel.id,
+    messageable_id: generalChannel.id,
     messageable_type: Channel);
 message2 = Message.create(body: "Raspberry seeds stick to my teeth",
     user_id: 2,
-    messageable_id: testChannel.id,
+    messageable_id: generalChannel.id,
     messageable_type: Channel);
 message3 = Message.create!(body: "2pepitas are nothing special",
     user_id: 1,
-    messageable_id: testChannel2.id,
+    messageable_id: randomChannel.id,
     messageable_type: Channel);
 message4 = Message.create(body: "2Raspberry seeds stick to my teeth",
     user_id: 2,
-    messageable_id: testChannel2.id,
+    messageable_id: randomChannel.id,
     messageable_type: Channel);

@@ -6,10 +6,14 @@ class MemberAdd extends React.Component {
     super(props);
     // this.handleSubmit = this.handleSubmit.bind(this);
     this.state = {
-      newMembers: []
+      invitedUsers: [],
+      invitedUsersIds: [],
+      users: props.users,
+      searchInput: ""
     };
-    this.createOtherMembership = this.createOtherMembership.bind(this);
-    this.handleMemberships = this.handleMemberships.bind(this);
+    this.handleInvites = this.handleInvites.bind(this);
+    this.addUser = this.addUser.bind(this);
+    this.removeUser = this.removeUser.bind(this);
   }
   componentDidMount() {
     this.nameInput.focus();
@@ -17,50 +21,106 @@ class MemberAdd extends React.Component {
 
   componentDidUpdate() {}
 
-  toggleAdded(e) {
-    // this.setState({ newMembers: e.target });
+  handleMemberships() {
+    let memberable_id = channel.id;
+    let memberable_type = "Channel";
+    this.handleInvites(
+      this.state.invitedUsersIds,
+      memberable_type,
+      memberable_id
+    );
   }
-  handleMemberships(e) {
-    this.props.createMembership();
+  handleInvites(userIds, memberable_type, memberable_id) {
+    userIds.forEach(user_id => {
+      let newMembership = { memberable_id, user_id, memberable_type };
+      this.props.createMembership(newMembership);
+    });
   }
-  createOtherMembership(userId) {
-    let user_id = this.props.currentUser.id;
-    let memberable_id = parseInt(this.props.memberable_id);
-    let memberable_type = this.props.memberable_type;
-    this.props.createMembership({ memberable_id, user_id, memberable_type });
+  addUser(user) {
+    this.setState({ invitedUsers: this.state.invitedUsers.concat(user) });
+    this.setState({
+      invitedUsersIds: this.state.invitedUsersIds.concat(user.id)
+    });
+  }
+
+  update(field) {
+    return e => this.setState({ [field]: e.currentTarget.value });
+  }
+
+  removeUser(user) {
+    let userIndex = this.state.invitedUsers.indexOf(user);
+    this.state.invitedUsers.splice(userIndex, 1);
+    this.state.invitedUsersIds.splice(userIndex, 1);
+    this.setState({ invitedUsers: this.state.invitedUsers });
+    this.setState({ invitedUsersIds: this.state.invitedUsersIds });
   }
 
   render() {
-    let allUsers = this.props.users;
-    let userItems = allUsers.map(user => {
+    let invitedUsers = this.state.invitedUsers.map(user => {
       let image_location = user.image_url.split(".")[0];
       return (
-        <li onClick={this.toggleAdded} key={user.id}>
+        <li
+          className="invited-user-item"
+          onClick={() => this.removeUser(user)}
+          key={user.id}
+        >
           <img className="message-avatar" src={window[image_location]} />
           {user.display_name}
         </li>
       );
     });
+    let notInvitedUsers = this.state.users.map(user => {
+      let image_location = user.image_url.split(".")[0];
+      if (this.state.invitedUsersIds.includes(user.id)) {
+        return "";
+      } else if (
+        user.display_name
+          .toLowerCase()
+          .includes(this.state.searchInput.toLowerCase())
+      ) {
+        return (
+          <li
+            className="uninvited-user-item"
+            onClick={() => this.addUser(user)}
+            key={user.id}
+          >
+            <img className="message-avatar" src={window[image_location]} />
+            {user.display_name}
+          </li>
+        );
+      }
+    });
+
+    //bad code rewrite
+    let channelName = this.props.channels.filter(
+      channel => channel.id === parseInt(this.props.memberable_id)
+    )[0].name;
     return (
       <>
         <div className="modal-header">
           <button onClick={this.props.closeModal} className="modal-esc">
-            <i class="fas fa-times"></i>
+            <i className="fas fa-times"></i>
             <span>esc</span>
           </button>
         </div>
         <div className="modal-member">
           <div className="modal-body">
-            <h1>Add people to NAME OF CHANNEL HARD CODE</h1>
+            <h1>Add people to {channelName}</h1>
             <p>Need to add someone who's not yet in this workspace?</p>
+
             <span className="modal-search">
-              <input
-                ref={input => {
-                  this.nameInput = input;
-                }}
-                type="text"
-                placeholder="Search by name"
-              />
+              <div className="modal-search-box">
+                <ul className="search-invited">{invitedUsers}</ul>
+                <input
+                  ref={input => {
+                    this.nameInput = input;
+                  }}
+                  type="text"
+                  placeholder="Search by name"
+                  onChange={this.update("searchInput")}
+                />
+              </div>
+
               <button
                 type="submit"
                 onClick={this.handleMemberships}
@@ -69,7 +129,7 @@ class MemberAdd extends React.Component {
                 Add
               </button>
             </span>
-            <ul>{userItems}</ul>
+            <ul className="search-uninvited">{notInvitedUsers}</ul>
           </div>
         </div>
       </>

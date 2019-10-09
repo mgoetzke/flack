@@ -83,6 +83,7 @@
 .channel-header-functions {
   align-content: center;
   display: block;
+  position: relative;
 }
 
 .channel-header-functions > i {
@@ -91,10 +92,10 @@
 
 .channel-header-popup {
   background-color: RGB(248, 248, 248);
-  position: relative;
+  position: absolute;
   z-index: 1;
-  right: 5px;
-  top: 50px;
+  left: -192px;
+  top: 24px;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
