@@ -196,7 +196,7 @@ class Channel extends React.Component {
               </span>
               |
               <span>
-                <i class="far fa-edit"></i>
+                <i className="far fa-edit"></i>
                 {channel.topic}
               </span>
             </div>

@@ -4,20 +4,24 @@ import { Link } from "react-router-dom";
 class ChannelBrowse extends React.Component {
   constructor(props) {
     super(props);
-    this.handleSubmit = this.handleSubmit.bind(this);
+    // this.handleSubmit = this.handleSubmit.bind(this);
     this.state = {
-      channels: props.channels
+      channels: props.channels,
+      searchInput: ""
     };
   }
-  handleSubmit(e) {
-    e.preventDefault();
-    this.props.createChannel(this.state).then(this.props.closeModal);
-    this.setState({ name: "", topic: "", invites: [], private: false });
-  }
+  // handleSubmit(e) {
+  //   e.preventDefault();
+  //   this.props.createChannel(this.state).then(this.props.closeModal);
+  //   this.setState({ name: "", topic: "", invites: [], private: false });
+  // }
 
   componentDidMount() {
     this.props.fetchAllChannels();
     this.nameInput.focus();
+  }
+  updateField(field){
+    return e => this.setState({[field]: e.target.value});
   }
 
   componentDidUpdate() {}
@@ -33,7 +37,7 @@ class ChannelBrowse extends React.Component {
       let channelCreation = new Date(channel.created_at);
       var options = { year: "numeric", month: "long", day: "numeric" };
       let formatCreation = channelCreation.toLocaleDateString([], options);
-
+      if (channelName.toLowerCase().includes(this.state.searchInput) && channel.private === false){
       return (
         <li key={channel.id}>
           <Link
@@ -58,6 +62,7 @@ class ChannelBrowse extends React.Component {
           </Link>
         </li>
       );
+      }
     });
     return (
       <>
@@ -77,6 +82,7 @@ class ChannelBrowse extends React.Component {
               }}
               type="text"
               placeholder="Search channels"
+              onChange={this.updateField("searchInput")}
             />
           </span>
           <span className="modal-search-list">
