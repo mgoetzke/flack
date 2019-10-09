@@ -9,3 +9,7 @@ export const getChannelMemberships = (state, channelId) => {
   let channel = parseInt(channelId);
   return memberships.filter(membership => membership.memberable_id === channel);
 };
+
+export const getAllUsers = (state) => (
+  Object.values(state.entities.users)
+);

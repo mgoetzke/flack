@@ -4,17 +4,11 @@ import { Link } from "react-router-dom";
 class ChannelBrowse extends React.Component {
   constructor(props) {
     super(props);
-    // this.handleSubmit = this.handleSubmit.bind(this);
     this.state = {
       channels: props.channels,
       searchInput: ""
     };
   }
-  // handleSubmit(e) {
-  //   e.preventDefault();
-  //   this.props.createChannel(this.state).then(this.props.closeModal);
-  //   this.setState({ name: "", topic: "", invites: [], private: false });
-  // }
 
   componentDidMount() {
     this.props.fetchAllChannels();
