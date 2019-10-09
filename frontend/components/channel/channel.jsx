@@ -1,16 +1,22 @@
 import React from "react";
 import MessageFormContainer from "../messageform/messageform_container";
 import MessageContainer from "../message/message_container";
-import { fetchChannel } from "../../util/channel_api_util";
 
 class Channel extends React.Component {
   constructor(props) {
     super(props);
+    let channelId = parseInt(props.match.params.channelId);
+    let channelMessages = this.props.messages.filter(message => {
+      return message.messageable_id === parseInt(channelId);
+    });
+    let channelMemberships = this.props.memberships.filter(membership => {
+      return membership.membershipable_id === parseInt(channelId);
+    });
     this.state = {
-      messages: [props.messages],
+      messages: channelMessages,
       currentUser: props.currentUser,
       channel: props.channel,
-      memberships: props.memberships,
+      memberships: channelMemberships,
       cogPopUpVisibility: "menu-hide"
     };
     this.bottom = React.createRef();
@@ -62,15 +68,10 @@ class Channel extends React.Component {
     );
   }
   componentDidMount() {
-    const {
-      channelId,
-      fetchChannelMessages,
-      fetchMemberships,
-      fetchChannel
-    } = this.props;
+    const { channelId } = this.props;
     const { receiveMessage } = this.props;
     App.cable.subscriptions.create(
-      { channel: "ChatChannel", id: this.props.channelId }, //slip data inside object and include id there history push
+      { channel: "ChatChannel", id: channelId }, //slip data inside object and include id there history push
       {
         received: data => {
           let incomingMessage = JSON.parse(data.message);
@@ -91,9 +92,6 @@ class Channel extends React.Component {
         }
       }
     );
-    fetchMemberships()
-      .then(fetchChannel(channelId))
-      .then(fetchChannelMessages(channelId));
   }
 
   componentDidUpdate(prevProps) {
@@ -101,11 +99,18 @@ class Channel extends React.Component {
       this.bottom.current.scrollIntoView();
     }
     if (this.props.location !== prevProps.location) {
-      const { channelId, fetchChannelMessages, fetchMemberships } = this.props;
+      const { channelId } = this.props;
       this.configChat();
-      fetchMemberships()
-        .then(fetchChannel(channelId))
-        .then(fetchChannelMessages(channelId));
+      let newMessages = this.props.messages.filter(message => {
+        return message.messageable_id === parseInt(channelId);
+      });
+      let newMemberships = this.props.memberships.filter(membership => {
+        return membership.memberable_id === parseInt(channelId);
+      });
+      this.setState({
+        messages: newMessages,
+        memberships: newMemberships
+      });
     }
   }
 
@@ -118,7 +123,7 @@ class Channel extends React.Component {
   }
 
   destroyMembership() {
-    // TO DO JANK EDIT
+    // TO DO BAD CODE EDIT
     this.setState({ cogPopUpVisibility: "menu-hide" });
     let id = this.props.memberships.filter(
       membership => membership.user_id === this.state.currentUser.id
@@ -127,16 +132,21 @@ class Channel extends React.Component {
   }
 
   render() {
-    let { messages, channel, memberships } = this.props;
-    let formatMessages = messages.map(message => {
-      return (
-        <MessageContainer
-          currentUser={this.props.currentUser}
-          message={message}
-          key={message.id}
-        />
-      );
-    });
+    let { channel, memberships } = this.props;
+    let formatMessages = this.props.messages
+      .filter(message => {
+        return message.messageable_id === parseInt(channel.id);
+      })
+      .map(message => {
+        return (
+          <MessageContainer
+            currentUser={this.props.currentUser}
+            message={message}
+            key={message.id}
+          />
+        );
+      });
+    debugger;
     let memberStatus =
       memberships.filter(
         membership => membership.user_id === this.state.currentUser.id
@@ -147,9 +157,7 @@ class Channel extends React.Component {
       : this.createMembership;
     let privacyIcon =
       channel.private === false ? "#" : <i className="fas fa-lock"></i>;
-    let channelMemberToggleText = memberStatus
-      ? `Leave ${privacyIcon}${channel.name}`
-      : `Join ${privacyIcon}${channel.name}`;
+    let channelMemberToggleText = memberStatus ? `Leave` : `Join`;
     let channelCreator = channel.admin;
     let channelCreation = new Date(channel.created_at);
     var options = { year: "numeric", month: "long", day: "numeric" };
@@ -180,7 +188,6 @@ class Channel extends React.Component {
         </button>
       </div>
     );
-
     return (
       <div className="channel-container">
         <div className="channel-header">
@@ -216,7 +223,11 @@ class Channel extends React.Component {
                   onClick={channelMemberToggleFunction}
                   className="channelMemberToggleFunction"
                 >
-                  {channelMemberToggleText}
+                  <span className="channel-name-long">
+                    {channelMemberToggleText}
+                    {privacyIcon}
+                    {channel.name}
+                  </span>
                 </button>
               </li>
               <li>

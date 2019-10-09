@@ -19,11 +19,10 @@ class Sidebar extends React.Component {
       this.props.fetchAllChannels;
   }
   render() {
-    //HARD CODED THE ICONS
     let membershipItems = this.props.memberships.map(membership => {
       let privacyIcon =
         membership.memberable_type === "Channel" ? (
-          "# "
+          "#"
         ) : (
           <i className="fas fa-lock"></i>
         );

@@ -42,6 +42,7 @@
 }
 
 .channel-header-icons {
+  width: fit-content;
   display: flex;
   flex-direction: row;
   font-size: 12px;
@@ -148,6 +149,7 @@
 
 .joinName {
   font-weight: bold;
+  font-weight: bold;
 }
 
 .join-banner-button {
@@ -162,4 +164,7 @@
   border-radius: 3px;
   margin: 5px;
   font-size: 16px;
+}
+.channel-name-long {
+  overflow: hidden;
 }

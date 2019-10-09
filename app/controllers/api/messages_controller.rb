@@ -1,6 +1,6 @@
 class Api::MessagesController < ApplicationController
     def index
-        @messages = Message.where("messageable_id = ?", params[:channelId])
+        @messages = Message.all
         render :index
     end
 

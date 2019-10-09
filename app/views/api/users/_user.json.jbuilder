@@ -1,6 +1,6 @@
 json.extract! user, :email, :display_name, :id, :image_url
-
+channels = []
 json.channels user.channels do |channel|
-  json.channel_name channel.name
-  json.channel_id channel.id
+  channels.push(channel.id)
 end
+json.channel_ids = channels
