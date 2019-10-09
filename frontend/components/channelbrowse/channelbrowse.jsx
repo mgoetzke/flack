@@ -72,7 +72,10 @@ class ChannelBrowse extends React.Component {
           </button>
         </div>
         <div className="modal-body">
-          <h1>Browse Channels</h1>
+          <span className="modal-browse-header">
+            <h1>Browse Channels</h1>
+            {this.props.openCreateChannel}
+          </span>
           <span className="modal-search">
             <img src={window.searchIcon} />
             <input

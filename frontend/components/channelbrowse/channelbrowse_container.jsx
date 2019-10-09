@@ -1,7 +1,8 @@
 import { connect } from "react-redux";
 import ChannelBrowse from "./channelbrowse";
-import { closeModal } from "../../actions/modal_actions";
+import { openModal, closeModal } from "../../actions/modal_actions";
 import { fetchAllChannels } from "../../actions/channel_actions";
+import React from "react";
 const mapState = (state, ownProps) => {
   fetchAllChannels();
   return {
@@ -12,6 +13,14 @@ const mapState = (state, ownProps) => {
 const mapDispatch = dispatch => {
   return {
     closeModal: () => dispatch(closeModal()),
+    openCreateChannel: (
+      <button
+        className="modal-create-from-browse-button"
+        onClick={() => dispatch(openModal("browsechannel"))}
+      >
+        Create Channel
+      </button>
+    ),
     fetchAllChannels: () => dispatch(fetchAllChannels())
   };
 };
