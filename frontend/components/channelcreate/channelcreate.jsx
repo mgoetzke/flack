@@ -210,16 +210,14 @@ class ChannelCreate extends React.Component {
                     <h3>Make private</h3>
                   </div>
                   <p>{privateText}</p>
-                  <div
-                    className={`privacyCheckbox ${this.state.privacyButton}`}
-                  >
-                    <input
-                      type="checkbox"
-                      id="privacyCheckboxInput"
-                      onChange={this.handleChecked}
-                    />
-                    <label htmlFor="privacyCheckboxInput"></label>
-                  </div>
+                </div>
+                <div className={`privacyCheckbox ${this.state.privacyButton}`}>
+                  <input
+                    type="checkbox"
+                    id="privacyCheckboxInput"
+                    onChange={this.handleChecked}
+                  />
+                  <label htmlFor="privacyCheckboxInput"></label>
                 </div>
               </div>
               <div className="modal-create-buttons">

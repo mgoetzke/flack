@@ -8,7 +8,6 @@ import {
 } from "../../selectors/membership_selectors";
 
 const mapState = (state, ownProps) => {
-  debugger;
   return {
     users: getAllUsers(state),
     channels: Object.values(state.entities.channels),
