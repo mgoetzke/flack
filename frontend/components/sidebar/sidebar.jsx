@@ -4,20 +4,14 @@ class Sidebar extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      memberships: props.memberships
+      memberships: props.memberships,
+      users: props.users,
+      channels: props.users
     };
   }
 
-  componentDidMount() {
-    this.props.fetchAllMemberships,
-      this.props.fetchAllUsers,
-      this.props.fetchAllChannels;
-  }
-  componentDidUpdate(prevProps) {
-    this.props.fetchAllMemberships,
-      this.props.fetchAllUsers,
-      this.props.fetchAllChannels;
-  }
+  componentDidMount() {}
+  componentDidUpdate(prevProps) {}
   render() {
     let membershipItems = this.props.memberships.map(membership => {
       let privacyIcon =

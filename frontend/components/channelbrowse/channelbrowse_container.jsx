@@ -1,7 +1,6 @@
 import { connect } from "react-redux";
 import ChannelBrowse from "./channelbrowse";
 import { openModal, closeModal } from "../../actions/modal_actions";
-import { fetchAllChannels } from "../../actions/channel_actions";
 import React from "react";
 const mapState = (state, ownProps) => {
   return {
@@ -19,8 +18,7 @@ const mapDispatch = dispatch => {
       >
         Create Channel
       </button>
-    ),
-    fetchAllChannels: () => dispatch(fetchAllChannels())
+    )
   };
 };
 export default connect(

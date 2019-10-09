@@ -1,10 +1,7 @@
 import { connect } from "react-redux";
 import Sidebar from "./sidebar";
 import { openModal, closeModal } from "../../actions/modal_actions";
-import { fetchMemberships } from "../../actions/membership_actions";
 import { getUserMemberships } from "../../selectors/membership_selectors";
-import { fetchAllChannels } from "../../actions/channel_actions";
-import { fetchAllUsers } from "../../actions/user_actions";
 import React from "react";
 const mapState = state => {
   let memberships = getUserMemberships(state, state.session.id);
@@ -25,10 +22,7 @@ const mapDispatch = dispatch => {
         Channels
       </button>
     ),
-    closeModal: () => dispatch(closeModal()),
-    fetchAllMemberships: () => dispatch(fetchMemberships()),
-    fetchAllUsers: () => dispatch(fetchAllUsers()),
-    fetchAllChannels: () => dispatch(fetchAllChannels())
+    closeModal: () => dispatch(closeModal())
   };
 };
 export default connect(

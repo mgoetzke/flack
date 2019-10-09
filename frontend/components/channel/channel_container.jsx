@@ -1,12 +1,7 @@
 import { connect } from "react-redux";
 import Channel from "./channel";
-import { fetchChannel } from "../../actions/channel_actions";
 import { withRouter } from "react-router-dom";
-import {
-  fetchChannelMessages,
-  receiveMessage
-} from "../../actions/message_actions";
-import { fetchMemberships } from "../../actions/membership_actions";
+import { receiveMessage } from "../../actions/message_actions";
 import { getChannelMemberships } from "../../selectors/membership_selectors";
 import { openModal, closeModal } from "../../actions/modal_actions";
 import React from "react";
