@@ -18,11 +18,9 @@ class MemberAdd extends React.Component {
   componentDidUpdate() {}
 
   toggleAdded(e) {
-    debugger;
     // this.setState({ newMembers: e.target });
   }
   handleMemberships(e) {
-    debugger;
     this.props.createMembership();
   }
   createOtherMembership(userId) {

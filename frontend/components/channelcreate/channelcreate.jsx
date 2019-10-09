@@ -94,7 +94,6 @@ class ChannelCreate extends React.Component {
       </li>);
     });
     let notInvitedUsers = this.state.users.map((user) => {
-      debugger
       let image_location = user.image_url.split(".")[0];
       if (this.state.invitedUsersIds.includes(user.id)){
         return "";
