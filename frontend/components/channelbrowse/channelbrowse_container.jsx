@@ -4,7 +4,6 @@ import { openModal, closeModal } from "../../actions/modal_actions";
 import { fetchAllChannels } from "../../actions/channel_actions";
 import React from "react";
 const mapState = (state, ownProps) => {
-  fetchAllChannels();
   return {
     channels: Object.values(state.entities.channels)
   };
