@@ -1,0 +1,1 @@
+json.partial! 'direct', direct: @direct

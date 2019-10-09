@@ -1,0 +1,1 @@
+json.extract! direct, :name, :id, :users, :messages, :created_at

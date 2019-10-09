@@ -7,5 +7,6 @@ Rails.application.routes.draw do
     resources :channels, only: [:create, :index, :show, :destroy, :update] 
     resources :messages, only: [:create, :index, :show, :update]
     resources :memberships, only: [:create, :index, :destroy, :show]
+    resources :directs, only: [:create, :index, :show]
   end
 end

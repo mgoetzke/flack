@@ -2,9 +2,6 @@ Known bugs
 
 - screen flicker -> change js script order? DOMContentLoaded issue?
 
-Splash
-sign up as text on footer\*\*
-
 On focus
 Login
 errors aren't centered?
@@ -30,8 +27,3 @@ API Util
 Actions
 Reducers
 Component
-
-THINGS I HARDCODED
-
-- heighto f container main
-- autoscroll

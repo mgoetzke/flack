@@ -13,9 +13,8 @@ export const fetchAllChannels = () => dispatch => {
 };
 export const fetchChannel = id => dispatch => {
   return ChannelApiUtil.fetchChannel(id).then(channel => {
-    dispatch(receiveChannel(channel))
-  }
-  );
+    dispatch(receiveChannel(channel));
+  });
 };
 export const createChannel = channel => dispatch => {
   return ChannelApiUtil.createChannel(channel).then(
