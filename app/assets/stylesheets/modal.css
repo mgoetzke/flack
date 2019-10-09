@@ -9,7 +9,7 @@
 }
 
 .modal-child {
-  background: rgba(255, 255, 255);
+  background: rgb(255, 255, 255);
   font-family: "Lato";
   position: absolute;
   height: 100vh;
