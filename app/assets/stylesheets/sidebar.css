@@ -20,8 +20,13 @@
   padding-left: 15px;
   padding-right: 15px;
 }
-.sidebar li:hover {
+.sidebar .unselected:hover {
   background-color: RGB(53, 13, 54);
+}
+
+.selected {
+  background-color: RGB(23, 98, 163);
+  color: RGB(255, 255, 255);
 }
 
 .sidebar-header {

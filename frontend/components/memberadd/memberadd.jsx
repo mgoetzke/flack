@@ -42,7 +42,8 @@ class MemberAdd extends React.Component {
   addUser(user) {
     this.setState({ invitedUsers: this.state.invitedUsers.concat(user) });
     this.setState({
-      invitedUsersIds: this.state.invitedUsersIds.concat(user.id)
+      invitedUsersIds: this.state.invitedUsersIds.concat(user.id),
+      searchInput: ""
     });
   }
 
@@ -125,6 +126,7 @@ class MemberAdd extends React.Component {
                   ref={input => {
                     this.nameInput = input;
                   }}
+                  value={this.state.searchInput}
                   type="text"
                   placeholder="Search by name"
                   onChange={this.update("searchInput")}

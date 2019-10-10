@@ -19,3 +19,11 @@ export const fetchAllDirects = () => {
     url: `api/directs`
   });
 };
+
+export const updateDirect = direct => {
+  return $.ajax({
+    method: "PATCH",
+    url: `api/directs/${direct.id}`,
+    data: { direct }
+  });
+};

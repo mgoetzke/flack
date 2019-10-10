@@ -6,22 +6,31 @@ class Sidebar extends React.Component {
     this.state = {
       memberships: props.memberships,
       users: props.users,
-      channels: props.users
+      channels: props.users,
+      selectedItem: null
     };
+    this.handleSelect = this.handleSelect.bind(this);
   }
 
   componentDidMount() {}
   componentDidUpdate(prevProps) {}
+  handleSelect(id) {
+    this.setState({ selectedItem: id });
+  }
   render() {
     let membershipItems = this.props.memberships.map(membership => {
       let privacyIcon =
-        membership.privacy === false ? (
-          "# "
-        ) : (
-          <i className="fas fa-lock"></i>
-        );
+        membership.privacy === false ? "# " : <i className="fas fa-lock"></i>;
+      let selectedItem =
+        this.state.selectedItem === membership.memberable_id
+          ? "selected"
+          : "unselected";
       return (
-        <li key={membership.id}>
+        <li
+          key={membership.id}
+          className={selectedItem}
+          onClick={this.handleSelect.bind(null, membership.memberable_id)}
+        >
           {privacyIcon}
           <Link to={`/workspace/channels/${membership.memberable_id}`}>
             {membership.name}

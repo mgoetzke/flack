@@ -59,6 +59,11 @@
   color: RGB(29, 29, 29);
   background-color: RGB(221, 221, 221);
 }
+
+.modal-esc:active {
+  background-color: RGB(18, 124, 90);
+  color: RGB(255, 255, 255);
+}
 .modal-search {
   display: flex;
   align-items: center;
@@ -400,8 +405,7 @@ ul.search-invited {
 }
 
 .modal-body-direct {
-
 }
-.modal-search-direct{
+.modal-search-direct {
   width: 530px !important;
 }

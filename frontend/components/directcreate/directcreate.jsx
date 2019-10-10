@@ -9,7 +9,7 @@ class DirectCreate extends React.Component {
       searchInput: "",
       invitedUsers: [],
       invitedUsersIds: [],
-      users: props.users,
+      users: props.users
     };
     this.addUser = this.addUser.bind(this);
     this.removeUser = this.removeUser.bind(this);
@@ -37,7 +37,7 @@ class DirectCreate extends React.Component {
       })
       .then(this.props.closeModal);
 
-    this.setState({ name: "", invites: [], });
+    this.setState({ name: "", invites: [] });
   }
 
   handleInvites(userIds, memberable_type, memberable_id) {
@@ -50,7 +50,8 @@ class DirectCreate extends React.Component {
   addUser(user) {
     this.setState({ invitedUsers: this.state.invitedUsers.concat(user) });
     this.setState({
-      invitedUsersIds: this.state.invitedUsersIds.concat(user.id)
+      invitedUsersIds: this.state.invitedUsersIds.concat(user.id),
+      searchInput: ""
     });
   }
   removeUser(user) {
@@ -64,7 +65,6 @@ class DirectCreate extends React.Component {
     return e => this.setState({ [field]: e.currentTarget.value });
   }
 
-
   renderErrors() {
     const errors = this.props.errors.map((error, i) => {
       return <li key={`errors-${i}`}> {error} </li>;
@@ -77,7 +77,7 @@ class DirectCreate extends React.Component {
   }
 
   render() {
-    let headText = "Direct Messages"
+    let headText = "Direct Messages";
     let invitedUsers = this.state.invitedUsers.map(user => {
       let image_location = user.image_url.split(".")[0];
       return (
@@ -137,11 +137,13 @@ class DirectCreate extends React.Component {
                 <span className="modal-search">
                   <div className="modal-search-box-direct">
                     <ul className="search-invited">{invitedUsers}</ul>
-                    <input className="modal-search-direct"
+                    <input
+                      className="modal-search-direct"
                       ref={input => {
                         this.nameInput = input;
                       }}
                       type="text"
+                      value={this.state.searchInput}
                       placeholder="Search by name"
                       onChange={this.update("searchInput")}
                     />
