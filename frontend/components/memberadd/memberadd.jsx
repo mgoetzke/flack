@@ -24,7 +24,7 @@ class MemberAdd extends React.Component {
 
   handleMemberships() {
     let memberable_id = this.props.memberable_id;
-    let memberable_type = "Channel";
+    let memberable_type = this.props.memberable_type;
     this.handleInvites(
       this.state.invitedUsersIds,
       memberable_type,

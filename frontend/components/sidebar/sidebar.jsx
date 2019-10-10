@@ -6,24 +6,23 @@ class Sidebar extends React.Component {
     this.state = {
       memberships: props.memberships,
       users: props.users,
-      channels: props.users,
-      selectedItem: null,
-      selectedMessageableId: null,
-      selectedMessageableType: null
+      channels: props.users
     };
-    this.handleSelect = this.handleSelect.bind(this);
     this.handleLocationClass = this.handleLocationClass.bind(this);
   }
 
   componentDidMount() {}
   componentDidUpdate(prevProps) {}
-  handleSelect(id) {
-    this.setState({ selectedItem: id });
-  }
+
   handleLocationClass(membership) {
     let channelId = parseInt(this.props.location.pathname.split("/")[3]);
-    let channelType = parseInt(this.props.location.pathname.split("/")[2]);
-    return channelId === membership.memberable_id ? "selected" : "unselected";
+    let channelType = this.props.location.pathname.split("/")[2].slice(0, -1);
+    let test =
+      channelId === membership.memberable_id &&
+      channelType[1] === membership.memberable_type[1]
+        ? "selected"
+        : "unselected";
+    return test;
   }
   render() {
     let channelMemberships = this.props.memberships.filter(membership => {
@@ -37,13 +36,8 @@ class Sidebar extends React.Component {
       let privacyIcon =
         membership.privacy === false ? "# " : <i className="fas fa-lock"></i>;
       let selectedItem = this.handleLocationClass(membership);
-
       return (
-        <li
-          key={membership.id}
-          className={selectedItem}
-          onClick={this.handleSelect.bind(null, membership.memberable_id)}
-        >
+        <li key={membership.id} className={selectedItem}>
           {privacyIcon}
           <Link to={`/workspace/channels/${membership.memberable_id}`}>
             {membership.name}
@@ -57,11 +51,7 @@ class Sidebar extends React.Component {
       let selectedItem = this.handleLocationClass(membership);
 
       return (
-        <li
-          key={membership.id}
-          className={selectedItem}
-          onClick={this.handleSelect.bind(null, membership.memberable_id)}
-        >
+        <li key={membership.id} className={selectedItem}>
           {privacyIcon}
           <Link to={`/workspace/directs/${membership.memberable_id}`}>
             {membership.name}

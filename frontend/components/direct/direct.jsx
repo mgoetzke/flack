@@ -7,7 +7,10 @@ class Direct extends React.Component {
     super(props);
     let directId = parseInt(props.match.params.directId);
     let directMessages = this.props.messages.filter(message => {
-      return message.messageable_id === parseInt(directId);
+      return (
+        message.messageable_id === parseInt(directId) &&
+        message.messageable_type === "Direct"
+      );
     });
     let directMemberships = this.props.memberships.filter(membership => {
       return membership.membershipable_id === parseInt(directId);
@@ -42,20 +45,22 @@ class Direct extends React.Component {
     this.setState({ cogPopUpVisibility: "menu-hide" });
   }
 
-  configChat() {
+  configChat(directId) {
     const { receiveMessage } = this.props;
-    debugger;
+    if (App.cable.subscriptions["subscriptions"]) {
+      App.cable.subscriptions["subscriptions"] = [];
+    }
     App.cable.subscriptions.create(
-      { direct: "ChatDirect", id: this.props.directId }, //slip data inside object and include id there history push
+      { channel: "ChatDirect", id: directId }, //slip data inside object and include id there history push
       {
         received: data => {
           let incomingMessage = JSON.parse(data.message);
           switch (data.type) {
             case "message":
-              receiveMessage(incomingMessage);
+              this.props.receiveMessage(incomingMessage);
               break;
             case "edit":
-              receiveMessage(incomingMessage);
+              this.props.receiveMessage(incomingMessage);
               break;
           }
         },
@@ -69,31 +74,7 @@ class Direct extends React.Component {
     );
   }
   componentDidMount() {
-    const { directId } = this.props;
-    const { receiveMessage } = this.props;
-    debugger;
-    App.cable.subscriptions.create(
-      { channel: "ChatDirect", id: directId }, //slip data inside object and include id there history push
-      {
-        received: data => {
-          let incomingMessage = JSON.parse(data.message);
-          switch (data.type) {
-            case "message":
-              receiveMessage(incomingMessage);
-              break;
-            case "edit":
-              receiveMessage(incomingMessage);
-              break;
-          }
-        },
-        speak: function(message) {
-          return this.perform("speak", message);
-        },
-        load: function() {
-          return this.perform("load");
-        }
-      }
-    );
+    this.configChat(this.props.directId);
   }
 
   componentDidUpdate(prevProps) {
@@ -102,7 +83,7 @@ class Direct extends React.Component {
     }
     if (this.props.location !== prevProps.location) {
       const { directId } = this.props;
-      this.configChat();
+      this.configChat(directId);
       let newMessages = this.props.messages.filter(message => {
         return message.messageable_id === parseInt(directId);
       });
@@ -138,7 +119,10 @@ class Direct extends React.Component {
     let { direct, memberships } = this.props;
     let formatMessages = this.props.messages
       .filter(message => {
-        return message.messageable_id === parseInt(direct.id);
+        return (
+          message.messageable_type === "Direct" &&
+          message.messageable_id === parseInt(direct.id)
+        );
       })
       .map(message => {
         return (
@@ -190,6 +174,7 @@ class Direct extends React.Component {
         </button>
       </div>
     );
+
     return (
       <div className="direct-container">
         <div className="direct-header">

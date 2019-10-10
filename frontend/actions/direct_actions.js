@@ -49,7 +49,6 @@ const receiveDirects = directs => {
 };
 
 const receiveDirect = direct => {
-  debugger;
   return {
     type: RECEIVE_DIRECT,
     direct
