@@ -109,7 +109,8 @@ class Channel extends React.Component {
       });
       this.setState({
         messages: newMessages,
-        memberships: newMemberships
+        memberships: newMemberships,
+        cogPopUpVisibility: "menu-hide"
       });
     }
   }
@@ -158,9 +159,11 @@ class Channel extends React.Component {
       channel.private === false ? "#" : <i className="fas fa-lock"></i>;
     let channelMemberToggleText = memberStatus ? `Leave` : `Join`;
     let channelCreator = channel.admin;
+    debugger;
     let channelCreation = new Date(channel.created_at);
     var options = { year: "numeric", month: "long", day: "numeric" };
     let formatCreation = channelCreation.toLocaleDateString([], options);
+    let protectedChannels = ["general", "random"];
     let footer = memberStatus ? (
       <MessageFormContainer channel={channel} />
     ) : (
@@ -217,23 +220,27 @@ class Channel extends React.Component {
             <div
               className={`channel-header-popup ${this.state.cogPopUpVisibility}`}
             >
-              <li>
-                <button
-                  onClick={channelMemberToggleFunction}
-                  className="channelMemberToggleFunction"
-                >
-                  <span className="channel-name-long">
-                    {channelMemberToggleText}
-                    {privacyIcon}
-                    {channel.name}
-                  </span>
-                </button>
-              </li>
-              <li>
-                <div onClick={this.hideMenu2}>
-                  {this.props.openAddMembership}
-                </div>
-              </li>
+              {!protectedChannels.includes(channel.name) && (
+                <li>
+                  <button
+                    onClick={channelMemberToggleFunction}
+                    className="channelMemberToggleFunction"
+                  >
+                    <span className="channel-name-long">
+                      {channelMemberToggleText}
+                      {privacyIcon}
+                      {channel.name}
+                    </span>
+                  </button>
+                </li>
+              )}
+              {memberStatus && (
+                <li>
+                  <div onClick={this.hideMenu2}>
+                    {this.props.openAddMembership}
+                  </div>
+                </li>
+              )}
             </div>
           </div>
         </div>
