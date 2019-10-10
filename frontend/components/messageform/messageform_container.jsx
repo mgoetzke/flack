@@ -3,8 +3,11 @@ import MessageForm from "./messageform";
 import { withRouter } from "react-router-dom";
 
 const mapState = (state, ownProps) => {
-  return { currentUser: state.session.id,
-  channel: ownProps.channel };
+  return {
+    currentUser: state.session.id,
+    channel: ownProps.channel,
+    direct: ownProps.direct
+  };
 };
 
 const mapDispatch = dispatch => {

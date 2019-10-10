@@ -1,0 +1,170 @@
+.direct-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  font-family: "Lato";
+  color: RGB(29, 29, 29);
+}
+.direct-header {
+  height: 60px;
+  width: 100%;
+  border: 1px solid RGB(225, 225, 225);
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 0 20px 0 20px;
+  align-items: center;
+}
+.load-button {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+}
+
+.direct-header-deets {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.direct-header-name {
+  display: flex;
+  flex-direction: row;
+}
+
+.direct-header-deets h3 {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.direct-header-icons {
+  width: fit-content;
+  display: flex;
+  flex-direction: row;
+  font-size: 12px;
+  justify-content: space-between;
+  align-items: center;
+  color: RGB(143, 143, 143);
+}
+.direct-header-name {
+  margin-bottom: 5px;
+}
+.direct-header-icons i {
+  padding-right: 5px;
+}
+
+.direct-header-icons > i {
+  padding-right: 10px;
+}
+
+.direct-header-icons span {
+  padding-left: 5px;
+  display: flex;
+  /* border-left: 1px solid RGB(143, 143, 143); */
+  padding-right: 8px;
+  align-items: center;
+}
+
+.direct-header-icons .fa-star:hover {
+  color: RGB(241, 203, 89);
+}
+
+.direct-header-user:hover {
+  color: RGB(35, 105, 167);
+}
+
+.fa-cog:hover {
+  color: RGB(35, 105, 167);
+}
+
+.direct-header-functions {
+  align-content: center;
+  display: block;
+  /* position: relative; */
+}
+
+.direct-header-functions > i {
+  font-size: 20px;
+}
+
+.direct-header-popup {
+  background-color: RGB(248, 248, 248);
+  position: absolute;
+  z-index: 1;
+  right: 15px;
+  top: 38px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  width: 220px;
+  border-radius: 5px;
+  border: 1px solid RGB(212, 212, 212);
+  padding-top: 13px;
+  padding-bottom: 13px;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.08);
+}
+
+.direct-header-popup li {
+  list-style: none;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+.direct-header-popup li:hover {
+  background-color: RGB(24, 98, 163);
+  color: RGB(254, 254, 254);
+}
+
+.direct-join-banner {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+  height: 150px;
+  background-color: RGB(248, 248, 248);
+}
+
+.direct-join-text {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: column;
+}
+
+.direct-join-text .title {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+.direct-join-text .creator {
+  color: RGB(94, 94, 94);
+  font-size: 14px;
+}
+
+.joinName {
+  font-weight: bold;
+  font-weight: bold;
+}
+
+.join-banner-button {
+  background-color: RGB(18, 124, 90);
+  width: 110px;
+  height: 37px;
+  color: white;
+  box-sizing: border-box;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  border-radius: 3px;
+  margin: 5px;
+  font-size: 16px;
+}
+.direct-name-long {
+  overflow: hidden;
+}

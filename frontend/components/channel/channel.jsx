@@ -164,7 +164,7 @@ class Channel extends React.Component {
     let formatCreation = channelCreation.toLocaleDateString([], options);
     let protectedChannels = ["general", "random"];
     let footer = memberStatus ? (
-      <MessageFormContainer channel={channel} />
+      <MessageFormContainer messageableType="channel" channel={channel} />
     ) : (
       <div className="channel-join-banner">
         <div className="channel-join-text">

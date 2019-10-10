@@ -14,37 +14,41 @@ class MessageForm extends React.Component {
     this.state = {
       body: "",
       user_id: props.currentUser,
-      messageable_type: msgType
+      messageable_type: msgType,
+      messageable_id: msgId
     };
   }
 
   update(field) {
     return e => this.setState({ [field]: e.currentTarget.value });
   }
-  componentDidUpdate(){
+  componentDidUpdate() {
     // this.setState({ messageable_id: 2})
   }
 
   handleSubmit(e) {
     e.preventDefault();
     App.cable.subscriptions.subscriptions[0].speak({
-      message: { ...this.state, 
-        messageable_id: this.props.match.params.channelId}, 
+      message: {
+        ...this.state
+      }
     });
     this.setState({
-      body: "",
+      body: ""
     });
   }
 
   render() {
-    let channelNameRendered = "Message #" + this.props.channel.name;
+    let msgbleNameRendered = this.props.location.pathname.includes("channels")
+      ? "Message #" + this.props.channel.name
+      : "Message #";
     return (
       <form className="message-form" onSubmit={this.handleSubmit}>
         <input
           type="text"
           value={this.state.body}
           onChange={this.update("body")}
-          placeholder={channelNameRendered}
+          placeholder={msgbleNameRendered}
         />
       </form>
     );

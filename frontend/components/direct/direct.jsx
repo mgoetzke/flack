@@ -162,7 +162,7 @@ class Direct extends React.Component {
     var options = { year: "numeric", month: "long", day: "numeric" };
     let formatCreation = directCreation.toLocaleDateString([], options);
     let footer = memberStatus ? (
-      <MessageFormContainer direct={direct} />
+      <MessageFormContainer messageableType="direct" direct={direct} />
     ) : (
       <div className="direct-join-banner">
         <div className="direct-join-text">
@@ -171,7 +171,7 @@ class Direct extends React.Component {
               You are viewing{" "}
               <span className="joinName">
                 {privacyIcon}
-                {direct.name}
+                {/* {direct.name} */}
               </span>
             </span>
           </div>

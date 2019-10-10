@@ -11,6 +11,7 @@ import {
 } from "../../actions/membership_actions";
 
 const mapState = (state, ownProps) => {
+  debugger;
   let memberships = getDirectMemberships(state, ownProps.match.params.directId);
   return {
     direct: state.entities.directs[ownProps.match.params.directId] || {
