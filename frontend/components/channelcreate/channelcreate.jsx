@@ -21,12 +21,12 @@ class ChannelCreate extends React.Component {
   }
   handleSubmit(e) {
     e.preventDefault();
-    let { currentUser } = this.props;
+    let { currentUserId } = this.props;
     this.props
       .createChannel(this.state)
       .then(({ channel }) => {
         let memberable_id = channel.id;
-        let user_id = currentUser;
+        let user_id = currentUserId;
         let memberable_type = "Channel";
         let newMembership = { memberable_id, user_id, memberable_type };
         this.props.createMembership(newMembership);
@@ -110,6 +110,7 @@ class ChannelCreate extends React.Component {
     });
     let notInvitedUsers = this.state.users.map(user => {
       let image_location = user.image_url.split(".")[0];
+      console.log(this.props.currentUserId);
       if (
         this.state.invitedUsersIds.includes(user.id) ||
         this.props.currentUserId === user.id

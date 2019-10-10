@@ -9,7 +9,7 @@ import { getAllUsers } from "../../selectors/membership_selectors";
 const mapState = (state, ownProps) => {
   return {
     errors: state.errors.direct,
-    currentUser: state.session.id,
+    currentUserId: state.session.id,
     users: getAllUsers(state)
   };
 };

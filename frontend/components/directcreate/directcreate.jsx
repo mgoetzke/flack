@@ -16,12 +16,12 @@ class DirectCreate extends React.Component {
   }
   handleSubmit(e) {
     e.preventDefault();
-    let { currentUser } = this.props;
+    let { currentUserId } = this.props;
     this.props
       .createDirect(this.state)
       .then(({ direct }) => {
         let memberable_id = direct.id;
-        let user_id = currentUser;
+        let user_id = currentUserId;
         let memberable_type = "Direct";
         let newMembership = { memberable_id, user_id, memberable_type };
         this.props.createMembership(newMembership);

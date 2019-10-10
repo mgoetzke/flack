@@ -159,7 +159,6 @@ class Channel extends React.Component {
       channel.private === false ? "#" : <i className="fas fa-lock"></i>;
     let channelMemberToggleText = memberStatus ? `Leave` : `Join`;
     let channelCreator = channel.admin;
-    debugger;
     let channelCreation = new Date(channel.created_at);
     var options = { year: "numeric", month: "long", day: "numeric" };
     let formatCreation = channelCreation.toLocaleDateString([], options);

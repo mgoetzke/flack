@@ -4,12 +4,12 @@ import { createChannel } from "../../actions/channel_actions";
 import { closeModal } from "../../actions/modal_actions";
 import { createMembership } from "../../actions/membership_actions";
 import { withRouter } from "react-router-dom";
-import {getAllUsers} from '../../selectors/membership_selectors';
+import { getAllUsers } from "../../selectors/membership_selectors";
 
 const mapState = (state, ownProps) => {
   return {
     errors: state.errors.channel,
-    currentUser: state.session.id,
+    currentUserId: state.session.id,
     users: getAllUsers(state)
   };
 };
