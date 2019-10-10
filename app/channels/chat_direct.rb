@@ -1,6 +1,6 @@
 class ChatDirect < ApplicationCable::Channel
   def subscribed
-    direc = Direct.find(params[:id]).id
+    direct = Direct.find(params[:id]).id
     stream_for direct
   end
   def speak(data)
