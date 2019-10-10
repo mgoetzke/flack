@@ -7,9 +7,12 @@ class Sidebar extends React.Component {
       memberships: props.memberships,
       users: props.users,
       channels: props.users,
-      selectedItem: null
+      selectedItem: null,
+      selectedMessageableId: null,
+      selectedMessageableType: null
     };
     this.handleSelect = this.handleSelect.bind(this);
+    this.handleLocationClass = this.handleLocationClass.bind(this);
   }
 
   componentDidMount() {}
@@ -17,14 +20,17 @@ class Sidebar extends React.Component {
   handleSelect(id) {
     this.setState({ selectedItem: id });
   }
+  handleLocationClass(membership) {
+    let channelId = parseInt(this.props.location.pathname.split("/")[3]);
+    let channelType = parseInt(this.props.location.pathname.split("/")[2]);
+    return channelId === membership.memberable_id ? "selected" : "unselected";
+  }
   render() {
     let membershipItems = this.props.memberships.map(membership => {
       let privacyIcon =
         membership.privacy === false ? "# " : <i className="fas fa-lock"></i>;
-      let selectedItem =
-        this.state.selectedItem === membership.memberable_id
-          ? "selected"
-          : "unselected";
+      let selectedItem = this.handleLocationClass(membership);
+
       return (
         <li
           key={membership.id}

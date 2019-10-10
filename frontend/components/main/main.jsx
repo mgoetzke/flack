@@ -4,6 +4,7 @@ import ChannelContainer from "../channel/channel_container";
 import DirectContainer from "../direct/direct_container";
 import { Route, Switch } from "react-router-dom";
 import GreetingContainer from "../greeting/greeting_container";
+import { PrivacyRoute } from "../../util/route_util";
 
 class Main extends React.Component {
   constructor(props) {

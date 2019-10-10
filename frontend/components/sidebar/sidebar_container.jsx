@@ -3,6 +3,7 @@ import Sidebar from "./sidebar";
 import { openModal, closeModal } from "../../actions/modal_actions";
 import { getUserMemberships } from "../../selectors/membership_selectors";
 import React from "react";
+import { withRouter } from "react-router-dom";
 const mapState = state => {
   let memberships = getUserMemberships(state, state.session.id);
   return {
@@ -30,7 +31,9 @@ const mapDispatch = dispatch => {
     closeModal: () => dispatch(closeModal())
   };
 };
-export default connect(
-  mapState,
-  mapDispatch
-)(Sidebar);
+export default withRouter(
+  connect(
+    mapState,
+    mapDispatch
+  )(Sidebar)
+);

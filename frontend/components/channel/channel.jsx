@@ -1,7 +1,7 @@
 import React from "react";
 import MessageFormContainer from "../messageform/messageform_container";
 import MessageContainer from "../message/message_container";
-
+import { Redirect } from "react-router-dom";
 class Channel extends React.Component {
   constructor(props) {
     super(props);
@@ -189,67 +189,71 @@ class Channel extends React.Component {
         </button>
       </div>
     );
-    return (
-      <div className="channel-container">
-        <div className="channel-header">
-          <div className="channel-header-deets">
-            <div className="channel-header-name">
-              {privacyIcon} <h3>{channel.name}</h3>
+    if (channel.private && memberStatus === false) {
+      return <Redirect to="/workspace/channels/1" />;
+    } else {
+      return (
+        <div className="channel-container">
+          <div className="channel-header">
+            <div className="channel-header-deets">
+              <div className="channel-header-name">
+                {privacyIcon} <h3>{channel.name}</h3>
+              </div>
+              <div className="channel-header-icons">
+                <i className="far fa-star star-icon"></i>|
+                <span className="channel-header-user">
+                  <i className="far fa-user"></i>
+                  {memberCount}
+                </span>
+                |
+                <span>
+                  <i className="far fa-edit"></i>
+                  {channel.topic}
+                </span>
+              </div>
             </div>
-            <div className="channel-header-icons">
-              <i className="far fa-star star-icon"></i>|
-              <span className="channel-header-user">
-                <i className="far fa-user"></i>
-                {memberCount}
-              </span>
-              |
-              <span>
-                <i className="far fa-edit"></i>
-                {channel.topic}
-              </span>
+            <div className="channel-header-functions">
+              <i
+                className="fas fa-cog"
+                tabIndex="0"
+                onFocus={this.showMenu}
+                onBlur={this.hideMenu}
+              ></i>
+              <div
+                className={`channel-header-popup ${this.state.cogPopUpVisibility}`}
+              >
+                {!protectedChannels.includes(channel.name) && (
+                  <li>
+                    <button
+                      onClick={channelMemberToggleFunction}
+                      className="channelMemberToggleFunction"
+                    >
+                      <span className="channel-name-long">
+                        {channelMemberToggleText}
+                        {privacyIcon}
+                        {channel.name}
+                      </span>
+                    </button>
+                  </li>
+                )}
+                {memberStatus && (
+                  <li>
+                    <div onClick={this.hideMenu2}>
+                      {this.props.openAddMembership}
+                    </div>
+                  </li>
+                )}
+              </div>
             </div>
           </div>
-          <div className="channel-header-functions">
-            <i
-              className="fas fa-cog"
-              tabIndex="0"
-              onFocus={this.showMenu}
-              onBlur={this.hideMenu}
-            ></i>
-            <div
-              className={`channel-header-popup ${this.state.cogPopUpVisibility}`}
-            >
-              {!protectedChannels.includes(channel.name) && (
-                <li>
-                  <button
-                    onClick={channelMemberToggleFunction}
-                    className="channelMemberToggleFunction"
-                  >
-                    <span className="channel-name-long">
-                      {channelMemberToggleText}
-                      {privacyIcon}
-                      {channel.name}
-                    </span>
-                  </button>
-                </li>
-              )}
-              {memberStatus && (
-                <li>
-                  <div onClick={this.hideMenu2}>
-                    {this.props.openAddMembership}
-                  </div>
-                </li>
-              )}
-            </div>
+          <div className="message-list">
+            <ul>{formatMessages}</ul>
+            <div ref={this.bottom}></div>
           </div>
+          {footer}
         </div>
-        <div className="message-list">
-          <ul>{formatMessages}</ul>
-          <div ref={this.bottom}></div>
-        </div>
-        {footer}
-      </div>
-    );
+      );
+    }
   }
 }
 

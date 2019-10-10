@@ -1,6 +1,7 @@
 import { connect } from "react-redux";
 import ChannelBrowse from "./channelbrowse";
 import { openModal, closeModal } from "../../actions/modal_actions";
+import { Redirect } from "react-router-dom";
 import React from "react";
 const mapState = (state, ownProps) => {
   return {

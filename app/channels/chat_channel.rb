@@ -29,6 +29,8 @@ class ChatChannel < ApplicationCable::Channel
     ChatChannel.broadcast_to(channel, socket)
   end
 
+ 
+
   def unsubscribed
     # Any cleanup needed when channel is unsubscribed
   end

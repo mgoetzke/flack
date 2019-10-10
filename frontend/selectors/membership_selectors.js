@@ -4,6 +4,11 @@ export const getUserMemberships = (state, userId) => {
   return memberships.filter(membership => membership.user_id === user);
 };
 
+export const getUserMembershipIds = (state, userId) => {
+  let memberships = getUserMemberships(state, userId);
+  return memberships.map(membership => membership.memberable_id);
+};
+
 export const getChannelMemberships = (state, channelId) => {
   let memberships = Object.values(state.entities.memberships);
   let channel = parseInt(channelId);

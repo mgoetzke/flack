@@ -7,7 +7,7 @@ import SplashContainer from "./splash/splash_container";
 import MainContainer from "./main/main_container";
 import FooterContainer from "./footer/footer_container";
 import Modal from "./modal/modal";
-import { AuthRoute, ProtectedRoute } from "../util/route_util";
+import { AuthRoute, ProtectedRoute, PrivacyRoute } from "../util/route_util";
 const App = () => (
   <div>
     <Modal />
