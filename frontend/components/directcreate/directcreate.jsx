@@ -1,21 +1,27 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 class DirectCreate extends React.Component {
   constructor(props) {
     super(props);
-    this.handleSubmit = this.handleSubmit.bind(this);
-    this.update = this.update.bind(this);
     this.state = {
-      searchInput: "",
       invitedUsers: [],
       invitedUsersIds: [],
-      users: props.users
+      users: props.users,
+      searchInput: ""
     };
+    this.handleInvites = this.handleInvites.bind(this);
     this.addUser = this.addUser.bind(this);
     this.removeUser = this.removeUser.bind(this);
+    this.handleCreateDirect = this.handleCreateDirect.bind(this);
   }
-  handleSubmit(e) {
-    e.preventDefault();
+  componentDidMount() {
+    this.nameInput.focus();
+  }
+
+  componentDidUpdate() {}
+
+  handleCreateDirect() {
     let { currentUserId } = this.props;
     this.props
       .createDirect(this.state)
@@ -33,20 +39,22 @@ class DirectCreate extends React.Component {
         return memberable_id;
       })
       .then(memberable_id => {
-        this.props.history.push(`/workspace/directs/${memberable_id}`);
+        this.props.history.push(`/workspace/channels/${memberable_id}`);
       })
       .then(this.props.closeModal);
-
-    this.setState({ name: "", invites: [] });
+    this.setState({
+      invitedUsers: [],
+      invitedUsersIds: [],
+      searchInput: ""
+    });
   }
-
   handleInvites(userIds, memberable_type, memberable_id) {
     userIds.forEach(user_id => {
       let newMembership = { memberable_id, user_id, memberable_type };
       this.props.createMembership(newMembership);
     });
+    return 4;
   }
-
   addUser(user) {
     this.setState({ invitedUsers: this.state.invitedUsers.concat(user) });
     this.setState({
@@ -54,6 +62,11 @@ class DirectCreate extends React.Component {
       searchInput: ""
     });
   }
+
+  update(field) {
+    return e => this.setState({ [field]: e.currentTarget.value });
+  }
+
   removeUser(user) {
     let userIndex = this.state.invitedUsers.indexOf(user);
     this.state.invitedUsers.splice(userIndex, 1);
@@ -61,23 +74,8 @@ class DirectCreate extends React.Component {
     this.setState({ invitedUsers: this.state.invitedUsers });
     this.setState({ invitedUsersIds: this.state.invitedUsersIds });
   }
-  update(field) {
-    return e => this.setState({ [field]: e.currentTarget.value });
-  }
-
-  renderErrors() {
-    const errors = this.props.errors.map((error, i) => {
-      return <li key={`errors-${i}`}> {error} </li>;
-    });
-    return (
-      <div>
-        <ul>{errors}</ul>
-      </div>
-    );
-  }
 
   render() {
-    let headText = "Direct Messages";
     let invitedUsers = this.state.invitedUsers.map(user => {
       let image_location = user.image_url.split(".")[0];
       return (
@@ -95,7 +93,8 @@ class DirectCreate extends React.Component {
       let image_location = user.image_url.split(".")[0];
       if (
         this.state.invitedUsersIds.includes(user.id) ||
-        this.props.currentUserId === user.id
+        this.props.currentUserId === user.id ||
+        this.props.users.includes(user.id)
       ) {
         return null;
       } else if (
@@ -115,10 +114,11 @@ class DirectCreate extends React.Component {
         );
       }
     });
+
+    //bad code rewrite
     let remainingInvites = notInvitedUsers.filter(user => {
       return user !== null;
     });
-
     return (
       <>
         <div className="modal-header">
@@ -127,50 +127,36 @@ class DirectCreate extends React.Component {
             <span>esc</span>
           </button>
         </div>
-        <div className="modal-direct-create">
-          <form onSubmit={this.handleSubmit} className="direct-body">
-            <div className="modal-body-create">
-              <div className="channel-create-header">
-                <h1>{headText}</h1>
-              </div>
-              <div className="modal-input-block">
-                <span className="modal-search">
-                  <div className="modal-search-box-direct">
-                    <ul className="search-invited">{invitedUsers}</ul>
-                    <input
-                      className="modal-search-direct"
-                      ref={input => {
-                        this.nameInput = input;
-                      }}
-                      type="text"
-                      value={this.state.searchInput}
-                      placeholder="Search by name"
-                      onChange={this.update("searchInput")}
-                    />
-                  </div>
-                </span>
-                {remainingInvites.length > 0 &&
-                  this.state.searchInput.length > 0 && (
-                    <ul className="search-uninvited">{notInvitedUsers}</ul>
-                  )}
+        <div className="modal-member">
+          <div className="modal-body">
+            <h1>Direct Messages</h1>
+            <span className="modal-search">
+              <div className="modal-search-box">
+                <ul className="search-invited">{invitedUsers}</ul>
+                <input
+                  ref={input => {
+                    this.nameInput = input;
+                  }}
+                  value={this.state.searchInput}
+                  type="text"
+                  placeholder="Start a conversation"
+                  onChange={this.update("searchInput")}
+                />
               </div>
 
-              <div className="modal-create-buttons">
-                {this.state.invitedUsers.length !== 0 && (
-                  <input
-                    className="modal-button modal-button-submit"
-                    type="submit"
-                    value="Go"
-                  />
-                )}
-                {this.state.invitedUsers.length === 0 && (
-                  <span className="modal-button modal-button-invalid">
-                    <p>Go</p>
-                  </span>
-                )}
-              </div>
-            </div>
-          </form>
+              <button
+                type="submit"
+                onClick={this.handleCreateDirect}
+                className="add-button modal-button-submit"
+              >
+                Go
+              </button>
+            </span>
+            {remainingInvites.length > 0 &&
+              this.state.searchInput.length > 0 && (
+                <ul className="search-uninvited">{notInvitedUsers}</ul>
+              )}
+          </div>
         </div>
       </>
     );

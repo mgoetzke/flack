@@ -1,5 +1,4 @@
-json.extract! direct, :name, :topic, :private, :id, :created_at
-json.admin direct.user.display_name
+json.extract! direct, :name, :id, :created_at
 messages = []
 direct.messages.each do |message|
   messages.push(message.id)
