@@ -15,6 +15,7 @@ class Main extends React.Component {
     this.props.fetchMemberships();
     this.props.fetchAllMessages();
   }
+  componentDidUpdate() {}
 
   render() {
     return (

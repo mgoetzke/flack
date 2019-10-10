@@ -146,7 +146,6 @@ class Channel extends React.Component {
           />
         );
       });
-    debugger;
     let memberStatus =
       memberships.filter(
         membership => membership.user_id === this.state.currentUser.id
