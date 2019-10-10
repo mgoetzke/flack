@@ -15,8 +15,8 @@ class Sidebar extends React.Component {
   render() {
     let membershipItems = this.props.memberships.map(membership => {
       let privacyIcon =
-        membership.memberable_type === "Channel" ? (
-          "#"
+        membership.privacy === false ? (
+          "# "
         ) : (
           <i className="fas fa-lock"></i>
         );
@@ -41,7 +41,7 @@ class Sidebar extends React.Component {
         <div className="sidebar-directs">
           <div className="sidebar-header">
             <h2>Direct Messages</h2>
-            {this.props.openCreateChannel}
+            {this.props.openCreateDirect}
           </div>
         </div>
       </div>

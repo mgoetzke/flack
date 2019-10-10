@@ -10,7 +10,7 @@ export const getChannelMemberships = (state, channelId) => {
   return memberships.filter(
     membership =>
       membership.memberable_id === channel &&
-      membership.memberable_type === "Direct"
+      membership.memberable_type === "Channel"
   );
 };
 

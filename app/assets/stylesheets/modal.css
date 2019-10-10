@@ -348,7 +348,7 @@ ul.search-invited {
 }
 
 .modal-channel-create .modal-search-box {
-  width: 660px;
+  width: 530px;
 }
 .modal-search-box input:focus {
   box-shadow: 0 0 0 4px RGB(190, 225, 241);
@@ -393,4 +393,15 @@ ul.search-invited {
   margin-right: 5px;
   justify-content: center;
   display: flex;
+}
+
+.modal-direct-create {
+  width: 640px;
+}
+
+.modal-body-direct {
+
+}
+.modal-search-direct{
+  width: 530px !important;
 }

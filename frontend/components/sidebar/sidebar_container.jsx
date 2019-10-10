@@ -17,6 +17,11 @@ const mapDispatch = dispatch => {
         <i className="fas fa-plus"></i>
       </button>
     ),
+    openCreateDirect: (
+      <button onClick={() => dispatch(openModal("createdirect"))}>
+        <i className="fas fa-plus"></i>
+      </button>
+    ),
     openBrowseChannel: (
       <button onClick={() => dispatch(openModal("browsechannel"))}>
         Channels

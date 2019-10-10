@@ -179,7 +179,7 @@ class ChannelCreate extends React.Component {
                 <div className="modal-label-title">
                   <h3>Description </h3> <span> (optional)</span>
                 </div>
-                <input onChange={this.update("description")} type="text" />
+                <input onChange={this.update("topic")} type="text" />
                 <p>What's this channel about?</p>
               </div>
               <div className="modal-input-block">

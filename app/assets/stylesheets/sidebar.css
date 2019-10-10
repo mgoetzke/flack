@@ -53,3 +53,8 @@
   transition: color 0.08s linear;
   transition: border 0.08s linear;
 }
+
+.sidebar .membership-items i {
+  font-size: 10px;
+  padding-right: 3px;
+}

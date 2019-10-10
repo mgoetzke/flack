@@ -6,7 +6,6 @@ class DirectCreate extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.update = this.update.bind(this);
     this.state = {
-      name: "",
       searchInput: "",
       invitedUsers: [],
       invitedUsersIds: [],
@@ -14,7 +13,6 @@ class DirectCreate extends React.Component {
     };
     this.addUser = this.addUser.bind(this);
     this.removeUser = this.removeUser.bind(this);
-    this.handleChecked = this.handleChecked.bind(this);
   }
   handleSubmit(e) {
     e.preventDefault();
@@ -66,11 +64,6 @@ class DirectCreate extends React.Component {
     return e => this.setState({ [field]: e.currentTarget.value });
   }
 
-  handleChecked() {
-    let oppState = this.state.privacyButton === "" ? "privateOn" : "";
-    this.setState({ private: !this.state.private });
-    this.setState({ privacyButton: oppState });
-  }
 
   renderErrors() {
     const errors = this.props.errors.map((error, i) => {
@@ -84,8 +77,7 @@ class DirectCreate extends React.Component {
   }
 
   render() {
-    let privateStatus = this.state.private === false ? true : false;
-    let headText = Direct Messages;
+    let headText = "Direct Messages"
     let invitedUsers = this.state.invitedUsers.map(user => {
       let image_location = user.image_url.split(".")[0];
       return (
@@ -135,48 +127,17 @@ class DirectCreate extends React.Component {
             <span>esc</span>
           </button>
         </div>
-        <div className="modal-channel-create">
-          <form onSubmit={this.handleSubmit} className="modal-body">
+        <div className="modal-direct-create">
+          <form onSubmit={this.handleSubmit} className="direct-body">
             <div className="modal-body-create">
               <div className="channel-create-header">
                 <h1>{headText}</h1>
               </div>
-              <div className="channel-create.name">
-                <h3>Name</h3>
-                {this.props.errors.length > 0 && (
-                  <div className="channel-errors">
-                    <ul>{this.renderErrors()}</ul>
-                  </div>
-                )}
-                <div className="channel-create-name-input">
-                  <span className="channel-create-privacy-icon">
-                    {privacyIcon}
-                  </span>
-                  <input
-                    id="channel-create-name-input-text"
-                    onChange={this.update("name")}
-                    type="text"
-                    placeholder="e.g. flackingoff"
-                    pattern="[a-zA-Z0-9-!@#$%^*_|]{1,80}"
-                  />
-                  <span>{80 - this.state.name.length}</span>
-                </div>
-              </div>
               <div className="modal-input-block">
-                <div className="modal-label-title">
-                  <h3>Description </h3> <span> (optional)</span>
-                </div>
-                <input onChange={this.update("description")} type="text" />
-                <p>What's this channel about?</p>
-              </div>
-              <div className="modal-input-block">
-                <div className="modal-label-title">
-                  <h3>Send invites to </h3> <span> (optional)</span>
-                </div>
                 <span className="modal-search">
-                  <div className="modal-search-box">
+                  <div className="modal-search-box-direct">
                     <ul className="search-invited">{invitedUsers}</ul>
-                    <input
+                    <input className="modal-search-direct"
                       ref={input => {
                         this.nameInput = input;
                       }}
@@ -191,39 +152,18 @@ class DirectCreate extends React.Component {
                     <ul className="search-uninvited">{notInvitedUsers}</ul>
                   )}
               </div>
-              <div className="modal-input-private">
-                <div className="modal-input-block private-text">
-                  <div className="modal-label-title">
-                    <h3>Make private</h3>
-                  </div>
-                  <p>{privateText}</p>
-                </div>
-                <div className={`privacyCheckbox ${this.state.privacyButton}`}>
-                  <input
-                    type="checkbox"
-                    id="privacyCheckboxInput"
-                    onChange={this.handleChecked}
-                  />
-                  <label htmlFor="privacyCheckboxInput"></label>
-                </div>
-              </div>
+
               <div className="modal-create-buttons">
-                <button
-                  onClick={this.props.closeModal}
-                  className="modal-button modal-button-cancel"
-                >
-                  Cancel
-                </button>
-                {this.state.name !== "" && (
+                {this.state.invitedUsers.length !== 0 && (
                   <input
                     className="modal-button modal-button-submit"
                     type="submit"
-                    value="Create"
+                    value="Go"
                   />
                 )}
-                {this.state.name === "" && (
+                {this.state.invitedUsers.length === 0 && (
                   <span className="modal-button modal-button-invalid">
-                    <p>Create</p>
+                    <p>Go</p>
                   </span>
                 )}
               </div>
