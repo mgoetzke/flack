@@ -75,6 +75,7 @@
   border-radius: 4px;
   padding-left: 15px;
   font-size: 17px;
+  color: RGB(0, 0, 0);
 }
 .modal-search input[type="text"] {
   padding-left: 50px;

@@ -158,7 +158,7 @@ class ChannelCreate extends React.Component {
               <div className="channel-create.name">
                 <h3>Name</h3>
                 {this.props.errors.length > 0 && (
-                  <div className="channel-errors">
+                  <div className="session-errors">
                     <ul>{this.renderErrors()}</ul>
                   </div>
                 )}
