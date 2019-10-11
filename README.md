@@ -22,3 +22,8 @@ Live message editing
 ## Future Features
 + Direct messaging between individuals and groups
 + Notifications
+
+## How To Use
++ Clone git locally
++ npm install and bundle install
++ Open separate sessions in browser using incognito mode
