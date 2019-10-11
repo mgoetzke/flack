@@ -37,7 +37,6 @@ export const fetchChannelMessages = channelId => {
 };
 
 export const fetchDirectMessages = directId => {
-  debugger
   return $.ajax({
     method: "GET",
     url: `api/messages`,

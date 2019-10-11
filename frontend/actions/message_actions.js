@@ -15,7 +15,6 @@ export const fetchChannelMessages = channelId => dispatch => {
 };
 
 export const fetchDirectMessages = directId => dispatch => {
-  debugger
   return MessageApiUtil.fetchDirectMessages(directId).then(messages =>
     dispatch(receiveMessages(messages))
   );
