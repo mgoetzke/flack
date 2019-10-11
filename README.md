@@ -25,6 +25,32 @@ Live messaging
 Live message editing
 
 ![alt text](https://media.giphy.com/media/l2ExAAkcFEbtl2WRpS/giphy.gif "sample conversation")
+
+*./app/controllers/api/messages_controller.rb
+```
+def update
+    @message = Message.find(params[:id])
+    if @message.update_attributes(message_params)
+        broadcastEdit(formatEdit(@message))
+        render :show
+    else
+        render json: ['Sorry, your update did not work.'], status: 400
+    end
+end
+```
+```
+def broadcastEdit(message)
+    ChatChannel.update(message)
+end
+```
+*./app/channels/chat_channel.rb
+```
+def self.update(message)
+    socket={message: format(message.to_json), type: 'edit'}
+    channel = Channel.find(message[:messageable_id]).id
+    ChatChannel.broadcast_to(channel, socket)
+end
+```
 ## Future Features
 + Direct messaging between individuals and groups
 + Notifications
