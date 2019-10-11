@@ -2,8 +2,14 @@
 
 **flack** is a web-based instant-messaging application that improves workplace communication and collaboration. A live demo is available at http://flackflack.herokuapp.com/
  
-## Technologies Used
-**flack** was built using Ruby on Rails, React/Redux,JavaScript, and ActionCables for WebSockets.
+## Tech/Framework Used
+**flack** was built with
++ Ruby on Rails
++ React/Redux
++ JavaScript
++ Action Cable for WebSockets.
+
+
 
 ## Features
 + Live messaging
