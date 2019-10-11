@@ -15,8 +15,25 @@ class Main extends React.Component {
     this.props.fetchAllChannels();
     this.props.fetchMemberships();
     this.props.fetchAllMessages();
+    App.notificationChannel = App.cable.subscriptions.create(
+      { channel: 'NotificationChannel' },
+      {
+        received: data => {
+          switch (data.type) {
+            case 'channelAdd':
+              this.props.fetchChannel(data.channel_id).then(() => this.props.updateMembership(data.channelId, data.userId));
+              break;
+          }
+        },
+        notify: function (data) { return this.perform('notify', data) },
+      }
+    );
   }
   componentDidUpdate() {}
+  
+  componentWillUnmount() {
+    App.notificationChannel.unsubscribe();
+  }
 
   render() {
     return (
