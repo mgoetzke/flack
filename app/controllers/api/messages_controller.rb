@@ -1,6 +1,14 @@
 class Api::MessagesController < ApplicationController
-    def index
-        @messages = Message.all
+     def index
+        debugger
+        if (params[:channelId]) 
+            debugger
+            @messages = Message.where(messageable_id: params[:channelId], messageable_type: 'Channel')
+        elsif (params[:directId])
+            debugger
+            @messages = Message.where(messageable_id: params[:directId], messageable_type: 'Direct')
+        end
+        debugger
         render :index
     end
 

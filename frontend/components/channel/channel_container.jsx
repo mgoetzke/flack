@@ -1,8 +1,8 @@
 import { connect } from "react-redux";
 import Channel from "./channel";
 import { withRouter } from "react-router-dom";
-import { receiveMessage } from "../../actions/message_actions";
-import { getChannelMemberships } from "../../selectors/membership_selectors";
+import { fetchChannelMessages,receiveMessage } from "../../actions/message_actions";
+import { fetchChannelMembers } from '../../actions/membership_actions.js';
 import { openModal, closeModal } from "../../actions/modal_actions";
 import React from "react";
 import {
@@ -11,16 +11,12 @@ import {
 } from "../../actions/membership_actions";
 
 const mapState = (state, ownProps) => {
-  let memberships = getChannelMemberships(
-    state,
-    ownProps.match.params.channelId
-  );
   return {
     channel: state.entities.channels[ownProps.match.params.channelId] || {
       name: "default"
     },
     messages: Object.values(state.entities.messages),
-    memberships: memberships,
+    memberships: Object.values(state.entities.memberships),
     channelId: ownProps.match.params.channelId,
     currentUser: state.entities.users[state.session.id]
   };
@@ -29,6 +25,8 @@ const mapState = (state, ownProps) => {
 const mapDispatch = dispatch => {
   return {
     receiveMessage: message => dispatch(receiveMessage(message)),
+    fetchChannelMessages: channelId => dispatch(fetchChannelMessages(channelId)),
+    fetchChannelMembers: channelId => dispatch(fetchChannelMembers(channelId)),
     createMembership: membership => dispatch(createMembership(membership)),
     destroyMembership: membershipId =>
       dispatch(destroyMembership(membershipId)),

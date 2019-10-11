@@ -1,7 +1,7 @@
 import React from "react";
 import MessageFormContainer from "../messageform/messageform_container";
 import MessageContainer from "../message/message_container";
-
+import { Redirect } from "react-router-dom";
 class Direct extends React.Component {
   constructor(props) {
     super(props);
@@ -104,6 +104,8 @@ class Direct extends React.Component {
         }
       }
     );
+    this.props.fetchDirectMembers(directId)
+      .then(() => this.props.fetchDirectMessages(directId));
   }
 
   componentDidUpdate(prevProps) {
@@ -113,17 +115,8 @@ class Direct extends React.Component {
     if (this.props.location !== prevProps.location) {
       const { directId } = this.props;
       this.configChat();
-      let newMessages = this.props.messages.filter(message => {
-        return message.messageable_id === parseInt(directId);
-      });
-      let newMemberships = this.props.memberships.filter(membership => {
-        return membership.memberable_id === parseInt(directId);
-      });
-      this.setState({
-        messages: newMessages,
-        memberships: newMemberships,
-        cogPopUpVisibility: "menu-hide"
-      });
+      this.props.fetchDirectMembers(directId)
+        .then(() => this.props.fetchDirectMessages(directId));
     }
   }
 
@@ -203,7 +196,9 @@ class Direct extends React.Component {
         </button>
       </div>
     );
-
+    if (memberStatus === false) {
+      return <Redirect to="/workspace/channels/1" />;
+    }
     return (
       <div className="direct-container">
         <div className="direct-header">

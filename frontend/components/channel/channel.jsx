@@ -104,6 +104,8 @@ class Channel extends React.Component {
         }
       }
     );
+    this.props.fetchChannelMembers(channelId)
+    .then(() => this.props.fetchChannelMessages(channelId));
   }
 
   componentDidUpdate(prevProps) {
@@ -113,17 +115,8 @@ class Channel extends React.Component {
     if (this.props.location !== prevProps.location) {
       const { channelId } = this.props;
       this.configChat();
-      let newMessages = this.props.messages.filter(message => {
-        return message.messageable_id === parseInt(channelId);
-      });
-      let newMemberships = this.props.memberships.filter(membership => {
-        return membership.memberable_id === parseInt(channelId);
-      });
-      this.setState({
-        messages: newMessages,
-        memberships: newMemberships,
-        cogPopUpVisibility: "menu-hide"
-      });
+      this.props.fetchChannelMembers(channelId)
+        .then(() => this.props.fetchChannelMessages(channelId));
     }
   }
 

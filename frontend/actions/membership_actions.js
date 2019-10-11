@@ -32,6 +32,12 @@ export const fetchChannelMembers = channelId => dispatch => {
   );
 };
 
+export const fetchDirectMembers = directId => dispatch => {
+  return MembershipApiUtil.fetchDirectMemberships(directId).then(
+    memberships => dispatch(receiveMemberships(memberships))
+  );
+};
+
 const receiveMemberships = memberships => {
   return {
     type: RECEIVE_MEMBERSHIPS,

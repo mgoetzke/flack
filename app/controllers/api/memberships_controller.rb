@@ -1,12 +1,11 @@
 class Api::MembershipsController < ApplicationController
   def create
-    @membership = Membership.new(membership_params)
-    if @membership.save
-      # broadcastNewMembership(@membership)
-      render :show
-    else
-      render json: @membership.errors.full_messages, status: 422
-    end
+    if (params[:channelId]) 
+          @memberships = Membership.where(memberable_id: params[:channelId], memberable_type: 'Channel')
+      elsif (params[:directId])
+          @memberships = Membership.where(memberable_id: params[:channelId], memberable_type: 'Channel')
+      end
+      render :index
   end
 
   def index

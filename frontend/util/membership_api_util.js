@@ -34,3 +34,11 @@ export const fetchChannelMemberships = channelId => {
     data: { channelId }
   });
 };
+
+export const fetchDirectMemberships = directId => {
+  return $.ajax({
+    method: "GET",
+    url: `api/memberships`,
+    data: { directId }
+  });
+};
