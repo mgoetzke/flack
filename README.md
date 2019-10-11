@@ -21,4 +21,4 @@ Live message editing
 ![alt text](https://media.giphy.com/media/l2ExAAkcFEbtl2WRpS/giphy.gif "sample conversation")
 ## Future Features
 + Direct messaging between individuals and groups
-+ Notifications of live changes in channels and memberships
++ Notifications
