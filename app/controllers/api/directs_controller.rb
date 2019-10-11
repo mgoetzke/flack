@@ -11,6 +11,15 @@ class Api::DirectsController < ApplicationController
       render json: @direct.errors.full_messages, status: 422
     end
   end
+  def show
+    @direct = Direct.find(params[:id])
+    if @direct
+      render :show
+    else
+      render json: ['Sorry, that direct does not exist.'], status: 404  
+    end
+
+  end
   def index
     @directs = Direct.all
     render :index

@@ -5,17 +5,9 @@ class MessageForm extends React.Component {
     super(props);
     this.handleSubmit = this.handleSubmit.bind(this);
 
-    let msgType = props.location.pathname.includes("channels")
-      ? "Channel"
-      : "Direct";
-    let msgId = props.location.pathname.includes("channels")
-      ? this.props.match.params.channelId
-      : this.props.match.params.directId;
     this.state = {
       body: "",
-      user_id: props.currentUser,
-      messageable_type: msgType,
-      messageable_id: msgId
+      currentUser: props.currentUser
     };
   }
 
@@ -28,11 +20,7 @@ class MessageForm extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    App.cable.subscriptions.subscriptions[0].speak({
-      message: {
-        ...this.state
-      }
-    });
+    App.channel.speak({ message: this.state });
     this.setState({
       body: ""
     });

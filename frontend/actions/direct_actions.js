@@ -22,11 +22,11 @@ export const createDirect = direct => dispatch => {
   );
 };
 
-export const updateDirect = direct => dispatch => {
-  return DirectApiUtil.updateDirect(direct).then(direct =>
-    dispatch(receiveDirect(direct))
-  );
-};
+// export const updateDirect = direct => dispatch => {
+//   return DirectApiUtil.updateDirect(direct).then(direct =>
+//     dispatch(receiveDirect(direct))
+//   );
+// };
 
 export const clearDirectErrors = () => {
   return {

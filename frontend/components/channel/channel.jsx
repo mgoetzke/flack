@@ -45,22 +45,22 @@ class Channel extends React.Component {
     this.setState({ cogPopUpVisibility: "menu-hide" });
   }
 
-  configChat(channelId) {
-    const { receiveMessage } = this.props;
-    if (App.cable.subscriptions["subscriptions"]) {
-      App.cable.subscriptions["subscriptions"] = [];
+  configChat() {
+    const { receiveMessage} = this.props;
+    if (App.channel) {
+      App.channel.unsubscribe();
     }
-    App.cable.subscriptions.create(
-      { channel: "ChatChannel", id: channelId }, //slip data inside object and include id there history push
+    App.channel = App.cable.subscriptions.create(
+      { channel: "ChatChannel", id: this.props.channelId }, //slip data inside object and include id there history push
       {
         received: data => {
           let incomingMessage = JSON.parse(data.message);
           switch (data.type) {
             case "message":
-              this.props.receiveMessage(incomingMessage);
+              receiveMessage(incomingMessage);
               break;
             case "edit":
-              this.props.receiveMessage(incomingMessage);
+              receiveMessage(incomingMessage);
               break;
           }
         },
@@ -69,6 +69,9 @@ class Channel extends React.Component {
         },
         load: function() {
           return this.perform("load");
+        },
+        unsubscribe: function () {
+          return this.perform("unsubscribed");
         }
       }
     );
@@ -76,7 +79,31 @@ class Channel extends React.Component {
   componentDidMount() {
     const { channelId } = this.props;
     const { receiveMessage } = this.props;
-    this.configChat(this.props.channelId);
+    if (App.channel) {
+      App.channel.unsubscribe();;
+    }
+    App.channel = App.cable.subscriptions.create(
+      { channel: "ChatChannel", id: channelId }, //slip data inside object and include id there history push
+      {
+        received: data => {
+          let incomingMessage = JSON.parse(data.message);
+          switch (data.type) {
+            case "message":
+              receiveMessage(incomingMessage);
+              break;
+            case "edit":
+              receiveMessage(incomingMessage);
+              break;
+          }
+        },
+        speak: function (message) {
+          return this.perform("speak", message);
+        },
+        load: function () {
+          return this.perform("load");
+        }
+      }
+    );
   }
 
   componentDidUpdate(prevProps) {
@@ -85,7 +112,7 @@ class Channel extends React.Component {
     }
     if (this.props.location !== prevProps.location) {
       const { channelId } = this.props;
-      this.configChat(this.props.channelId);
+      this.configChat();
       let newMessages = this.props.messages.filter(message => {
         return message.messageable_id === parseInt(channelId);
       });

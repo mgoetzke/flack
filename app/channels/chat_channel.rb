@@ -1,35 +1,25 @@
 class ChatChannel < ApplicationCable::Channel
   def subscribed
-    channel = Channel.find(params[:id]).id
-    stream_for channel
+    @channel = Channel.find(params[:id])
+    stream_for @channel
   end
   def speak(data)
-    message = Message.new(data["message"])
-    channel = Channel.find(message.messageable_id)
-    if(message.save)
-      socket = {message: format(message), type: 'message'}
-      ChatChannel.broadcast_to(channel.id, socket)
+    message = Message.new(body: data['message']['body'], user_id: data['message']['currentUser'])
+    message.messageable_type = 'Channel'
+    message.messageable_id = @channel.id
+    if(message.save!)
+      socket = {message: format(message), type: 'message', messageable_id: @channel.id, messageable_type: "Chat_Channel"}
+      ChatChannel.broadcast_to(@channel, socket)
     else
-      ChatChannel.broadcast_to(channel.id, {message: "db save failed", id: Time.now, type: 'message'})
+      ChatChannel.broadcast_to(@channel, {message: "db save failed", id: Time.now, type: 'message'})
     end
   end
-  def load
-    # messages = Message.all.collect(&:body)
-    # socket = { messages: messages, type: 'messages'}
-    # ChatChannel.broadcast_to('chat_channel', socket)
-  end
+
   def self.update(message)
     socket={message: format(message.to_json), type: 'edit'}
-    channel = Channel.find(message[:messageable_id]).id
-    ChatChannel.broadcast_to(channel, socket)
+    @channel = Channel.find(message[:messageable_id])
+    ChatChannel.broadcast_to(@channel, socket)
   end
-
-  def self.update2(jbuilt)
-    socket={message: jbuilt, type: 'edit'}
-    ChatChannel.broadcast_to(channel, socket)
-  end
-
- 
 
   def unsubscribed
     # Any cleanup needed when channel is unsubscribed

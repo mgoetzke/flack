@@ -1,29 +1,25 @@
 class ChatDirect < ApplicationCable::Channel
   def subscribed
-    direct = Direct.find(params[:id]).id
-    stream_for direct
+    @direct = Direct.find(params[:id])
+    stream_for @direct
   end
   def speak(data)
-    message = Message.new(data["message"])
-    direct = Direct.find(message.messageable_id)
-    if(message.save)
-      socket = {message: format(message), type: 'message'}
-      ChatDirect.broadcast_to(direct.id, socket)
+    message = Message.new(body: data['message']['body'], user_id: data['message']['currentUser'])
+    message.messageable_type = 'Direct'
+    message.messageable_id = @direct.id
+    if(message.save!)
+      socket = {message: format(message), type: 'message', messageable_id: @direct.id, messageable_type: "Chat_Channel"}
+      ChatDirect.broadcast_to(@direct, socket)
     else
-      ChatDirect.broadcast_to(direct.id, {message: "db save failed", id: Time.now, type: 'message'})
+      ChatDirect.broadcast_to(@direct, {message: "db save failed", id: Time.now, type: 'message'})
     end
   end
   def load
   end
   def self.update(message)
     socket={message: format(message.to_json), type: 'edit'}
-    direct = Direct.find(message[:messageable_id]).id
-    ChatDirect.broadcast_to(direct, socket)
-  end
-
-  def self.update2(jbuilt)
-    socket={message: jbuilt, type: 'edit'}
-    ChatDirect.broadcast_to(direct, socket)
+    @direct = Direct.find(message[:messageable_id])
+    ChatDirect.broadcast_to(@direct, socket)
   end
 
   def unsubscribed

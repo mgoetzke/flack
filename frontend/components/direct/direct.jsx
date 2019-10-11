@@ -45,36 +45,65 @@ class Direct extends React.Component {
     this.setState({ cogPopUpVisibility: "menu-hide" });
   }
 
-  configChat(directId) {
+  configChat() {
     const { receiveMessage } = this.props;
-    if (App.cable.subscriptions["subscriptions"]) {
-      App.cable.subscriptions["subscriptions"] = [];
+    if (App.channel) {
+      App.channel.unsubscribe();
     }
-    App.cable.subscriptions.create(
+    App.channel = App.cable.subscriptions.create(
+      { channel: "ChatDirect", id: this.props.directId }, //slip data inside object and include id there history push
+      {
+        received: data => {
+          let incomingMessage = JSON.parse(data.message);
+          switch (data.type) {
+            case "message":
+              receiveMessage(incomingMessage);
+              break;
+            case "edit":
+              receiveMessage(incomingMessage);
+              break;
+          }
+        },
+        speak: function (message) {
+          return this.perform("speak", message);
+        },
+        load: function () {
+          return this.perform("load");
+        },
+        unsubscribe: function () {
+          return this.perform("unsubscribed");
+        }
+      }
+    );
+  }
+  componentDidMount() {
+    const { directId } = this.props;
+    const { receiveMessage } = this.props;
+    if (App.channel) {
+      App.channel.unsubscribe();;
+    }
+    App.channel = App.cable.subscriptions.create(
       { channel: "ChatDirect", id: directId }, //slip data inside object and include id there history push
       {
         received: data => {
           let incomingMessage = JSON.parse(data.message);
           switch (data.type) {
             case "message":
-              this.props.receiveMessage(incomingMessage);
+              receiveMessage(incomingMessage);
               break;
             case "edit":
-              this.props.receiveMessage(incomingMessage);
+              receiveMessage(incomingMessage);
               break;
           }
         },
-        speak: function(message) {
+        speak: function (message) {
           return this.perform("speak", message);
         },
-        load: function() {
+        load: function () {
           return this.perform("load");
         }
       }
     );
-  }
-  componentDidMount() {
-    this.configChat(this.props.directId);
   }
 
   componentDidUpdate(prevProps) {
@@ -83,7 +112,7 @@ class Direct extends React.Component {
     }
     if (this.props.location !== prevProps.location) {
       const { directId } = this.props;
-      this.configChat(directId);
+      this.configChat();
       let newMessages = this.props.messages.filter(message => {
         return message.messageable_id === parseInt(directId);
       });
