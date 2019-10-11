@@ -26,7 +26,7 @@ Live message editing
 
 ![alt text](https://media.giphy.com/media/l2ExAAkcFEbtl2WRpS/giphy.gif "sample conversation")
 
-*./app/controllers/api/messages_controller.rb
+*./app/controllers/api/messages_controller.rb*
 ```
 def update
     @message = Message.find(params[:id])
@@ -43,7 +43,7 @@ def broadcastEdit(message)
     ChatChannel.update(message)
 end
 ```
-*./app/channels/chat_channel.rb
+*./app/channels/chat_channel.rb*
 ```
 def self.update(message)
     socket={message: format(message.to_json), type: 'edit'}
