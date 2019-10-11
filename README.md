@@ -31,5 +31,5 @@ Live message editing
 
 ## How To Use
 + Clone git locally
-+ npm install and bundle install
-+ Open separate sessions in browser using incognito mode
++ Run npm install and bundle install
++ Open separate sessions in browser using incognito mode to highlight instant messaging
