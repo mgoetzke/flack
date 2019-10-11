@@ -15,11 +15,11 @@ class SessionForm extends React.Component {
   }
   handleSubmit(e) {
     e.preventDefault;
-    this.props.processForm(this.state);
+    this.props.processForm(this.state).then(() => this.props.history.push('/workspace/channels/1'));
   }
 
   handleDemo(){
-    this.props.processForm(this.props.demoUser);
+    this.props.processForm(this.props.demoUser).then(() => this.props.history.push('/workspace/channels/1'));
   }
 
   update(field) {
