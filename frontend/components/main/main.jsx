@@ -15,7 +15,7 @@ class Main extends React.Component {
     this.props.fetchAllChannels();
     this.props.fetchMemberships();
     this.props.fetchAllMessages();
-    debugger;
+
     App.NotificationsChannel = App.cable.subscriptions.create(
       { channel: "NotificationsChannel" },
       {
@@ -32,7 +32,6 @@ class Main extends React.Component {
         }
       }
     );
-    debugger;
   }
   componentDidUpdate() {}
 
