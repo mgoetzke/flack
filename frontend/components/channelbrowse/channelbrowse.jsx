@@ -12,12 +12,15 @@ class ChannelBrowse extends React.Component {
 
   componentDidMount() {
     this.nameInput.focus();
+    this.props.fetchAllChannels();
   }
   updateField(field) {
     return e => this.setState({ [field]: e.target.value });
   }
 
-  componentDidUpdate() {}
+  componentDidUpdate() {
+    this.props.fetchAllChannels();
+  }
 
   render() {
     let allChannels = this.props.channels;

@@ -2,6 +2,7 @@ import { connect } from "react-redux";
 import Sidebar from "./sidebar";
 import { openModal, closeModal } from "../../actions/modal_actions";
 import { getUserMemberships } from "../../selectors/membership_selectors";
+import { fetchAllChannels } from '../../actions/channel_actions';
 import React from "react";
 import { withRouter } from "react-router-dom";
 const mapState = state => {
