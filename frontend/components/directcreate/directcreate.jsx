@@ -127,50 +127,37 @@ class DirectCreate extends React.Component {
             <span>esc</span>
           </button>
         </div>
-        <div className="modal-direct-create">
-          <form onSubmit={this.handleSubmit} className="direct-body">
-            <div className="modal-body-create">
-              <div className="channel-create-header">
-                <h1>{headText}</h1>
-              </div>
-              <div className="modal-input-block">
-                <span className="modal-search">
-                  <div className="modal-search-box-direct">
-                    <ul className="search-invited">{invitedUsers}</ul>
-                    <input
-                      className="modal-search-direct"
-                      ref={input => {
-                        this.nameInput = input;
-                      }}
-                      type="text"
-                      value={this.state.searchInput}
-                      placeholder="Search by name"
-                      onChange={this.update("searchInput")}
-                    />
-                  </div>
-                </span>
-                {remainingInvites.length > 0 &&
-                  this.state.searchInput.length > 0 && (
-                    <ul className="search-uninvited">{notInvitedUsers}</ul>
-                  )}
+        <div className="modal-member">
+          <div className="modal-body">
+            <h1>Direct Messages</h1>
+
+            <span className="modal-search">
+              <div className="modal-search-box">
+                <ul className="search-invited">{invitedUsers}</ul>
+                <input
+                  ref={input => {
+                    this.nameInput = input;
+                  }}
+                  value={this.state.searchInput}
+                  type="text"
+                  placeholder="Search by name"
+                  onChange={this.update("searchInput")}
+                />
               </div>
 
-              <div className="modal-create-buttons">
-                {this.state.invitedUsers.length !== 0 && (
-                  <input
-                    className="modal-button modal-button-submit"
-                    type="submit"
-                    value="Go"
-                  />
-                )}
-                {this.state.invitedUsers.length === 0 && (
-                  <span className="modal-button modal-button-invalid">
-                    <p>Go</p>
-                  </span>
-                )}
-              </div>
-            </div>
-          </form>
+              <button
+                type="submit"
+                onClick={this.handleMemberships}
+                className="add-button modal-button-submit"
+              >
+                Go
+              </button>
+            </span>
+            {remainingInvites.length > 0 &&
+              this.state.searchInput.length > 0 && (
+                <ul className="search-uninvited">{notInvitedUsers}</ul>
+              )}
+          </div>
         </div>
       </>
     );
