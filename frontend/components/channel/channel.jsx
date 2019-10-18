@@ -136,6 +136,7 @@ class Channel extends React.Component {
 
   render() {
     let { channel, memberships } = this.props;
+    debugger;
     let formatMessages = this.props.messages
       .filter(message => {
         return message.messageable_id === parseInt(channel.id);
