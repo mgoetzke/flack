@@ -37,9 +37,4 @@ const mapStateProtected = state => {
   return { loggedIn: Boolean(state.session.id) };
 };
 
-export const ProtectedRoute = withRouter(
-  connect(
-    mapStateProtected,
-    null
-  )(Protected)
-);
+export const ProtectedRoute = withRouter(connect(mapStateProtected)(Protected));

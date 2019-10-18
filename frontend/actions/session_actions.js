@@ -7,7 +7,9 @@ export const CLEAR_SESSION_ERRORS = "CLEAR_SESSION_ERRORS";
 
 export const login = user => dispatch => {
   return SessionApiUtil.login(user).then(
-    currentUser => dispatch(receiveCurrentUser(currentUser)),
+    currentUser => {
+      dispatch(receiveCurrentUser(currentUser));
+    },
     errors => dispatch(receiveErrors(errors.responseJSON))
   );
 };
