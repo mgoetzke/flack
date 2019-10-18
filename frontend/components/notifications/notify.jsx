@@ -1,4 +1,4 @@
-// App.cable.subscriptions.create "WebNotificationsChannel",
+// App.notify = App.cable.subscriptions.create "WebNotificationsChannel",
 //       received: data => {
 //         let incomingMembership = JSON.parse(data.membership);
 //         switch (data.type) {

@@ -44,7 +44,8 @@ class Channel extends React.Component {
 
   configChat() {
     const { receiveMessage } = this.props;
-    App.cable.subscriptions.create(
+    if (App.channel) App.cable.subscriptions.remove(App.channel);
+    App.channel = App.cable.subscriptions.create(
       { channel: "ChatChannel", id: this.props.channelId }, //slip data inside object and include id there history push
       {
         received: data => {
@@ -70,7 +71,8 @@ class Channel extends React.Component {
   componentDidMount() {
     const { channelId } = this.props;
     const { receiveMessage } = this.props;
-    App.cable.subscriptions.create(
+    if (App.channel) App.cable.subscriptions.remove(App.channel);
+    App.channel = App.cable.subscriptions.create(
       { channel: "ChatChannel", id: channelId }, //slip data inside object and include id there history push
       {
         received: data => {

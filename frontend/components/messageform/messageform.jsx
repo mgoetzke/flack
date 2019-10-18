@@ -21,18 +21,20 @@ class MessageForm extends React.Component {
   update(field) {
     return e => this.setState({ [field]: e.currentTarget.value });
   }
-  componentDidUpdate(){
+  componentDidUpdate() {
     // this.setState({ messageable_id: 2})
   }
 
   handleSubmit(e) {
     e.preventDefault();
-    App.cable.subscriptions.subscriptions[0].speak({
-      message: { ...this.state, 
-        messageable_id: this.props.match.params.channelId}, 
+    App.channel.speak({
+      message: {
+        ...this.state,
+        messageable_id: this.props.match.params.channelId
+      }
     });
     this.setState({
-      body: "",
+      body: ""
     });
   }
 

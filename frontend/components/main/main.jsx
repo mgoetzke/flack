@@ -36,7 +36,7 @@ class Main extends React.Component {
   componentDidUpdate() {}
 
   componentWillUnmount() {
-    // App.NotificationsChannel.unsubscribe();
+    App.NotificationsChannel.unsubscribe();
   }
 
   render() {
