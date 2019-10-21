@@ -13,6 +13,7 @@ class Main extends React.Component {
   componentDidMount() {
     this.props.fetchAllUsers();
     this.props.fetchAllChannels();
+    this.props.fetchAllDirects();
     this.props.fetchMemberships();
     this.props.fetchAllMessages();
 

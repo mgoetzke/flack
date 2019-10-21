@@ -31,6 +31,7 @@ class Api::MessagesController < ApplicationController
     end
     # TO DO CLEARN
     def broadcastEdit(message)
+        # TO DO CHAT VS DM
       ChatChannel.update(message)
     end
 

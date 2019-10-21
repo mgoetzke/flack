@@ -4,7 +4,6 @@ class MessageForm extends React.Component {
   constructor(props) {
     super(props);
     this.handleSubmit = this.handleSubmit.bind(this);
-
     let msgType = props.location.pathname.includes("channels")
       ? "Channel"
       : "Direct";
@@ -21,23 +20,27 @@ class MessageForm extends React.Component {
   update(field) {
     return e => this.setState({ [field]: e.currentTarget.value });
   }
-  componentDidUpdate(){
+  componentDidUpdate() {
     // this.setState({ messageable_id: 2})
   }
 
   handleSubmit(e) {
     e.preventDefault();
     App.cable.subscriptions.subscriptions[0].speak({
-      message: { ...this.state, 
-        messageable_id: this.props.match.params.channelId}, 
+      message: {
+        ...this.state,
+        messageable_id: this.props.match.params.channelId
+      }
     });
     this.setState({
-      body: "",
+      body: ""
     });
   }
 
   render() {
-    let channelNameRendered = "Message #" + this.props.channel.name;
+    let channelNameRendered = this.props.location.pathname.includes("channels")
+      ? "Message #" + this.props.channel.name
+      : "Message direct message users";
     return (
       <form className="message-form" onSubmit={this.handleSubmit}>
         <input

@@ -147,7 +147,7 @@ class DirectCreate extends React.Component {
 
               <button
                 type="submit"
-                onClick={this.handleMemberships}
+                onClick={this.handleSubmit}
                 className="add-button modal-button-submit"
               >
                 Go

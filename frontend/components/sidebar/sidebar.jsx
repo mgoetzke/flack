@@ -26,23 +26,39 @@ class Sidebar extends React.Component {
     return channelId === membership.memberable_id ? "selected" : "unselected";
   }
   render() {
-    let membershipItems = this.props.memberships.map(membership => {
+    let channelMembershipItems = [];
+    let directMembershipItems = [];
+    let membershipItems = this.props.memberships.forEach(membership => {
       let privacyIcon =
         membership.privacy === false ? "# " : <i className="fas fa-lock"></i>;
       let selectedItem = this.handleLocationClass(membership);
-
-      return (
-        <li
-          key={membership.id}
-          className={selectedItem}
-          onClick={this.handleSelect.bind(null, membership.memberable_id)}
-        >
-          {privacyIcon}
-          <Link to={`/workspace/channels/${membership.memberable_id}`}>
-            {membership.name}
-          </Link>
-        </li>
-      );
+      if (membership.memberable_type === "Channel") {
+        channelMembershipItems.push(
+          <li
+            key={membership.id}
+            className={selectedItem}
+            onClick={this.handleSelect.bind(null, membership.memberable_id)}
+          >
+            {privacyIcon}
+            <Link to={`/workspace/channels/${membership.memberable_id}`}>
+              {membership.name}
+            </Link>
+          </li>
+        );
+      } else {
+        directMembershipItems.push(
+          <li
+            key={membership.id}
+            className={selectedItem}
+            onClick={this.handleSelect.bind(null, membership.memberable_id)}
+          >
+            {privacyIcon}
+            <Link to={`/workspace/directs/${membership.memberable_id}`}>
+              {membership.name}
+            </Link>
+          </li>
+        );
+      }
     });
     return (
       <div className="sidebar">
@@ -51,13 +67,14 @@ class Sidebar extends React.Component {
             <h2>{this.props.openBrowseChannel}</h2>
             {this.props.openCreateChannel}
           </div>
-          <ul className="membership-items">{membershipItems}</ul>
+          <ul className="membership-items">{channelMembershipItems}</ul>
         </div>
         <div className="sidebar-directs">
           <div className="sidebar-header">
             <h2>Direct Messages</h2>
             {this.props.openCreateDirect}
           </div>
+          <ul className="membership-items">{directMembershipItems}</ul>
         </div>
       </div>
     );
