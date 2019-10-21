@@ -8,10 +8,10 @@ class Connection < ActionCable::Connection::Base
 
     private
       def find_verified_user
-        if current_user = User.find_by(session_token: request.session_options[:id])
+        if current_user = User.find_by(id: cookies.signed[:user_id])
           current_user
-        # else
-        #   reject_unauthorized_connection
+        else
+          reject_unauthorized_connection
         end
       end
   end

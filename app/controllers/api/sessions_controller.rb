@@ -12,6 +12,8 @@ class Api::SessionsController < ApplicationController
     @user = User.find_by_credentials(params[:user][:email], 
     params[:user][:password])
     if @user
+      session[:user_id] = @user.id
+      cookies.signed[:user_id] = session[:user_id]
       login(@user)
       render @user
     else
