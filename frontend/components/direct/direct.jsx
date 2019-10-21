@@ -135,7 +135,10 @@ class Direct extends React.Component {
     let { direct, memberships } = this.props;
     let formatMessages = this.props.messages
       .filter(message => {
-        return message.messageable_id === parseInt(direct.id);
+        return (
+          message.messageable_id === parseInt(direct.id) &&
+          message.messageable_type === "Direct"
+        );
       })
       .map(message => {
         return (

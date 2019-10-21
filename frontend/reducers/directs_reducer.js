@@ -12,6 +12,7 @@ export default (state = {}, action) => {
     case RECEIVE_ALL_DIRECTS:
       return merge({}, action.directs);
     case RECEIVE_DIRECT:
+      debugger;
       return merge({}, state, { [action.direct.id]: action.direct });
     default:
       return state;
