@@ -11,6 +11,8 @@ class Api::DirectsController < ApplicationController
     end
   end
   def index
+    @directs = Direct.all
+    render :index
   end
   def show
   end

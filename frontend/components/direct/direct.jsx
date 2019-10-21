@@ -45,7 +45,7 @@ class Direct extends React.Component {
   configChat() {
     const { receiveMessage } = this.props;
     App.channel = App.cable.subscriptions.create(
-      { direct: "ChatDirect", id: this.props.directId }, //slip data inside object and include id there history push
+      { channel: "ChatDirect", id: this.props.directId }, //slip data inside object and include id there history push
       {
         received: data => {
           let incomingMessage = JSON.parse(data.message);
@@ -71,7 +71,7 @@ class Direct extends React.Component {
     const { directId } = this.props;
     const { receiveMessage } = this.props;
     App.channel = App.cable.subscriptions.create(
-      { direct: "ChatDirect", id: directId }, //slip data inside object and include id there history push
+      { channel: "ChatDirect", id: directId }, //slip data inside object and include id there history push
       {
         received: data => {
           let incomingMessage = JSON.parse(data.message);

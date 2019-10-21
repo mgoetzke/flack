@@ -1,11 +1,9 @@
 class ChatDirect < ApplicationCable::Channel
   def subscribed
-    debugger
     direct = Direct.find(params[:id]).id
     stream_for direct
   end
   def speak(data)
-    debugger
     message = Message.new(data["message"])
     direct = Direct.find(message.messageable_id)
     if(message.save)

@@ -26,10 +26,13 @@ class MessageForm extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    App.cable.subscriptions.subscriptions[0].speak({
+    let messageable_id = this.props.location.pathname.includes("channels")
+      ? this.props.match.params.channelId
+      : this.props.match.params.directId;
+    App.channel.speak({
       message: {
         ...this.state,
-        messageable_id: this.props.match.params.channelId
+        messageable_id: messageable_id
       }
     });
     this.setState({
