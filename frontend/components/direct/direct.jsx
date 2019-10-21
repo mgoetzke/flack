@@ -203,11 +203,6 @@ class Direct extends React.Component {
                 <i className="far fa-user"></i>
                 {memberCount}
               </span>
-              |
-              <span>
-                <i className="far fa-edit"></i>
-                {direct.topic}
-              </span>
             </div>
           </div>
           <div className="direct-header-functions">

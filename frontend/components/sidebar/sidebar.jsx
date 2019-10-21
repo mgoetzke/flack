@@ -22,8 +22,13 @@ class Sidebar extends React.Component {
   }
   handleLocationClass(membership) {
     let channelId = parseInt(this.props.location.pathname.split("/")[3]);
-    let channelType = parseInt(this.props.location.pathname.split("/")[2]);
-    return channelId === membership.memberable_id ? "selected" : "unselected";
+    let channelType = this.props.location.pathname.split("/")[2];
+    debugger;
+    return channelId === membership.memberable_id &&
+      channelType[0].toUpperCase() ===
+        membership.memberable_type[0].toUpperCase()
+      ? "selected"
+      : "unselected";
   }
   render() {
     let channelMembershipItems = [];
@@ -37,7 +42,7 @@ class Sidebar extends React.Component {
           <li
             key={membership.id}
             className={selectedItem}
-            onClick={this.handleSelect.bind(null, membership.memberable_id)}
+            onClick={this.handleSelect.bind(null, membership.id)}
           >
             {privacyIcon}
             <Link to={`/workspace/channels/${membership.memberable_id}`}>
@@ -50,7 +55,7 @@ class Sidebar extends React.Component {
           <li
             key={membership.id}
             className={selectedItem}
-            onClick={this.handleSelect.bind(null, membership.memberable_id)}
+            onClick={this.handleSelect.bind(null, membership.id)}
           >
             {privacyIcon}
             <Link to={`/workspace/directs/${membership.memberable_id}`}>
