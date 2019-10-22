@@ -216,18 +216,6 @@ class Direct extends React.Component {
               className={`direct-header-popup ${this.state.cogPopUpVisibility}`}
             >
               <li>
-                <button
-                  onClick={directMemberToggleFunction}
-                  className="directMemberToggleFunction"
-                >
-                  <span className="direct-name-long">
-                    {directMemberToggleText}
-                    {privacyIcon}
-                    {direct.name}
-                  </span>
-                </button>
-              </li>
-              <li>
                 <div onClick={this.hideMenu2}>
                   {this.props.openAddMembership}
                 </div>

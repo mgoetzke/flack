@@ -31,7 +31,7 @@ const mapDispatch = dispatch => {
       dispatch(destroyMembership(membershipId)),
     openAddMembership: (
       <button onClick={() => dispatch(openModal("addmembership"))}>
-        Add people to direct
+        Invite another member...
       </button>
     )
   };
