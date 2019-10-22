@@ -35,6 +35,7 @@ class Sidebar extends React.Component {
     let membershipItems = this.props.memberships.forEach(membership => {
       let privacyIcon =
         membership.privacy === false ? "# " : <i className="fas fa-lock"></i>;
+      let countIcon = membership.size;
       let selectedItem = this.handleLocationClass(membership);
       if (membership.memberable_type === "Channel") {
         channelMembershipItems.push(
@@ -56,7 +57,7 @@ class Sidebar extends React.Component {
             className={selectedItem}
             onClick={this.handleSelect.bind(null, membership.id)}
           >
-            {privacyIcon}
+            <span className="sidebar-member-count"> {countIcon}</span>
             <Link to={`/workspace/directs/${membership.memberable_id}`}>
               {membership.name}
             </Link>

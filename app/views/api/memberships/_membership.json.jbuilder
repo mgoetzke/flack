@@ -10,4 +10,5 @@ else
     end
   end
   json.name usernames.join(', ')
+  json.size usernames.length
 end

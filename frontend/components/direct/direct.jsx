@@ -195,7 +195,7 @@ class Direct extends React.Component {
         <div className="direct-header">
           <div className="direct-header-deets">
             <div className="direct-header-name">
-              {privacyIcon} <h3>{direct.name}</h3>
+              <h3>{direct.name}</h3>
             </div>
             <div className="direct-header-icons">
               <i className="far fa-star star-icon"></i>|

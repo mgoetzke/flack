@@ -1,6 +1,5 @@
 .sidebar {
   max-width: 220px;
-  /* ask simcha vh px */
   height: calc(100vh - 60px);
   background-color: RGB(63, 14, 64);
   overflow-y: hidden;
@@ -22,6 +21,7 @@
   white-space: nowrap;
   overflow: hidden;
 }
+
 .sidebar .unselected:hover {
   background-color: RGB(53, 13, 54);
 }
@@ -64,4 +64,23 @@
 .sidebar .membership-items i {
   font-size: 10px;
   padding-right: 3px;
+}
+
+.sidebar-member-count {
+  color: RGB(63, 14, 64);
+  background-color: RGB(148, 123, 149);
+  font-size: 9px;
+  height: 12px;
+  width: 12px;
+  display: inline-block;
+  text-align: center;
+  box-sizing: inherit;
+  vertical-align: middle;
+  border-radius: 3px;
+  margin-right: 3px;
+}
+
+.selected .sidebar-member-count {
+  color: RGB(23, 98, 163);
+  background-color: RGB(172, 199, 222);
 }
