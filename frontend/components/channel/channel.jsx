@@ -116,6 +116,7 @@ class Channel extends React.Component {
   }
 
   createMembership() {
+    debugger;
     let user_id = this.props.currentUser.id;
     let memberable_id = parseInt(this.props.channelId);
     let memberable_type = "Channel";
@@ -124,7 +125,8 @@ class Channel extends React.Component {
   }
 
   destroyMembership() {
-    // TO DO BAD CODE EDIT
+    //xyz
+    debugger;
     this.setState({ cogPopUpVisibility: "menu-hide" });
     let id = this.props.memberships.filter(
       membership => membership.user_id === this.state.currentUser.id
@@ -228,7 +230,7 @@ class Channel extends React.Component {
                 {!protectedChannels.includes(channel.name) && (
                   <li>
                     <button
-                      onClick={channelMemberToggleFunction}
+                      onMouseDown={channelMemberToggleFunction}
                       className="channelMemberToggleFunction"
                     >
                       <span className="channel-name-long">
@@ -241,7 +243,7 @@ class Channel extends React.Component {
                 )}
                 {memberStatus && (
                   <li>
-                    <div onClick={this.hideMenu2}>
+                    <div onMouseDown={this.hideMenu2}>
                       {this.props.openAddMembership}
                     </div>
                   </li>

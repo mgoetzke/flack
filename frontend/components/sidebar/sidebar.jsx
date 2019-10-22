@@ -23,7 +23,6 @@ class Sidebar extends React.Component {
   handleLocationClass(membership) {
     let channelId = parseInt(this.props.location.pathname.split("/")[3]);
     let channelType = this.props.location.pathname.split("/")[2];
-    debugger;
     return channelId === membership.memberable_id &&
       channelType[0].toUpperCase() ===
         membership.memberable_type[0].toUpperCase()
