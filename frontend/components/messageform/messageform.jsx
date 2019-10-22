@@ -43,7 +43,7 @@ class MessageForm extends React.Component {
   render() {
     let channelNameRendered = this.props.location.pathname.includes("channels")
       ? "Message #" + this.props.channel.name
-      : "Message direct message users";
+      : "Message " + this.props.direct.name;
     return (
       <form className="message-form" onSubmit={this.handleSubmit}>
         <input
