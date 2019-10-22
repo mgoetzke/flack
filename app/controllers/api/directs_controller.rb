@@ -6,6 +6,7 @@ class Api::DirectsController < ApplicationController
       params[:direct][:invitedUsersIds].each do |userId|
         Membership.create(user_id: userId.to_i, memberable_id: @direct.id, memberable_type: Direct)
       end
+      render :show
     else
       render json: @direct.errors.full_messages, status: 422
     end
