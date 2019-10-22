@@ -71,10 +71,9 @@
   background-color: RGB(148, 123, 149);
   font-size: 9px;
   height: 12px;
-  width: 12px;
+  width: 10px;
   display: inline-block;
   text-align: center;
-  box-sizing: inherit;
   vertical-align: middle;
   border-radius: 3px;
   margin-right: 3px;
