@@ -123,7 +123,7 @@ class Direct extends React.Component {
   }
 
   destroyMembership() {
-    // TO DO BAD CODE EDIT
+    //xyz
     this.setState({ cogPopUpVisibility: "menu-hide" });
     let id = this.props.memberships.filter(
       membership => membership.user_id === this.state.currentUser.id

@@ -116,7 +116,6 @@ class Channel extends React.Component {
   }
 
   createMembership() {
-    debugger;
     let user_id = this.props.currentUser.id;
     let memberable_id = parseInt(this.props.channelId);
     let memberable_type = "Channel";
@@ -126,7 +125,6 @@ class Channel extends React.Component {
 
   destroyMembership() {
     //xyz
-    debugger;
     this.setState({ cogPopUpVisibility: "menu-hide" });
     let id = this.props.memberships.filter(
       membership => membership.user_id === this.state.currentUser.id

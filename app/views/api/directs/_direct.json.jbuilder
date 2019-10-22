@@ -1,4 +1,4 @@
-json.extract! direct, :name, :id, :created_at
+json.extract! direct, :id, :created_at
 messages = []
 direct.messages.each do |message|
   messages.push(message.id)
@@ -7,10 +7,10 @@ users = []
 usernames = []
 direct.users.each do |user|
   users.push(user.id)
-  usernames.push(user.display_name)
+  if user != current_user
+    usernames.push(user.display_name)
+  end
 end
-
-json.message_ids = messages
-json.user_ids = users
-json.usernames = usernames.join(',')
-# json.name = "blacherwr"
+json.message_ids messages
+json.user_ids users
+json.name usernames.join(', ')

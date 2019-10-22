@@ -90,6 +90,7 @@
   border-radius: 5px;
   border: 1px solid RGB(240, 240, 240);
   font-size: 20px;
+  line-height: 0px;
 }
 .message-item-button:hover {
   color: RGB(18, 100, 63);

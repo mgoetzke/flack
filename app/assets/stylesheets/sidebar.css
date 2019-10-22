@@ -7,7 +7,6 @@
   color: RGB(207, 195, 207);
   font-family: "Lato";
   font-size: 15px;
-  text-overflow: ellipsis;
 }
 .sidebar-channels {
   margin-top: 25px;
@@ -19,6 +18,9 @@
   padding-bottom: 3px;
   padding-left: 15px;
   padding-right: 15px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
 .sidebar .unselected:hover {
   background-color: RGB(53, 13, 54);
