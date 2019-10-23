@@ -21,6 +21,8 @@ class User < ApplicationRecord
   has_many :messages
   has_many :channels, through: :memberships, source: :memberable, source_type: 'Channel'
 
+  has_many :directs, through: :memberships, source: :memberable, source_type: 'Direct'
+
   after_initialize :ensure_session_token, :ensure_image_url
   attr_reader :password
 

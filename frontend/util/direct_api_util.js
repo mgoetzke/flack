@@ -16,7 +16,16 @@ export const fetchDirect = id => {
 export const fetchAllDirects = () => {
   return $.ajax({
     method: "GET",
-    url: `api/directs`
+    url: `api/directs`,
+    data: { id: "all" }
+  });
+};
+
+export const fetchUserDirects = id => {
+  return $.ajax({
+    method: "GET",
+    url: `api/directs`,
+    data: { id }
   });
 };
 

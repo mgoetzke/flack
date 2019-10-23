@@ -12,8 +12,13 @@ class Api::DirectsController < ApplicationController
     end
   end
   def index
-    @directs = Direct.all
-    render :index
+    if params[:id] == "all"
+      @directs = Direct.all
+      render :index
+    else
+      @directs = Direct.all(:include => :users)
+      debugger
+    end
   end
   def show
   end
