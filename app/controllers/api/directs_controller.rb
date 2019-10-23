@@ -16,7 +16,7 @@ class Api::DirectsController < ApplicationController
       @directs = Direct.all
       render :index
     else
-      @directs = Direct.all(:include => :users)
+      @directs = User.find(params[:id]).directs
       debugger
     end
   end
