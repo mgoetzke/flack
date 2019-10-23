@@ -10,6 +10,13 @@ export const fetchAllDirects = () => dispatch => {
     dispatch(receiveDirects(directs))
   );
 };
+
+export const fetchUserDirects = id => dispatch => {
+  return DirectApiUtil.fetchUserDirects(id).then(directs =>
+    dispatch(receiveDirects(directs))
+  );
+};
+
 export const fetchDirect = id => dispatch => {
   return DirectApiUtil.fetchDirect(id).then(direct => {
     dispatch(receiveDirect(direct));

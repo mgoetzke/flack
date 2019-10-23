@@ -72,8 +72,7 @@ class Greeting extends React.Component {
             >
               <p>{name}</p>
               <button className="log-out-button" onClick={this.handleLogout}>
-                {" "}
-                Log Out{" "}
+                <p>Sign out of Flack</p>
               </button>
             </div>
           </div>
