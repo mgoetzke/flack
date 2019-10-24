@@ -125,10 +125,10 @@ class DirectCreate extends React.Component {
     let directs = this.state.directs.map(direct => {
       let directName = direct.name;
       let directUsers = direct.user_ids;
-      let invitedUsersIds = this.state.invitedUsersIds.push(
-        this.props.currentUserId
-      );
+      let invitedUsersIds = this.state.invitedUsersIds;
+      invitedUsersIds.push(this.props.currentUserId);
       debugger;
+      // YOU ARE HERE NEED TO FILTER directUsers minus currentUser
       if (directUsers.every(id => invitedUsersIds.includes(id))) {
         this.setState({ matchingDirect: direct.id });
       }
