@@ -1,8 +1,10 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 class DirectCreate extends React.Component {
   constructor(props) {
     super(props);
+    debugger;
     this.handleSubmit = this.handleSubmit.bind(this);
     this.update = this.update.bind(this);
     this.state = {
@@ -118,7 +120,33 @@ class DirectCreate extends React.Component {
     let remainingInvites = notInvitedUsers.filter(user => {
       return user !== null;
     });
-
+    let userDirects = this.props.directs;
+    let directs = userDirects.map(direct => {
+      let directName = direct.name;
+      let icon = "PIC";
+      let time = "1 hour ago";
+      if (
+        directName.toLowerCase().includes(this.state.searchInput.toLowerCase())
+      ) {
+        return (
+          <li key={direct.id}>
+            <Link
+              onClick={this.props.closeModal}
+              to={`/workspace/directs/${direct.id}`}
+              className="modal-search-result"
+            >
+              <div className="modal-search-result-body">
+                <span>{directName}</span>
+              </div>
+              <div className="modal-search-result-preview">
+                <i className="fas fa-level-down-alt fa-rotate-90 fa-fw"></i>
+                <span>enter</span>
+              </div>
+            </Link>
+          </li>
+        );
+      }
+    });
     return (
       <>
         <div className="modal-header">
@@ -157,6 +185,10 @@ class DirectCreate extends React.Component {
               this.state.searchInput.length > 0 && (
                 <ul className="search-uninvited">{notInvitedUsers}</ul>
               )}
+          </div>
+          <div className="modal-search-list">
+            <p>Recent conversations</p>
+            <ul className="modal-search-channels">{directs}</ul>
           </div>
         </div>
       </>

@@ -34,7 +34,9 @@ class ChannelBrowse extends React.Component {
       var options = { year: "numeric", month: "long", day: "numeric" };
       let formatCreation = channelCreation.toLocaleDateString([], options);
       if (
-        channelName.toLowerCase().includes(this.state.searchInput) &&
+        channelName
+          .toLowerCase()
+          .includes(this.state.searchInput.toLowerCase()) &&
         channel.private === false
       ) {
         return (

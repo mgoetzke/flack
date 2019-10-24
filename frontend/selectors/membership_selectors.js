@@ -43,11 +43,8 @@ export const getDirectMemberIds = (state, directId) => {
   });
 };
 
-export const getUserDirects(state, userId) => {
+export const getUserDirects = (state, userId) => {
   let directs = Object.values(state.entities.directs);
-  let userId = parseInt(userId);
-  return directs.filter(
-    direct =>
-      direct.users.includes(userId)
-  );
-}
+  let targetId = parseInt(userId);
+  return directs.filter(direct => direct.user_ids.includes(targetId));
+};

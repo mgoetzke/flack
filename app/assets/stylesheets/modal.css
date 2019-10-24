@@ -406,7 +406,8 @@ ul.search-invited {
   width: 640px;
 }
 
-.modal-body-direct {
+.modal-search-list p {
+  margin-bottom: 0px;
 }
 .modal-search-direct {
   width: 530px !important;
