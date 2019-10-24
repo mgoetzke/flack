@@ -4,14 +4,16 @@ import { Link } from "react-router-dom";
 class DirectCreate extends React.Component {
   constructor(props) {
     super(props);
-    debugger;
+
     this.handleSubmit = this.handleSubmit.bind(this);
     this.update = this.update.bind(this);
     this.state = {
       searchInput: "",
       invitedUsers: [],
       invitedUsersIds: [],
-      users: props.users
+      matchingDirect: null,
+      users: props.users,
+      directs: props.directs
     };
     this.addUser = this.addUser.bind(this);
     this.removeUser = this.removeUser.bind(this);
@@ -120,11 +122,16 @@ class DirectCreate extends React.Component {
     let remainingInvites = notInvitedUsers.filter(user => {
       return user !== null;
     });
-    let userDirects = this.props.directs;
-    let directs = userDirects.map(direct => {
+    let directs = this.state.directs.map(direct => {
       let directName = direct.name;
-      let icon = "PIC";
-      let time = "1 hour ago";
+      let directUsers = direct.user_ids;
+      let invitedUsersIds = this.state.invitedUsersIds.push(
+        this.props.currentUserId
+      );
+      debugger;
+      if (directUsers.every(id => invitedUsersIds.includes(id))) {
+        this.setState({ matchingDirect: direct.id });
+      }
       if (
         directName.toLowerCase().includes(this.state.searchInput.toLowerCase())
       ) {
@@ -138,15 +145,33 @@ class DirectCreate extends React.Component {
               <div className="modal-search-result-body">
                 <span>{directName}</span>
               </div>
-              <div className="modal-search-result-preview">
-                <i className="fas fa-level-down-alt fa-rotate-90 fa-fw"></i>
+              <div className="modal-search-result-enter">
                 <span>enter</span>
+                <i className="fas fa-level-down-alt fa-rotate-90 fa-fw"></i>
               </div>
             </Link>
           </li>
         );
       }
     });
+    let clickEvent =
+      this.state.matchingDirect == null
+        ? this.handleSubmit
+        : this.props.history.push(
+            `/workspace/directs/${this.state.matchingDirect}`
+          );
+    let submitButton =
+      this.state.invitedUsersIds.length > 0 ? (
+        <button
+          type="submit"
+          onClick={clickEvent}
+          className="add-button modal-button-submit"
+        >
+          Go
+        </button>
+      ) : (
+        <div className="add-button modal-button-invalid">Go</div>
+      );
     return (
       <>
         <div className="modal-header">
@@ -168,27 +193,20 @@ class DirectCreate extends React.Component {
                   }}
                   value={this.state.searchInput}
                   type="text"
-                  placeholder="Search by name"
+                  placeholder="Find or start a conversation"
                   onChange={this.update("searchInput")}
                 />
               </div>
-
-              <button
-                type="submit"
-                onClick={this.handleSubmit}
-                className="add-button modal-button-submit"
-              >
-                Go
-              </button>
+              {submitButton}
             </span>
             {remainingInvites.length > 0 &&
               this.state.searchInput.length > 0 && (
                 <ul className="search-uninvited">{notInvitedUsers}</ul>
               )}
-          </div>
-          <div className="modal-search-list">
-            <p>Recent conversations</p>
-            <ul className="modal-search-channels">{directs}</ul>
+            <span className="modal-search-list">
+              <p>Recent conversations</p>
+              <ul className="modal-search-channels">{directs}</ul>
+            </span>
           </div>
         </div>
       </>

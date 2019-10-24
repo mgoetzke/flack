@@ -125,6 +125,14 @@
   flex-direction: column;
   align-items: space-between;
 }
+.modal-search-result-enter {
+  display: none;
+  font-size: 13px;
+  color: RGB(94, 94, 94);
+  flex-direction: row;
+  align-items: space-between;
+}
+
 .modal-search-result-title {
   padding-bottom: 5px;
 }
@@ -142,6 +150,10 @@
 }
 
 .modal-search-result:hover .modal-search-result-preview {
+  display: flex;
+}
+
+.modal-search-result:hover .modal-search-result-enter {
   display: flex;
 }
 
