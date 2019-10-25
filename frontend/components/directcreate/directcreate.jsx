@@ -83,6 +83,26 @@ class DirectCreate extends React.Component {
     );
   }
 
+  imageHandler(images) {
+    if (images.length == 1) {
+      return (
+        <img className="direct-avatar" src={window[images[0].split(".")[0]]} />
+      );
+    } else {
+      return (
+        <div className="direct-avatar-group">
+          <img
+            className="direct-avatar-one"
+            src={window[images[0].split(".")[0]]}
+          />
+          <img
+            className="direct-avatar-two"
+            src={window[images[1].split(".")[0]]}
+          />
+        </div>
+      );
+    }
+  }
   render() {
     let headText = "Direct Messages";
     let invitedUsers = this.state.invitedUsers.map(user => {
@@ -93,7 +113,7 @@ class DirectCreate extends React.Component {
           onClick={() => this.removeUser(user)}
           key={user.id}
         >
-          <img className="message-avatar" src={window[image_location]} />
+          <img className="direct-avatar" src={window[image_location]} />
           {user.display_name}
         </li>
       );
@@ -116,7 +136,7 @@ class DirectCreate extends React.Component {
             onClick={() => this.addUser(user)}
             key={user.id}
           >
-            <img className="message-avatar" src={window[image_location]} />
+            <img className="direct-avatar" src={window[image_location]} />
             {user.display_name}
           </li>
         );
@@ -128,12 +148,7 @@ class DirectCreate extends React.Component {
     let directs = this.state.directs.map(direct => {
       let directName = direct.name;
       let directUsers = direct.user_ids;
-      let image = (
-        <img
-          className="message-avatar"
-          src={window[direct.images[0].split(".")[0]]}
-        />
-      );
+      let image = this.imageHandler(direct.images);
       let allUsersIds = this.state.invitedUsersIds.slice(0);
       allUsersIds.push(this.props.currentUserId);
       if (
@@ -153,8 +168,8 @@ class DirectCreate extends React.Component {
               className="modal-search-result"
             >
               <div className="modal-search-result-body direct-search-result">
-                {image}
-                <span>{directName}</span>
+                <div className="direct-search-image">{image}</div>
+                <span className="direct-search-text">{directName}</span>
               </div>
               <div className="modal-search-result-enter">
                 <span>enter</span>

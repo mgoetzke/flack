@@ -8,9 +8,9 @@ usernames = []
 images = []
 direct.users.each do |user|
   users.push(user.id)
-  images.push(user.image_url)
   if user != current_user
     usernames.push(user.display_name)
+    images.push(user.image_url)
   end
 end
 json.message_ids messages
