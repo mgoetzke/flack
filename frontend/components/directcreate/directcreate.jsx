@@ -156,14 +156,16 @@ class DirectCreate extends React.Component {
       }
     });
 
-    let matchingDirect = this.state.directs.filter(direct => {
+    let matchingDirect = this.state.directs.find(direct => {
       let directUsers = direct.user_ids;
       let allUsersIds = this.state.invitedUsersIds.slice(0);
       allUsersIds.push(this.props.currentUserId);
       return directUsers.every(id => allUsersIds.includes(id));
     });
     let clickEvent =
-      matchingDirect == null ? this.handleSubmit : this.redirect.bind(null, 7);
+      matchingDirect == null
+        ? this.handleSubmit
+        : this.redirect.bind(null, matchingDirect.id);
     let submitButton =
       this.state.invitedUsersIds.length > 0 ? (
         <button
