@@ -424,3 +424,7 @@ ul.search-invited {
 .modal-search-direct {
   width: 530px !important;
 }
+.direct-search-result {
+  flex-direction: row;
+  align-items: center;
+}

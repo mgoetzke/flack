@@ -5,8 +5,10 @@ direct.messages.each do |message|
 end
 users = []
 usernames = []
+images = []
 direct.users.each do |user|
   users.push(user.id)
+  images.push(user.image_url)
   if user != current_user
     usernames.push(user.display_name)
   end
@@ -14,3 +16,4 @@ end
 json.message_ids messages
 json.user_ids users
 json.name usernames.join(', ')
+json.images images

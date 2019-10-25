@@ -128,6 +128,12 @@ class DirectCreate extends React.Component {
     let directs = this.state.directs.map(direct => {
       let directName = direct.name;
       let directUsers = direct.user_ids;
+      let image = (
+        <img
+          className="message-avatar"
+          src={window[direct.images[0].split(".")[0]]}
+        />
+      );
       let allUsersIds = this.state.invitedUsersIds.slice(0);
       allUsersIds.push(this.props.currentUserId);
       if (
@@ -146,7 +152,8 @@ class DirectCreate extends React.Component {
               to={`/workspace/directs/${direct.id}`}
               className="modal-search-result"
             >
-              <div className="modal-search-result-body">
+              <div className="modal-search-result-body direct-search-result">
+                {image}
                 <span>{directName}</span>
               </div>
               <div className="modal-search-result-enter">
