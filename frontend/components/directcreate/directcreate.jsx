@@ -11,12 +11,12 @@ class DirectCreate extends React.Component {
       searchInput: "",
       invitedUsers: [],
       invitedUsersIds: [],
-      matchingDirect: null,
       users: props.users,
       directs: props.directs
     };
     this.addUser = this.addUser.bind(this);
     this.removeUser = this.removeUser.bind(this);
+    this.redirect = this.redirect.bind(this);
   }
   handleSubmit(e) {
     e.preventDefault();
@@ -43,7 +43,10 @@ class DirectCreate extends React.Component {
 
     this.setState({ name: "", invites: [] });
   }
-
+  redirect(id) {
+    this.props.history.push(`/workspace/directs/${id}`);
+    this.props.closeModal();
+  }
   handleInvites(userIds, memberable_type, memberable_id) {
     userIds.forEach(user_id => {
       let newMembership = { memberable_id, user_id, memberable_type };
@@ -125,12 +128,10 @@ class DirectCreate extends React.Component {
     let directs = this.state.directs.map(direct => {
       let directName = direct.name;
       let directUsers = direct.user_ids;
-      let invitedUsersIds = this.state.invitedUsersIds;
-      invitedUsersIds.push(this.props.currentUserId);
-      debugger;
-      // YOU ARE HERE NEED TO FILTER directUsers minus currentUser
-      if (directUsers.every(id => invitedUsersIds.includes(id))) {
-        this.setState({ matchingDirect: direct.id });
+      let allUsersIds = this.state.invitedUsersIds.slice(0);
+      allUsersIds.push(this.props.currentUserId);
+      if (directUsers.every(id => allUsersIds.includes(id))) {
+        return null;
       }
       if (
         directName.toLowerCase().includes(this.state.searchInput.toLowerCase())
@@ -154,12 +155,15 @@ class DirectCreate extends React.Component {
         );
       }
     });
+
+    let matchingDirect = this.state.directs.filter(direct => {
+      let directUsers = direct.user_ids;
+      let allUsersIds = this.state.invitedUsersIds.slice(0);
+      allUsersIds.push(this.props.currentUserId);
+      return directUsers.every(id => allUsersIds.includes(id));
+    });
     let clickEvent =
-      this.state.matchingDirect == null
-        ? this.handleSubmit
-        : this.props.history.push(
-            `/workspace/directs/${this.state.matchingDirect}`
-          );
+      matchingDirect == null ? this.handleSubmit : this.redirect.bind(null, 7);
     let submitButton =
       this.state.invitedUsersIds.length > 0 ? (
         <button
