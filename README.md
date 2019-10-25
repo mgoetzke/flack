@@ -1,4 +1,4 @@
-# Flack README
+# Flack
 
 **flack** is a web-based instant-messaging application that improves workplace communication and collaboration. A live demo is available at http://flackflack.herokuapp.com/
  
@@ -8,7 +8,6 @@
 + React/Redux
 + JavaScript
 + Action Cable for WebSockets.
-
 
 
 ## Features
