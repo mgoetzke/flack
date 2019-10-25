@@ -130,7 +130,10 @@ class DirectCreate extends React.Component {
       let directUsers = direct.user_ids;
       let allUsersIds = this.state.invitedUsersIds.slice(0);
       allUsersIds.push(this.props.currentUserId);
-      if (directUsers.every(id => allUsersIds.includes(id))) {
+      if (
+        allUsersIds.every(id => directUsers.includes(id)) &&
+        directUsers.every(id => allUsersIds.includes(id))
+      ) {
         return null;
       }
       if (
@@ -160,7 +163,10 @@ class DirectCreate extends React.Component {
       let directUsers = direct.user_ids;
       let allUsersIds = this.state.invitedUsersIds.slice(0);
       allUsersIds.push(this.props.currentUserId);
-      return directUsers.every(id => allUsersIds.includes(id));
+      return (
+        allUsersIds.every(id => directUsers.includes(id)) &&
+        directUsers.every(id => allUsersIds.includes(id))
+      );
     });
     let clickEvent =
       matchingDirect == null
