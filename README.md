@@ -16,6 +16,7 @@
 + Message editing
 + Create, browse, and join channels for topic-based discussion
 + Privacy feature on channels for protection of sensitive discussions
++ Direct messaging between individuals and groups
 
 ## Feature Highlights
 Live messaging
@@ -52,7 +53,6 @@ def self.update(message)
 end
 ```
 ## Future Features
-+ Direct messaging between individuals and groups
 + Notifications
 
 ## How To Use
