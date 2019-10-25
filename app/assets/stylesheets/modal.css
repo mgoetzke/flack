@@ -157,6 +157,10 @@
   display: flex;
 }
 
+.modal-search-result:hover .modal-search-result-time {
+  display: none;
+}
+
 .channel-create-header p {
   color: RGB(51, 51, 51);
   font-size: 15px;

@@ -103,6 +103,24 @@ class DirectCreate extends React.Component {
       );
     }
   }
+  dateHandler(time) {
+    let d = new Date(0);
+    d.setUTCSeconds(time);
+    if (time === 0) {
+      return `never`;
+    }
+    let t = new Date();
+    let diffValue = (t - d) / (1000 * 60);
+    if (diffValue < 60) {
+      return `${Math.floor(diffValue)} minutes ago`;
+    } else if (diffValue / 60 < 24) {
+      return `${Math.floor(diffValue / 60)} hours ago`;
+    } else if (diffValue / (60 * 24) < 30) {
+      return `${Math.floor(diffValue / (60 * 24))} days ago`;
+    } else {
+      return `${Math.floor(diffValue / (60 * 24 * 30))} months ago`;
+    }
+  }
   render() {
     let headText = "Direct Messages";
     let invitedUsers = this.state.invitedUsers.map(user => {
@@ -150,6 +168,7 @@ class DirectCreate extends React.Component {
     );
     let directs = sortedDirects.map(direct => {
       let directName = direct.name;
+      let directTime = this.dateHandler(direct.last_activity);
       let directUsers = direct.user_ids;
       let image = this.imageHandler(direct.images);
       let allUsersIds = this.state.invitedUsersIds.slice(0);
@@ -173,6 +192,9 @@ class DirectCreate extends React.Component {
               <div className="modal-search-result-body direct-search-result">
                 <div className="direct-search-image">{image}</div>
                 <span className="direct-search-text">{directName}</span>
+              </div>
+              <div className="modal-search-result-time">
+                <span>{directTime}</span>
               </div>
               <div className="modal-search-result-enter">
                 <span>enter</span>
