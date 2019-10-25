@@ -17,6 +17,7 @@ class Api::DirectsController < ApplicationController
       render :index
     else
       @directs = User.find(params[:id]).directs
+      render :index
     end
   end
   def show

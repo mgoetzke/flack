@@ -145,7 +145,10 @@ class DirectCreate extends React.Component {
     let remainingInvites = notInvitedUsers.filter(user => {
       return user !== null;
     });
-    let directs = this.state.directs.map(direct => {
+    let sortedDirects = this.state.directs.sort(
+      (a, b) => parseFloat(b.last_activity) - parseFloat(a.last_activity)
+    );
+    let directs = sortedDirects.map(direct => {
       let directName = direct.name;
       let directUsers = direct.user_ids;
       let image = this.imageHandler(direct.images);
