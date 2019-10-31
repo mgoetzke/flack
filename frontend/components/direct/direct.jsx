@@ -1,6 +1,7 @@
 import React from "react";
 import MessageFormContainer from "../messageform/messageform_container";
 import MessageContainer from "../message/message_container";
+import { Redirect } from "react-router-dom";
 
 class Direct extends React.Component {
   constructor(props) {
@@ -190,46 +191,50 @@ class Direct extends React.Component {
         </button>
       </div>
     );
-    return (
-      <div className="direct-container">
-        <div className="direct-header">
-          <div className="direct-header-deets">
-            <div className="direct-header-name">
-              <h3>{direct.name}</h3>
+    if (memberStatus === false) {
+      return <Redirect to="/workspace/channels/1" />;
+    } else {
+      return (
+        <div className="direct-container">
+          <div className="direct-header">
+            <div className="direct-header-deets">
+              <div className="direct-header-name">
+                <h3>{direct.name}</h3>
+              </div>
+              <div className="direct-header-icons">
+                <i className="far fa-star star-icon"></i>|
+                <span className="direct-header-user">
+                  <i className="far fa-user"></i>
+                  {memberCount}
+                </span>
+              </div>
             </div>
-            <div className="direct-header-icons">
-              <i className="far fa-star star-icon"></i>|
-              <span className="direct-header-user">
-                <i className="far fa-user"></i>
-                {memberCount}
-              </span>
+            <div className="direct-header-functions">
+              <i
+                className="fas fa-cog"
+                tabIndex="0"
+                onFocus={this.showMenu}
+                onBlur={this.hideMenu}
+              ></i>
+              <div
+                className={`direct-header-popup ${this.state.cogPopUpVisibility}`}
+              >
+                <li>
+                  <div onClick={this.hideMenu2}>
+                    {this.props.openAddMembership}
+                  </div>
+                </li>
+              </div>
             </div>
           </div>
-          <div className="direct-header-functions">
-            <i
-              className="fas fa-cog"
-              tabIndex="0"
-              onFocus={this.showMenu}
-              onBlur={this.hideMenu}
-            ></i>
-            <div
-              className={`direct-header-popup ${this.state.cogPopUpVisibility}`}
-            >
-              <li>
-                <div onClick={this.hideMenu2}>
-                  {this.props.openAddMembership}
-                </div>
-              </li>
-            </div>
+          <div className="message-list">
+            <ul>{formatMessages}</ul>
+            <div ref={this.bottom}></div>
           </div>
+          {footer}
         </div>
-        <div className="message-list">
-          <ul>{formatMessages}</ul>
-          <div ref={this.bottom}></div>
-        </div>
-        {footer}
-      </div>
-    );
+      );
+    }
   }
 }
 
