@@ -7,6 +7,7 @@ class Sidebar extends React.Component {
       memberships: props.memberships,
       users: props.users,
       channels: props.users,
+      directs: props.directs,
       selectedItem: null,
       selectedMessageableId: null,
       selectedMessageableType: null

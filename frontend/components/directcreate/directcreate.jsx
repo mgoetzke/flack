@@ -10,7 +10,7 @@ class DirectCreate extends React.Component {
     this.state = {
       searchInput: "",
       invitedUsers: [],
-      invitedUsersIds: [],
+      invitedUsersIds: [props.currentUserId],
       users: props.users,
       directs: props.directs
     };
@@ -28,7 +28,7 @@ class DirectCreate extends React.Component {
         let user_id = currentUserId;
         let memberable_type = "Direct";
         let newMembership = { memberable_id, user_id, memberable_type };
-        this.props.createMembership(newMembership);
+        // this.props.createMembership(newMembership);
         // this.handleInvites(
         //   this.state.invitedUsersIds,
         //   memberable_type,

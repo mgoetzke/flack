@@ -154,7 +154,12 @@ class Direct extends React.Component {
       memberships.filter(
         membership => membership.user_id === this.state.currentUser.id
       ).length > 0;
-    let memberCount = memberships.length;
+    let newMemberStatus;
+    if (direct.user_ids) {
+      newMemberStatus = direct.user_ids.includes(this.state.currentUser.id);
+    }
+
+    let memberCount = direct.user_ids.length;
     let directMemberToggleFunction = memberStatus
       ? this.destroyMembership
       : this.createMembership;
@@ -165,33 +170,35 @@ class Direct extends React.Component {
     let directCreation = new Date(direct.created_at);
     var options = { year: "numeric", month: "long", day: "numeric" };
     let formatCreation = directCreation.toLocaleDateString([], options);
-    let footer = memberStatus ? (
-      <MessageFormContainer direct={direct} />
-    ) : (
-      <div className="direct-join-banner">
-        <div className="direct-join-text">
-          <div className="title">
-            <span>
-              You are viewing{" "}
-              <span className="joinName">
-                {privacyIcon}
-                {direct.name}
+    let footer =
+      memberStatus || newMemberStatus ? (
+        <MessageFormContainer direct={direct} />
+      ) : (
+        <div className="direct-join-banner">
+          <div className="direct-join-text">
+            <div className="title">
+              <span>
+                You are viewing{" "}
+                <span className="joinName">
+                  {privacyIcon}
+                  {direct.name}
+                </span>
               </span>
-            </span>
+            </div>
+            <div className="creator">
+              Created by {directCreator} on {formatCreation}
+            </div>
           </div>
-          <div className="creator">
-            Created by {directCreator} on {formatCreation}
-          </div>
+          <button
+            onClick={directMemberToggleFunction}
+            className="join-banner-button"
+          >
+            Join Direct
+          </button>
         </div>
-        <button
-          onClick={directMemberToggleFunction}
-          className="join-banner-button"
-        >
-          Join Direct
-        </button>
-      </div>
-    );
-    if (memberStatus === false) {
+      );
+    if (memberStatus === false && newMemberStatus === false) {
+      debugger;
       return <Redirect to="/workspace/channels/1" />;
     } else {
       return (
