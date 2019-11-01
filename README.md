@@ -53,6 +53,7 @@ end
 ```
 ## Future Features
 + Notifications
++ Emoji reactions 🎉
 
 ## How To Use
 + Clone git locally
