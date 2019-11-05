@@ -53,6 +53,7 @@ end
 ```
 ## Future Features
 + Notifications
++ Online presence status
 + Emoji reactions 🎉
 
 ## How To Use
