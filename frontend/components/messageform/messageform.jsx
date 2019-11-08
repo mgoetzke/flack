@@ -41,7 +41,6 @@ class MessageForm extends React.Component {
   }
 
   render() {
-    debugger;
     let channelNameRendered = this.props.location.pathname.includes("channels")
       ? "Message #" + this.props.channel.name
       : "Message " + this.props.direct.name;

@@ -155,11 +155,12 @@ class Direct extends React.Component {
         membership => membership.user_id === this.state.currentUser.id
       ).length > 0;
     let newMemberStatus;
+    let memberCount;
     if (direct.user_ids) {
       newMemberStatus = direct.user_ids.includes(this.state.currentUser.id);
+      memberCount = direct.user_ids.length;
     }
 
-    let memberCount = direct.user_ids.length;
     let directMemberToggleFunction = memberStatus
       ? this.destroyMembership
       : this.createMembership;
@@ -198,7 +199,6 @@ class Direct extends React.Component {
         </div>
       );
     if (memberStatus === false && newMemberStatus === false) {
-      debugger;
       return <Redirect to="/workspace/channels/1" />;
     } else {
       return (

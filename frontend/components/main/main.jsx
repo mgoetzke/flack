@@ -17,27 +17,24 @@ class Main extends React.Component {
     this.props.fetchMemberships();
     this.props.fetchAllMessages();
 
-    // App.NotificationsChannel = App.cable.subscriptions.create(
-    //   { channel: "NotificationsChannel" },
-    //   {
-    //     received: data => {
-    //       switch (data.type) {
-    //         case "channelAdd":
-    //           this.props
-    //             .fetchChannel(data.channel_id)
-    //             .then(() =>
-    //               this.props.updateMembership(data.channelId, data.userId)
-    //             );
-    //           break;
-    //       }
-    //     }
-    //   }
-    // );
+    App.NotificationsChannel = App.cable.subscriptions.create(
+      { channel: "NotificationsChannel" },
+      {
+        received: data => {
+          switch (data.type) {
+            case "membershipAdd":
+              this.props
+                .receiveMembership(data.membership);
+              break;
+          }
+        }
+      }
+    );
   }
   componentDidUpdate() {}
 
   componentWillUnmount() {
-    // App.NotificationsChannel.unsubscribe();
+    App.NotificationsChannel.unsubscribe();
   }
 
   render() {
