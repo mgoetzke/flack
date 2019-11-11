@@ -6,9 +6,7 @@ class Channel extends React.Component {
   constructor(props) {
     super(props);
     let channelId = parseInt(props.match.params.channelId);
-    let channelMessages = this.props.messages.filter(message => {
-      return message.messageable_id === parseInt(channelId);
-    });
+    let channelMessages = this.props.fetchChannelMessages(channelId);
     let channelMemberships = this.props.memberships.filter(membership => {
       return membership.membershipable_id === parseInt(channelId);
     });
@@ -101,9 +99,7 @@ class Channel extends React.Component {
     if (this.props.location !== prevProps.location) {
       const { channelId } = this.props;
       this.configChat();
-      let newMessages = this.props.messages.filter(message => {
-        return message.messageable_id === parseInt(channelId);
-      });
+      let newMessages = this.props.fetchChannelMessages(channelId);
       let newMemberships = this.props.memberships.filter(membership => {
         return membership.memberable_id === parseInt(channelId);
       });

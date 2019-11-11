@@ -32,7 +32,6 @@ class Api::DirectsController < ApplicationController
     params.require(:direct).permit(:invitedUsers)
   end
   def broadcastNewMembership(membership)
-    debugger
     ActionCable.server.broadcast "notifications_#{membership.user_id}", {membership: membership, type: 'membershipAdd'}
   end
   def broadcastNewDirect(direct, user)

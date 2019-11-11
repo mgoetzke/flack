@@ -1,7 +1,7 @@
 import { connect } from "react-redux";
 import Channel from "./channel";
 import { withRouter } from "react-router-dom";
-import { receiveMessage } from "../../actions/message_actions";
+import { fetchChannelMessages, receiveMessage } from "../../actions/message_actions";
 import { getChannelMemberships } from "../../selectors/membership_selectors";
 import { openModal, closeModal } from "../../actions/modal_actions";
 import React from "react";
@@ -29,6 +29,7 @@ const mapState = (state, ownProps) => {
 const mapDispatch = dispatch => {
   return {
     receiveMessage: message => dispatch(receiveMessage(message)),
+    fetchChannelMessages: channelId => dispatch(fetchChannelMessages(channelId)),
     createMembership: membership => dispatch(createMembership(membership)),
     destroyMembership: membershipId =>
       dispatch(destroyMembership(membershipId)),
