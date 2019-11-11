@@ -7,9 +7,7 @@ class Direct extends React.Component {
   constructor(props) {
     super(props);
     let directId = parseInt(props.match.params.directId);
-    let directMessages = this.props.messages.filter(message => {
-      return message.messageable_id === parseInt(directId);
-    });
+    let directMessages = this.props.fetchDirectMessages(directId);
     let directMemberships = this.props.memberships.filter(membership => {
       return membership.membershipable_id === parseInt(directId);
     });
@@ -102,9 +100,7 @@ class Direct extends React.Component {
     if (this.props.location !== prevProps.location) {
       const { directId } = this.props;
       this.configChat();
-      let newMessages = this.props.messages.filter(message => {
-        return message.messageable_id === parseInt(directId);
-      });
+      let newMessages = this.props.fetchDirectMessages(directId);
       let newMemberships = this.props.memberships.filter(membership => {
         return membership.memberable_id === parseInt(directId);
       });

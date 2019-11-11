@@ -35,3 +35,11 @@ export const fetchChannelMessages = channelId => {
     data: { channelId }
   });
 };
+
+export const fetchDirectMessages = directId => {
+  return $.ajax({
+    method: "GET",
+    url: `api/messages`,
+    data: { directId }
+  });
+};

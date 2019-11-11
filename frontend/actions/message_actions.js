@@ -9,8 +9,13 @@ export const fetchAllMessages = () => dispatch => {
   );
 };
 export const fetchChannelMessages = channelId => dispatch => {
-  debugger
   return MessageApiUtil.fetchChannelMessages(channelId).then(messages =>
+    dispatch(receiveMessages(messages))
+  );
+};
+
+export const fetchDirectMessages = directId => dispatch => {
+  return MessageApiUtil.fetchDirectMessages(directId).then(messages =>
     dispatch(receiveMessages(messages))
   );
 };

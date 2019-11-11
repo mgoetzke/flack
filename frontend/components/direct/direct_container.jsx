@@ -1,7 +1,7 @@
 import { connect } from "react-redux";
 import Direct from "./direct";
 import { withRouter } from "react-router-dom";
-import { receiveMessage } from "../../actions/message_actions";
+import { fetchDirectMessages, receiveMessage } from "../../actions/message_actions";
 import { getDirectMemberships } from "../../selectors/membership_selectors";
 import { openModal, closeModal } from "../../actions/modal_actions";
 import React from "react";
@@ -25,7 +25,8 @@ const mapState = (state, ownProps) => {
 
 const mapDispatch = dispatch => {
   return {
-    receiveMessage: message => dispatch(receiveMessage(message)),
+    receiveMessage: message => dispatch(receiveMessage(message)), 
+    fetchDirectMessages: directId => dispatch(fetchDirectMessages(directId)),
     createMembership: membership => dispatch(createMembership(membership)),
     destroyMembership: membershipId =>
       dispatch(destroyMembership(membershipId)),
