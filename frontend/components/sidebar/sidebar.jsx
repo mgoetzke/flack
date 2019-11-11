@@ -37,6 +37,7 @@ class Sidebar extends React.Component {
       let privacyIcon =
         membership.privacy === false ? "# " : <i className="fas fa-lock"></i>;
       let countIcon = membership.size;
+      let membershipName = membership.name;
       let selectedItem = this.handleLocationClass(membership);
       if (membership.memberable_type === "Channel") {
         channelMembershipItems.push(
@@ -47,11 +48,20 @@ class Sidebar extends React.Component {
           >
             {privacyIcon}
             <Link to={`/workspace/channels/${membership.memberable_id}`}>
-              {membership.name}
+              {membershipName}
             </Link>
           </li>
         );
       } else {
+        countIcon = countIcon;
+        membershipName = membershipName || "New Message";
+        if (!countIcon){
+          let newDirect = this.props.directs.find(direct => { return direct.id === membership.memberable_id});
+          if (newDirect){
+            countIcon = newDirect.user_ids.length - 1;
+            membershipName = newDirect.name;
+          }
+        }
         directMembershipItems.push(
           <li
             key={membership.id}
@@ -60,7 +70,7 @@ class Sidebar extends React.Component {
           >
             <span className="sidebar-member-count"> {countIcon}</span>
             <Link to={`/workspace/directs/${membership.memberable_id}`}>
-              {membership.name}
+              {membershipName}
             </Link>
           </li>
         );

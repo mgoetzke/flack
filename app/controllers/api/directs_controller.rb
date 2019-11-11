@@ -5,9 +5,8 @@ class Api::DirectsController < ApplicationController
     if @direct.save
       params[:direct][:invitedUsersIds].each do |userId|
         @membership = Membership.create(user_id: userId.to_i, memberable_id: @direct.id, memberable_type: Direct)
-        new_membership = render :json => {:attachmentPartial => render_to_string('api/memberships/membership.json.jbuilder', :layout => false, :locals => { :membership => @membership })} 
-        debugger
-        broadcastNewMembership(new_membership)
+        broadcastNewMembership(@membership)
+        broadcastNewDirect(@direct, @membership.user_id)
       end
       render :show
     else
@@ -24,6 +23,8 @@ class Api::DirectsController < ApplicationController
     end
   end
   def show
+    @direct = Direct.find(params[:id])
+    render :show
   end
 
   private 
@@ -31,6 +32,10 @@ class Api::DirectsController < ApplicationController
     params.require(:direct).permit(:invitedUsers)
   end
   def broadcastNewMembership(membership)
-    NotificationsChannel.broadcast_to(current_user, membership: membership, type: 'membershipAdd')
+    debugger
+    ActionCable.server.broadcast "notifications_#{membership.user_id}", {membership: membership, type: 'membershipAdd'}
+  end
+  def broadcastNewDirect(direct, user)
+    ActionCable.server.broadcast "notifications_#{user}", {directId: direct.id, type: 'directAdd'}
   end
 end

@@ -22,6 +22,22 @@ Membership.create(user_id: demoUser.id, memberable_id: generalChannel.id, member
 Membership.create(user_id: demoUser.id, memberable_id: randomChannel.id, memberable_type: Channel)
 Membership.create(user_id: demoFriend.id, memberable_id: generalChannel.id, memberable_type: Channel)
 Membership.create(user_id: demoFriend.id, memberable_id: randomChannel.id, memberable_type: Channel)
+Membership.create(user_id: demoDiatribe.id, memberable_id: generalChannel.id, memberable_type: Channel)
+Membership.create(user_id: demoDiatribe.id, memberable_id: randomChannel.id, memberable_type: Channel)
+Membership.create(user_id: demoChatty.id, memberable_id: generalChannel.id, memberable_type: Channel)
+Membership.create(user_id: demoChatty.id, memberable_id: randomChannel.id, memberable_type: Channel)
+Membership.create(user_id: demoConvo.id, memberable_id: generalChannel.id, memberable_type: Channel)
+Membership.create(user_id: demoConvo.id, memberable_id: randomChannel.id, memberable_type: Channel)
+Membership.create(user_id: demoGabby.id, memberable_id: generalChannel.id, memberable_type: Channel)
+Membership.create(user_id: demoGabby.id, memberable_id: randomChannel.id, memberable_type: Channel)
+Membership.create(user_id: demoTalkative.id, memberable_id: generalChannel.id, memberable_type: Channel)
+Membership.create(user_id: demoTalkative.id, memberable_id: randomChannel.id, memberable_type: Channel)
+Membership.create(user_id: demoProfuse.id, memberable_id: generalChannel.id, memberable_type: Channel)
+Membership.create(user_id: demoProfuse.id, memberable_id: randomChannel.id, memberable_type: Channel)
+Membership.create(user_id: demoComms.id, memberable_id: generalChannel.id, memberable_type: Channel)
+Membership.create(user_id: demoComms.id, memberable_id: randomChannel.id, memberable_type: Channel)
+Membership.create(user_id: demoFluent.id, memberable_id: generalChannel.id, memberable_type: Channel)
+Membership.create(user_id: demoFluent.id, memberable_id: randomChannel.id, memberable_type: Channel)
                         
 message1 = Message.create!(body: "pepitas are nothing special",
     user_id: 1,

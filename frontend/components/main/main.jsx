@@ -26,6 +26,10 @@ class Main extends React.Component {
               this.props
                 .receiveMembership(data.membership);
               break;
+            case "directAdd":
+              this.props
+                .fetchDirect(data.directId);
+              break; 
           }
         }
       }

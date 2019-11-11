@@ -55,7 +55,7 @@ const receiveDirects = directs => {
   };
 };
 
-const receiveDirect = direct => {
+export const receiveDirect = direct => {
   return {
     type: RECEIVE_DIRECT,
     direct

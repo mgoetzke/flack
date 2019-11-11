@@ -27,5 +27,7 @@ class Api::MembershipsController < ApplicationController
   def membership_params
     params.require(:membership).permit(:user_id, :memberable_id, :memberable_type)
   end
-
+  def broadcastNewMembership(membership)
+     ActionCable.server.broadcast "notifications_#{membership.user_id}", {membership: membership, type: 'membershipAdd'}
+  end
 end
