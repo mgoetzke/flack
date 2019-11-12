@@ -37,11 +37,6 @@ const mapDispatch = dispatch => {
         Invite another member...
       </button>
     ),
-    openDirectCreate: (
-      <button onMouseDown={(invitedUsersIds) => dispatch(openModal({type:"createdirect"}))}>
-        Invite another member...2
-      </button>
-    ),
     openCreateDirect: (invitedUsersIds) => dispatch(openModal({ type: "createdirect", prevUsers: invitedUsersIds })),
   };
 };

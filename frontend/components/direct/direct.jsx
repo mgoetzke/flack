@@ -154,7 +154,7 @@ class Direct extends React.Component {
       ).length > 0;
     let newMemberStatus;
     let memberCount;
-    let prevMembers = members;
+    let prevMembers = this.props.direct.user_ids;
     if (direct.user_ids) {
       newMemberStatus = direct.user_ids.includes(this.state.currentUser.id);
       memberCount = direct.user_ids.length;

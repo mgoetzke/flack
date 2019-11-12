@@ -164,12 +164,12 @@
 
 .modal-search-channels {
   overflow-y: hidden;
-  max-height: 60%;
+  max-height: 70%;
 }
 
 .modal-search-directs {
   overflow-y: scroll;
-  max-height: 60%;
+  max-height: 70%;
 }
 
 .channel-create-header p {
