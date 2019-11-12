@@ -263,7 +263,7 @@ class DirectCreate extends React.Component {
               </div>
               {submitButton}
             </span>
-            {(invitedUserCount > 1 && invitedUserCount < 9) && <p className="direct-search-count">{`You can add ${9 - invitedUserCount} more people`}</p>}
+            {(1 < invitedUserCount < 9) && <p className="direct-search-count">{`You can add ${9 - invitedUserCount} more people`}</p>}
             {remainingInvites.length > 0 &&
               this.state.searchInput.length > 0 && (
                 <ul className="search-uninvited">{notInvitedUsers}</ul>
