@@ -12,12 +12,14 @@ import {
 
 const mapState = (state, ownProps) => {
   let memberships = getDirectMemberships(state, ownProps.match.params.directId);
+  let members = memberships.map(membership => membership.user_id);
   return {
     direct: state.entities.directs[ownProps.match.params.directId] || {
       name: "default"
     },
     messages: Object.values(state.entities.messages),
     memberships: memberships,
+    members: members,
     directId: ownProps.match.params.directId,
     currentUser: state.entities.users[state.session.id]
   };

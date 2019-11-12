@@ -11,11 +11,13 @@ class Direct extends React.Component {
     let directMemberships = this.props.memberships.filter(membership => {
       return membership.membershipable_id === parseInt(directId);
     });
+    let directMembers = directMemberships.map(membership => membership.user_id);
     this.state = {
       messages: directMessages,
       currentUser: props.currentUser,
       direct: props.direct,
       memberships: directMemberships,
+      members: directMembers,
       cogPopUpVisibility: "menu-hide"
     };
     this.bottom = React.createRef();
@@ -129,7 +131,7 @@ class Direct extends React.Component {
   }
 
   render() {
-    let { direct, memberships } = this.props;
+    let { direct, memberships, members } = this.props;
     let formatMessages = this.props.messages
       .filter(message => {
         return (
@@ -152,6 +154,7 @@ class Direct extends React.Component {
       ).length > 0;
     let newMemberStatus;
     let memberCount;
+    let prevMembers = members;
     if (direct.user_ids) {
       newMemberStatus = direct.user_ids.includes(this.state.currentUser.id);
       memberCount = direct.user_ids.length;
@@ -222,14 +225,14 @@ class Direct extends React.Component {
               <div
                 className={`direct-header-popup ${this.state.cogPopUpVisibility}`}
               >
-                <li>
+                {/* <li>
                   <div onMouseDown={this.hideMenu2}>
                     {this.props.openAddMembership}
                   </div>
-                </li>
+                </li> */}
                 <li>
                   <div onMouseDown={this.hideMenu2}>
-                    <button onMouseDown={this.props.openCreateDirect.bind(null, [1,2,3])}>Here</button>
+                    <button onMouseDown={this.props.openCreateDirect.bind(null, prevMembers)}>Invite another member...</button>
                   </div>
                 </li>
               </div>

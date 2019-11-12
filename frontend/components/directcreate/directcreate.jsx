@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 class DirectCreate extends React.Component {
   constructor(props) {
     super(props);
-    debugger
     this.handleSubmit = this.handleSubmit.bind(this);
     this.update = this.update.bind(this);
     this.state = {
@@ -125,7 +124,6 @@ class DirectCreate extends React.Component {
   }
   render() {
     let headText = "Direct Messages";
-    debugger
     let invitedUsers = this.state.invitedUsers.map(user => {
       let image_location = user.image_url.split(".")[0];
       return (
