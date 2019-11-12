@@ -14,6 +14,7 @@ const mapState = (state, ownProps) => {
     errors: state.errors.direct,
     currentUserId: state.session.id,
     users: getAllUsers(state),
+    prevUsers: ownProps.prevUsers || [],
     directs: getUserDirects(state, state.session.id)
   };
 };

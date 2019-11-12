@@ -3,7 +3,7 @@
   height: 100%;
   overflow-y: scroll;
   display: flex;
-  align-items: flex-end;
+  flex-direction: column;
 }
 .message-list ul {
   width: 100%;
@@ -11,9 +11,11 @@
 .message-list:hover {
   overflow-y: scroll;
 }
+.message-list-messages:first-child{
+  margin-top: auto;
+}
 .message-form {
   width: 100%;
-  /* CHECK WITH CSS SIMCHA */
   max-height: 60vh;
   box-sizing: border-box;
   padding: 0 20px 20px 20px;

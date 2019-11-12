@@ -7,6 +7,7 @@
   box-sizing: border-box;
   font-family: "Lato";
   color: RGB(29, 29, 29);
+  overflow: hidden;
 }
 .direct-header {
   height: 60px;
@@ -29,11 +30,20 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
+  min-width: 0;
 }
 
 .direct-header-name {
-  display: flex;
+  display: block;
   flex-direction: row;
+  margin-bottom: 5px;
+  min-width: 0;
+}
+
+.direct-header-name-text{
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .direct-header-deets h3 {
@@ -49,9 +59,7 @@
   align-items: center;
   color: RGB(143, 143, 143);
 }
-.direct-header-name {
-  margin-bottom: 5px;
-}
+
 .direct-header-icons i {
   padding-right: 5px;
 }
@@ -83,6 +91,7 @@
 .direct-header-functions {
   align-content: center;
   display: block;
+  min-width: 0px;
   /* position: relative; */
 }
 

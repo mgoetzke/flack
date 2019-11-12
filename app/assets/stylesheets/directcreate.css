@@ -39,4 +39,17 @@
 
 .direct-search-text {
   font-weight: bold;
+  max-width: 450px;
+}
+
+.direct-search-count {
+  font-size: 13px !important;
+  padding-left: 3px;
+  color: RGB(145, 145, 145);
+}
+.direct-search-max {
+  font-size: 18px !important;
+  font-weight: bold;
+  align-self: center;
+  margin-top: 25px;
 }

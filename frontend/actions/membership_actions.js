@@ -32,14 +32,14 @@ export const fetchChannelMembers = channelId => dispatch => {
   );
 };
 
-const receiveMemberships = memberships => {
+export const receiveMemberships = memberships => {
   return {
     type: RECEIVE_MEMBERSHIPS,
     memberships
   };
 };
 
-const receiveMembership = membership => {
+export const receiveMembership = membership => {
   return {
     type: RECEIVE_MEMBERSHIP,
     membership

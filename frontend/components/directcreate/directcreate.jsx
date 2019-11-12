@@ -4,13 +4,14 @@ import { Link } from "react-router-dom";
 class DirectCreate extends React.Component {
   constructor(props) {
     super(props);
-
     this.handleSubmit = this.handleSubmit.bind(this);
     this.update = this.update.bind(this);
     this.state = {
       searchInput: "",
-      invitedUsers: [],
-      invitedUsersIds: [],
+      invitedUsersIds: props.prevUsers.length ? props.prevUsers : [props.currentUserId],
+      invitedUsers: [].concat(props.prevUsers.filter(prevUser => prevUser !== props.currentUserId).map(prevUser => {
+          return props.users.find(user => user.id === prevUser)}
+        )),
       users: props.users,
       directs: props.directs
     };
@@ -28,7 +29,7 @@ class DirectCreate extends React.Component {
         let user_id = currentUserId;
         let memberable_type = "Direct";
         let newMembership = { memberable_id, user_id, memberable_type };
-        this.props.createMembership(newMembership);
+        // this.props.createMembership(newMembership);
         // this.handleInvites(
         //   this.state.invitedUsersIds,
         //   memberable_type,
@@ -136,6 +137,7 @@ class DirectCreate extends React.Component {
         </li>
       );
     });
+    let invitedUserCount = this.state.invitedUsersIds.length;
     let notInvitedUsers = this.state.users.map(user => {
       let image_location = user.image_url.split(".")[0];
       if (
@@ -231,6 +233,10 @@ class DirectCreate extends React.Component {
       ) : (
         <div className="add-button modal-button-invalid">Go</div>
       );
+    let searchBody = invitedUserCount > 8 ? <p className="direct-search-max">You have reached the maxium number of participants</p> : <span className="modal-search-list">
+              <p>Recent conversations</p>
+              <ul className="modal-search-directs">{directs}</ul>
+            </span>
     return (
       <>
         <div className="modal-header">
@@ -258,14 +264,13 @@ class DirectCreate extends React.Component {
               </div>
               {submitButton}
             </span>
+            {(invitedUserCount > 1 && invitedUserCount < 9) && <p className="direct-search-count">{`You can add ${9 - invitedUserCount} more people`}</p>}
             {remainingInvites.length > 0 &&
               this.state.searchInput.length > 0 && (
                 <ul className="search-uninvited">{notInvitedUsers}</ul>
               )}
-            <span className="modal-search-list">
-              <p>Recent conversations</p>
-              <ul className="modal-search-channels">{directs}</ul>
-            </span>
+              {searchBody}
+            
           </div>
         </div>
       </>

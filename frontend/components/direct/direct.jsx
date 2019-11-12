@@ -7,17 +7,17 @@ class Direct extends React.Component {
   constructor(props) {
     super(props);
     let directId = parseInt(props.match.params.directId);
-    let directMessages = this.props.messages.filter(message => {
-      return message.messageable_id === parseInt(directId);
-    });
+    let directMessages = this.props.fetchDirectMessages(directId);
     let directMemberships = this.props.memberships.filter(membership => {
       return membership.membershipable_id === parseInt(directId);
     });
+    let directMembers = directMemberships.map(membership => membership.user_id);
     this.state = {
       messages: directMessages,
       currentUser: props.currentUser,
       direct: props.direct,
       memberships: directMemberships,
+      members: directMembers,
       cogPopUpVisibility: "menu-hide"
     };
     this.bottom = React.createRef();
@@ -102,9 +102,7 @@ class Direct extends React.Component {
     if (this.props.location !== prevProps.location) {
       const { directId } = this.props;
       this.configChat();
-      let newMessages = this.props.messages.filter(message => {
-        return message.messageable_id === parseInt(directId);
-      });
+      let newMessages = this.props.fetchDirectMessages(directId);
       let newMemberships = this.props.memberships.filter(membership => {
         return membership.memberable_id === parseInt(directId);
       });
@@ -133,7 +131,7 @@ class Direct extends React.Component {
   }
 
   render() {
-    let { direct, memberships } = this.props;
+    let { direct, memberships, members } = this.props;
     let formatMessages = this.props.messages
       .filter(message => {
         return (
@@ -154,7 +152,14 @@ class Direct extends React.Component {
       memberships.filter(
         membership => membership.user_id === this.state.currentUser.id
       ).length > 0;
-    let memberCount = memberships.length;
+    let newMemberStatus;
+    let memberCount;
+    let prevMembers = this.props.direct.user_ids;
+    if (direct.user_ids) {
+      newMemberStatus = direct.user_ids.includes(this.state.currentUser.id);
+      memberCount = direct.user_ids.length;
+    }
+
     let directMemberToggleFunction = memberStatus
       ? this.destroyMembership
       : this.createMembership;
@@ -165,33 +170,34 @@ class Direct extends React.Component {
     let directCreation = new Date(direct.created_at);
     var options = { year: "numeric", month: "long", day: "numeric" };
     let formatCreation = directCreation.toLocaleDateString([], options);
-    let footer = memberStatus ? (
-      <MessageFormContainer direct={direct} />
-    ) : (
-      <div className="direct-join-banner">
-        <div className="direct-join-text">
-          <div className="title">
-            <span>
-              You are viewing{" "}
-              <span className="joinName">
-                {privacyIcon}
-                {direct.name}
+    let footer =
+      memberStatus || newMemberStatus ? (
+        <MessageFormContainer direct={direct} />
+      ) : (
+        <div className="direct-join-banner">
+          <div className="direct-join-text">
+            <div className="title">
+              <span>
+                You are viewing{" "}
+                <span className="joinName">
+                  {privacyIcon}
+                  {direct.name}
+                </span>
               </span>
-            </span>
+            </div>
+            <div className="creator">
+              Created by {directCreator} on {formatCreation}
+            </div>
           </div>
-          <div className="creator">
-            Created by {directCreator} on {formatCreation}
-          </div>
+          <button
+            onClick={directMemberToggleFunction}
+            className="join-banner-button"
+          >
+            Join Direct
+          </button>
         </div>
-        <button
-          onClick={directMemberToggleFunction}
-          className="join-banner-button"
-        >
-          Join Direct
-        </button>
-      </div>
-    );
-    if (memberStatus === false) {
+      );
+    if (memberStatus === false && newMemberStatus === false) {
       return <Redirect to="/workspace/channels/1" />;
     } else {
       return (
@@ -199,7 +205,7 @@ class Direct extends React.Component {
           <div className="direct-header">
             <div className="direct-header-deets">
               <div className="direct-header-name">
-                <h3>{direct.name}</h3>
+                <h3 className="direct-header-name-text">{direct.name}</h3>
               </div>
               <div className="direct-header-icons">
                 <i className="far fa-star star-icon"></i>|
@@ -220,15 +226,15 @@ class Direct extends React.Component {
                 className={`direct-header-popup ${this.state.cogPopUpVisibility}`}
               >
                 <li>
-                  <div onClick={this.hideMenu2}>
-                    {this.props.openAddMembership}
+                  <div onMouseDown={this.hideMenu2}>
+                    <button onMouseDown={this.props.openCreateDirect.bind(null, prevMembers)}>Invite another member...</button>
                   </div>
                 </li>
               </div>
             </div>
           </div>
           <div className="message-list">
-            <ul>{formatMessages}</ul>
+            <ul className="message-list-messages">{formatMessages}</ul>
             <div ref={this.bottom}></div>
           </div>
           {footer}
