@@ -2,7 +2,7 @@ import React from "react";
 import { closeModal } from "../../actions/modal_actions";
 import { connect } from "react-redux";
 import ChannelCreate_Container from "../channelcreate/channelcreate_container";
-import ChannelDirect_Container from "../directcreate/directcreate_container";
+import DirectCreate_Container from "../directcreate/directcreate_container";
 import ChannelBrowse_Container from "../channelbrowse/channelbrowse_container";
 import MemberAdd_container from "../memberadd/memberadd_container";
 import { withRouter } from "react-router-dom";
@@ -19,8 +19,7 @@ function Modal({ modal, history }) {
       component = <ChannelCreate_Container />;
       break;
     case "createdirect":
-      debugger
-      component = <ChannelDirect_Container />;
+      component = <DirectCreate_Container prevUsers={modal.prevUsers}/>;
       break;
     case "browsechannel":
       component = <ChannelBrowse_Container />;

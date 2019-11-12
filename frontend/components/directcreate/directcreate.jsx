@@ -4,13 +4,15 @@ import { Link } from "react-router-dom";
 class DirectCreate extends React.Component {
   constructor(props) {
     super(props);
-
+    debugger
     this.handleSubmit = this.handleSubmit.bind(this);
     this.update = this.update.bind(this);
     this.state = {
       searchInput: "",
-      invitedUsers: [],
-      invitedUsersIds: [props.currentUserId],
+      invitedUsersIds: props.prevUsers || [props.currentUserId],
+      invitedUsers: [].concat(props.prevUsers.filter(prevUser => prevUser !== props.currentUserId).map(prevUser => {
+          return props.users.find(user => user.id === prevUser)}
+        )),
       users: props.users,
       directs: props.directs
     };
@@ -123,6 +125,7 @@ class DirectCreate extends React.Component {
   }
   render() {
     let headText = "Direct Messages";
+    debugger
     let invitedUsers = this.state.invitedUsers.map(user => {
       let image_location = user.image_url.split(".")[0];
       return (
@@ -263,7 +266,7 @@ class DirectCreate extends React.Component {
               </div>
               {submitButton}
             </span>
-            {(1 < invitedUserCount < 9) && <p className="direct-search-count">{`You can add ${9 - invitedUserCount} more people`}</p>}
+            {(invitedUserCount > 1 && invitedUserCount < 9) && <p className="direct-search-count">{`You can add ${9 - invitedUserCount} more people`}</p>}
             {remainingInvites.length > 0 &&
               this.state.searchInput.length > 0 && (
                 <ul className="search-uninvited">{notInvitedUsers}</ul>
