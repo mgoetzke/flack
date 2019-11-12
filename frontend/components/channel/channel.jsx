@@ -246,7 +246,7 @@ class Channel extends React.Component {
             </div>
           </div>
           <div className="message-list">
-            <ul>{formatMessages}</ul>
+            <ul className="message-list-messages">{formatMessages}</ul>
             <div ref={this.bottom}></div>
           </div>
           {footer}

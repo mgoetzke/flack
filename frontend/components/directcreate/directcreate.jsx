@@ -235,7 +235,7 @@ class DirectCreate extends React.Component {
       );
     let searchBody = invitedUserCount > 8 ? <p className="direct-search-max">You have reached the maxium number of participants</p> : <span className="modal-search-list">
               <p>Recent conversations</p>
-              <ul className="modal-search-channels">{directs}</ul>
+              <ul className="modal-search-directs">{directs}</ul>
             </span>
     return (
       <>

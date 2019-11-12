@@ -163,6 +163,11 @@
 }
 
 .modal-search-channels {
+  overflow-y: hidden;
+  max-height: 60%;
+}
+
+.modal-search-directs {
   overflow-y: scroll;
   max-height: 60%;
 }

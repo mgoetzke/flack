@@ -205,7 +205,7 @@ class Direct extends React.Component {
           <div className="direct-header">
             <div className="direct-header-deets">
               <div className="direct-header-name">
-                <h3>{direct.name}</h3>
+                <h3 className="direct-header-name-text">{direct.name}</h3>
               </div>
               <div className="direct-header-icons">
                 <i className="far fa-star star-icon"></i>|
@@ -234,7 +234,7 @@ class Direct extends React.Component {
             </div>
           </div>
           <div className="message-list">
-            <ul>{formatMessages}</ul>
+            <ul className="message-list-messages">{formatMessages}</ul>
             <div ref={this.bottom}></div>
           </div>
           {footer}
