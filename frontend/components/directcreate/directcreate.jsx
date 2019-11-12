@@ -232,7 +232,7 @@ class DirectCreate extends React.Component {
       ) : (
         <div className="add-button modal-button-invalid">Go</div>
       );
-    let searchBody = invitedUserCount > 8 ? <p>"nah"</p> : <span className="modal-search-list">
+    let searchBody = invitedUserCount > 8 ? <p className="direct-search-max">You have reached the maxium number of participants</p> : <span className="modal-search-list">
               <p>Recent conversations</p>
               <ul className="modal-search-channels">{directs}</ul>
             </span>
@@ -263,7 +263,7 @@ class DirectCreate extends React.Component {
               </div>
               {submitButton}
             </span>
-            {invitedUserCount > 1 && <p className="direct-search-count">{`You can add ${9 - invitedUserCount} more people`}</p>}
+            {(invitedUserCount > 1 && invitedUserCount < 9) && <p className="direct-search-count">{`You can add ${9 - invitedUserCount} more people`}</p>}
             {remainingInvites.length > 0 &&
               this.state.searchInput.length > 0 && (
                 <ul className="search-uninvited">{notInvitedUsers}</ul>
