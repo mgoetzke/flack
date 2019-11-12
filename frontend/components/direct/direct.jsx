@@ -223,7 +223,7 @@ class Direct extends React.Component {
                 className={`direct-header-popup ${this.state.cogPopUpVisibility}`}
               >
                 <li>
-                  <div onClick={this.hideMenu2}>
+                  <div onMouseDown={this.hideMenu2}>
                     {this.props.openAddMembership}
                   </div>
                 </li>

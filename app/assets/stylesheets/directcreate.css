@@ -40,3 +40,9 @@
 .direct-search-text {
   font-weight: bold;
 }
+
+.direct-search-count {
+  font-size: 13px !important;
+  padding-left: 3px;
+  color: RGB(145, 145, 145);
+}

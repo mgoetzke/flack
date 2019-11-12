@@ -136,6 +136,7 @@ class DirectCreate extends React.Component {
         </li>
       );
     });
+    let invitedUserCount = this.state.invitedUsersIds.length;
     let notInvitedUsers = this.state.users.map(user => {
       let image_location = user.image_url.split(".")[0];
       if (
@@ -231,6 +232,10 @@ class DirectCreate extends React.Component {
       ) : (
         <div className="add-button modal-button-invalid">Go</div>
       );
+    let searchBody = invitedUserCount > 8 ? <p>"nah"</p> : <span className="modal-search-list">
+              <p>Recent conversations</p>
+              <ul className="modal-search-channels">{directs}</ul>
+            </span>
     return (
       <>
         <div className="modal-header">
@@ -258,14 +263,13 @@ class DirectCreate extends React.Component {
               </div>
               {submitButton}
             </span>
+            {invitedUserCount > 1 && <p className="direct-search-count">{`You can add ${9 - invitedUserCount} more people`}</p>}
             {remainingInvites.length > 0 &&
               this.state.searchInput.length > 0 && (
                 <ul className="search-uninvited">{notInvitedUsers}</ul>
               )}
-            <span className="modal-search-list">
-              <p>Recent conversations</p>
-              <ul className="modal-search-channels">{directs}</ul>
-            </span>
+              {searchBody}
+            
           </div>
         </div>
       </>
