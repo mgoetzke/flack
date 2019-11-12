@@ -225,11 +225,6 @@ class Direct extends React.Component {
               <div
                 className={`direct-header-popup ${this.state.cogPopUpVisibility}`}
               >
-                {/* <li>
-                  <div onMouseDown={this.hideMenu2}>
-                    {this.props.openAddMembership}
-                  </div>
-                </li> */}
                 <li>
                   <div onMouseDown={this.hideMenu2}>
                     <button onMouseDown={this.props.openCreateDirect.bind(null, prevMembers)}>Invite another member...</button>

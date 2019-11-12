@@ -34,6 +34,10 @@
 .direct-header-name {
   display: flex;
   flex-direction: row;
+  margin-bottom: 5px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .direct-header-deets h3 {
@@ -49,9 +53,7 @@
   align-items: center;
   color: RGB(143, 143, 143);
 }
-.direct-header-name {
-  margin-bottom: 5px;
-}
+
 .direct-header-icons i {
   padding-right: 5px;
 }

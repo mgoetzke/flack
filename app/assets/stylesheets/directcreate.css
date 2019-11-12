@@ -39,6 +39,7 @@
 
 .direct-search-text {
   font-weight: bold;
+  max-width: 450px;
 }
 
 .direct-search-count {
