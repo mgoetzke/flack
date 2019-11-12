@@ -17,7 +17,7 @@ const mapDispatch = dispatch => {
     openCreateChannel: (
       <button
         className="modal-create-from-browse-button"
-        onClick={() => dispatch(openModal("createchannel"))}
+        onClick={() => dispatch(openModal({type:"createchannel"}))}
       >
         Create Channel
       </button>

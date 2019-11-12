@@ -227,6 +227,11 @@ class Direct extends React.Component {
                     {this.props.openAddMembership}
                   </div>
                 </li>
+                <li>
+                  <div onMouseDown={this.hideMenu2}>
+                    <button onMouseDown={this.props.openCreateDirect.bind(null, [1,2,3])}>Here</button>
+                  </div>
+                </li>
               </div>
             </div>
           </div>

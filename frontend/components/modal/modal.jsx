@@ -14,11 +14,12 @@ function Modal({ modal, history }) {
   let component;
   let memberable_type;
   let memberable_id;
-  switch (modal) {
+  switch (modal.type) {
     case "createchannel":
       component = <ChannelCreate_Container />;
       break;
     case "createdirect":
+      debugger
       component = <ChannelDirect_Container />;
       break;
     case "browsechannel":

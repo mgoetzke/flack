@@ -16,17 +16,17 @@ const mapState = state => {
 const mapDispatch = dispatch => {
   return {
     openCreateChannel: (
-      <button onClick={() => dispatch(openModal("createchannel"))}>
+      <button onClick={() => dispatch(openModal({type:"createchannel"}))}>
         <i className="fas fa-plus"></i>
       </button>
     ),
     openCreateDirect: (
-      <button onClick={() => dispatch(openModal("createdirect"))}>
+      <button onClick={() => dispatch(openModal({type:"createdirect"}))}>
         <i className="fas fa-plus"></i>
       </button>
     ),
     openBrowseChannel: (
-      <button onClick={() => dispatch(openModal("browsechannel"))}>
+      <button onClick={() => dispatch(openModal({type:"browsechannel"}))}>
         Channels
       </button>
     ),

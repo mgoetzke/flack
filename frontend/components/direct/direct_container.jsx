@@ -31,10 +31,16 @@ const mapDispatch = dispatch => {
     destroyMembership: membershipId =>
       dispatch(destroyMembership(membershipId)),
     openAddMembership: (
-      <button onMouseDown={() => dispatch(openModal("addmembership"))}>
+      <button onMouseDown={() => dispatch(openModal({type:"addmembership"}))}>
         Invite another member...
       </button>
-    )
+    ),
+    openDirectCreate: (
+      <button onMouseDown={(invitedUsersIds) => dispatch(openModal({type:"createdirect"}))}>
+        Invite another member...2
+      </button>
+    ),
+    openCreateDirect: (invitedUsersIds) => dispatch(openModal({ type: "createdirect", prevUsers: invitedUsersIds })),
   };
 };
 export default withRouter(
