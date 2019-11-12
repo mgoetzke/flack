@@ -9,7 +9,7 @@ class DirectCreate extends React.Component {
     this.update = this.update.bind(this);
     this.state = {
       searchInput: "",
-      invitedUsersIds: props.prevUsers || [props.currentUserId],
+      invitedUsersIds: props.prevUsers.length ? props.prevUsers : [props.currentUserId],
       invitedUsers: [].concat(props.prevUsers.filter(prevUser => prevUser !== props.currentUserId).map(prevUser => {
           return props.users.find(user => user.id === prevUser)}
         )),
