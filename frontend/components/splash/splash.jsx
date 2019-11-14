@@ -15,14 +15,22 @@ class Splash extends React.Component {
   }
 
   render(){
+    let greeting = (this.props.currentUser) ? 
+      <Link to="/login">
+        <div className = "splash-header" >
+          <h1>Welcome back to Flack,</h1>
+          <h1>{this.props.currentUser.display_name}</h1>
+        </div >
+      </Link>
+    : <div className="splash-header">
+        <h1>Whatever work you do,</h1>
+        <h1>you can do it in Flack</h1>
+      </div>
     return(
       <>
       <GreetingContainer />
       <div className="splash"> 
-        <div className="splash-header">
-          <h1>Whatever work you do,</h1> 
-          <h1>you can do it in Flack</h1>
-        </div>
+        {greeting}
         <p>Flack gives your team the power and alignment you need to do your best work.</p>
         <div className="splash-form">
           <input type="text" placeholder="Your work email" onChange={this.update("email")}/>

@@ -48,7 +48,7 @@ class Greeting extends React.Component {
         ? "greeting-button"
         : "greeting-nav-button";
 
-    if (this.props.currentUser) {
+    if (this.props.currentUser && !onRoot) {
       let name = this.props.currentUser.display_name;
       return (
         <div id="grabber">

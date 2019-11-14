@@ -1,9 +1,9 @@
 import { connect } from "react-redux";
 import Splash from "./splash";
 
-const mapState = (state) => {
+const mapState = ({ session, entities: { users } }, ownProps) => {
   return ({
-    
+    currentUser: users[session.id]
   });
 }
 
