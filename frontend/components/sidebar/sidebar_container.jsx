@@ -11,7 +11,7 @@ const mapState = state => {
     memberships: memberships,
     channels: Object.values(state.entities.channels),
     directs: Object.values(state.entities.directs),
-    users: Object.values(state.entities.users),
+    users: Object.values(state.entities.users) || [],
     currentUserId: state.session.id,
   };
 };
