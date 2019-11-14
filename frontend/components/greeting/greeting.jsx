@@ -50,6 +50,8 @@ class Greeting extends React.Component {
 
     if (this.props.currentUser && !onRoot) {
       let name = this.props.currentUser.display_name;
+      let image_location = this.props.currentUser.image_url.split(".")[0];
+      debugger
       return (
         <div id="grabber">
           <div
@@ -65,12 +67,15 @@ class Greeting extends React.Component {
                 <i className="fas fa-angle-down"></i>{" "}
               </span>
             </h2>
-            <span>{name}</span>
+            <div className="greeting-self-info">
+              <span className="greeting-self-online"></span>
+              <span className="greeting-self-name">{name}</span>
+            </div>
             <div
               className={`greeting-nav-popup ${this.state.popUpVisibility}`}
               id="menuPopup"
             >
-              <p>{name}</p>
+              <div className="greeting-nav-name"> <img className="message-avatar" src={window[image_location]} /> {name}</div>
               <button className="log-out-button" onClick={this.handleLogout}>
                 <p>Sign out of Flack</p>
               </button>

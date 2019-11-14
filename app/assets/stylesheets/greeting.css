@@ -32,6 +32,14 @@
   border-radius: 5px;
   margin: 20px 100px 0px 0px;
 }
+.greeting-nav-name {
+  display: flex;
+  padding-bottom: 10px;
+  padding-left: 25px;
+  align-items: center;
+  font-size: 15px;
+  font-weight: bold;
+}
 
 .greeting img {
   width: 106px;
@@ -103,15 +111,24 @@
   background-color: white;
   border: solid 1px RGB(212, 212, 212);
   color: black;
-  text-align: center;
+  /* text-align: center; */
   border-radius: 6px;
-  padding: 8px 0;
+  padding: 20px 0px 10px 0px;
   position: relative;
   z-index: 5;
-  bottom: 40px;
+  bottom: -5px;
   right: 5px;
   display: flex;
   flex-direction: column;
+}
+.log-out-button p{
+  padding-left: 25px;
+  padding-top: 3px;
+  padding-bottom: 3px;
+}
+.log-out-button:hover {
+  background-color: RGB(23, 98, 163);
+  color: RGB(255, 255, 255);
 }
 
 .menu-hide {
@@ -121,3 +138,23 @@
 .greeting-loggedIn .show {
   visibility: visible;
 }
+
+.greeting-self-online{
+  color: RGB(63, 14, 64);
+  background-color: RGB(43, 172, 118);
+  border: 2px solid RGB(43, 172, 118); 
+  font-size: 9px !important;
+  height: 9px;
+  width: 9px;
+  display: inline-block;
+  text-align: center;
+  border-radius: 50%;
+  margin-right: 8px;
+}
+
+.greeting-self-info{
+  display: flex;
+  align-items:center;
+  font-weight: normal;
+}
+
