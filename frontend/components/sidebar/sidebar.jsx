@@ -35,7 +35,10 @@ class Sidebar extends React.Component {
   handleUserStatus(directId){
     let direct = this.props.directs.find(direct => direct.id === directId);
     let otherUserId = direct.user_ids.find(id => id !== this.props.currentUserId);
-    let otherUserStatus = this.props.users.find(user => user.id === otherUserId).online;
+    let otherUserStatus = false;
+    if(this.props.users){
+      otherUserStatus = this.props.users.find(user => user.id === otherUserId).online;
+    }
     return otherUserStatus === true ? <span className="sidebar-member-online"></span> : <span className="sidebar-member-offline"></span>;
   }
   render() {
