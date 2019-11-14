@@ -40,6 +40,14 @@ class Sidebar extends React.Component {
       let membershipName = membership.name;
       let selectedItem = this.handleLocationClass(membership);
       if (membership.memberable_type === "Channel") {
+        if (!membershipName){
+          // debugger
+          let newChannel = this.props.channels.find(channel => { return channel.id === membership.memberable_id });
+          if (newChannel){
+            privacyIcon = newChannel.private === false ? "# " : <i className="fas fa-lock"></i>;
+            membershipName = newChannel.name;
+          }
+        }
         channelMembershipItems.push(
           <li
             key={membership.id}

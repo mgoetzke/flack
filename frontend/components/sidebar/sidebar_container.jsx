@@ -9,6 +9,7 @@ const mapState = state => {
   let memberships = getUserMemberships(state, state.session.id);
   return {
     memberships: memberships,
+    channels: Object.values(state.entities.channels),
     directs: Object.values(state.entities.directs)
   };
 };

@@ -14,7 +14,7 @@ const mapDispatch = dispatch => {
     fetchAllUsers: () => dispatch(fetchAllUsers()),
     fetchAllChannels: () => dispatch(fetchAllChannels()),
     fetchAllDirects: () => dispatch(fetchAllDirects()),
-    fetchChannel: () => dispatch(fetchChannel()),
+    fetchChannel: id => dispatch(fetchChannel(id)),
     fetchMemberships: () => dispatch(fetchMemberships()),
     fetchAllMessages: () => dispatch(fetchAllMessages()),
     receiveMembership: membership => dispatch(receiveMembership(membership)),

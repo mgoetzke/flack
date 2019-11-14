@@ -10,7 +10,7 @@ class ChannelCreate extends React.Component {
       topic: "",
       searchInput: "",
       invitedUsers: [],
-      invitedUsersIds: [],
+      invitedUsersIds: [props.currentUserId],
       private: false,
       users: props.users,
       privacyButton: ""
@@ -29,12 +29,12 @@ class ChannelCreate extends React.Component {
         let user_id = currentUserId;
         let memberable_type = "Channel";
         let newMembership = { memberable_id, user_id, memberable_type };
-        this.props.createMembership(newMembership);
-        this.handleInvites(
-          this.state.invitedUsersIds,
-          memberable_type,
-          memberable_id
-        );
+        // this.props.createMembership(newMembership);
+        // this.handleInvites(
+        //   this.state.invitedUsersIds,
+        //   memberable_type,
+        //   memberable_id
+        // );
         return memberable_id;
       })
       .then(memberable_id => {

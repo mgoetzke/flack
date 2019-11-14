@@ -3,6 +3,12 @@ class Api::ChannelsController < ApplicationController
     @channel = Channel.new(channel_params)
     @channel.admin_id = current_user.id
     if @channel.save
+      broadcastNewChannelAll(@channel)
+      params[:channel][:invitedUsersIds].each do |userId|
+        @membership = Membership.create(user_id: userId.to_i, memberable_id: @channel.id, memberable_type: Channel)
+        broadcastNewChannel(@channel, @membership.user_id)
+        broadcastNewMembership(@membership)
+      end
       render :show
     else
       render json: @channel.errors.full_messages, status: 422
@@ -44,5 +50,13 @@ class Api::ChannelsController < ApplicationController
   def channel_params
     params.require(:channel).permit(:name, :topic, :private)
   end
-
+ def broadcastNewMembership(membership)
+    ActionCable.server.broadcast "notifications_#{membership.user_id}", {membership: membership, type: 'membershipAdd'}
+  end
+  def broadcastNewChannel(channel, user)
+    ActionCable.server.broadcast "notifications_#{user}", {channelId: channel.id, type: 'channelAdd'}
+  end
+  def broadcastNewChannelAll(channel)
+    ActionCable.server.broadcast "notifications_all", {channelId: channel.id, type: 'channelAdd'}
+  end
 end
