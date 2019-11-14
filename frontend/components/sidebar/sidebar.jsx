@@ -74,7 +74,8 @@ class Sidebar extends React.Component {
         if (!membershipName){
           let newDirect = this.props.directs.find(direct => { return direct.id === membership.memberable_id});
           if (newDirect){
-            countIcon = newDirect.user_ids.length - 1;
+            let membershipSize = newDirect.user_ids.length - 1;
+            countIcon = (membershipSize === 1) ? this.handleUserStatus(newDirect.id) : <span className="sidebar-member-count"> {membershipSize}</span>;;
             membershipName = newDirect.name;
           }
         }
