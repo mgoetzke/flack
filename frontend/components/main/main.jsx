@@ -34,6 +34,10 @@ class Main extends React.Component {
               this.props
                 .fetchChannel(data.channelId);
               break;
+            case "userAdd":
+              this.props
+                .fetchUser(data.userId);
+              break;
           }
         }
       }

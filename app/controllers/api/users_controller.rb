@@ -5,6 +5,7 @@ class Api::UsersController < ApplicationController
       Membership.create(user_id: @user.id, memberable_id: Channel.first.id, memberable_type: Channel)
       Membership.create(user_id: @user.id, memberable_id: Channel.second.id, memberable_type: Channel)
       login(@user)
+      broadcastNewUserAll(@user)
       render :show
     else
       render json: @user.errors.full_messages, status: 422
@@ -20,6 +21,7 @@ class Api::UsersController < ApplicationController
   end
 
   def show
+    @user = User.find(params[:id])
     render :show
   end
 
@@ -30,5 +32,7 @@ class Api::UsersController < ApplicationController
   def user_params
     params.require(:user).permit(:email, :display_name, :password)
   end
-
+  def broadcastNewUserAll(user)
+    ActionCable.server.broadcast "notifications_all", {userId: user.id, type: 'userAdd'}
+  end
 end
