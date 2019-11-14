@@ -11,11 +11,13 @@ class Main extends React.Component {
     super(props);
   }
   componentDidMount() {
-    this.props.fetchAllUsers();
-    this.props.fetchAllChannels();
-    this.props.fetchAllDirects();
-    this.props.fetchMemberships();
-    this.props.fetchAllMessages();
+    this.props.fetchAllUsers().then(
+      () =>
+      {this.props.fetchAllChannels();
+      this.props.fetchAllDirects();
+      this.props.fetchMemberships();
+      this.props.fetchAllMessages();}
+    )
 
     App.NotificationsChannel = App.cable.subscriptions.create(
       { channel: "NotificationsChannel" },
