@@ -60,6 +60,14 @@ class User < ApplicationRecord
     self.image_url ||= self.class.generate_image_url
   end
 
+  def is_online
+    self.update({online: true})
+  end
+
+  def is_offline
+    self.update({online: false})
+  end
+
   def self.generate_image_url
               ["avatar1.png",
               "avatar2.png",
