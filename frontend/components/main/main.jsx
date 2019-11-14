@@ -22,6 +22,7 @@ class Main extends React.Component {
       {
         received: data => {
           switch (data.type) {
+<<<<<<< HEAD
             case "membershipAdd":
               this.props
                 .receiveMembership(data.membership);
@@ -30,6 +31,15 @@ class Main extends React.Component {
               this.props
                 .fetchDirect(data.directId);
               break; 
+=======
+            case "channelAdd":
+              this.props
+                .fetchChannel(data.channel_id)
+                .then(() =>
+                  this.props.updateMembership(data.channelId, data.userId)
+                );
+              break;
+>>>>>>> 10a7cac2e8d672efe4820b0e7f4b2b1402caaff1
           }
         }
       }
