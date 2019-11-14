@@ -6,7 +6,7 @@ class Sidebar extends React.Component {
     this.state = {
       memberships: props.memberships,
       users: props.users,
-      channels: props.users,
+      channels: props.channels,
       directs: props.directs,
       selectedItem: null,
       selectedMessageableId: null,
@@ -14,6 +14,7 @@ class Sidebar extends React.Component {
     };
     this.handleSelect = this.handleSelect.bind(this);
     this.handleLocationClass = this.handleLocationClass.bind(this);
+    this.handleUserStatus = this.handleUserStatus.bind(this);
   }
 
   componentDidMount() {}
@@ -30,13 +31,21 @@ class Sidebar extends React.Component {
       ? "selected"
       : "unselected";
   }
+
+  handleUserStatus(directId){
+    let direct = this.props.directs.find(direct => direct.id === directId);
+    let otherUserId = direct.user_ids.find(id => id !== this.props.currentUserId);
+    let otherUserStatus = this.props.users.find(user => user.id === otherUserId).online;
+    return otherUserStatus === true ? <span className="sidebar-member-online"></span> : <span className="sidebar-member-offline"></span>;
+  }
   render() {
     let channelMembershipItems = [];
     let directMembershipItems = [];
     let membershipItems = this.props.memberships.forEach(membership => {
       let privacyIcon =
         membership.privacy === false ? "# " : <i className="fas fa-lock"></i>;
-      let countIcon = membership.size;
+      let countIcon = (membership.size === 1 && membership.memberable_type === "Direct") ? this.handleUserStatus(membership.memberable_id) : <span className="sidebar-member-count"> {membership.size}</span>;
+      
       let membershipName = membership.name;
       let selectedItem = this.handleLocationClass(membership);
       if (membership.memberable_type === "Channel") {
@@ -61,8 +70,8 @@ class Sidebar extends React.Component {
         );
       } else {
         countIcon = countIcon;
-        membershipName = membershipName || "New Message";
-        if (!countIcon){
+        membershipName = membershipName;
+        if (!membershipName){
           let newDirect = this.props.directs.find(direct => { return direct.id === membership.memberable_id});
           if (newDirect){
             countIcon = newDirect.user_ids.length - 1;
@@ -75,7 +84,8 @@ class Sidebar extends React.Component {
             className={selectedItem}
             onClick={this.handleSelect.bind(null, membership.id)}
           >
-            <span className="sidebar-member-count"> {countIcon}</span>
+            {/* <span className="sidebar-member-count"> {countIcon}</span> */}
+            {countIcon}
             <Link to={`/workspace/directs/${membership.memberable_id}`}>
               {membershipName}
             </Link>

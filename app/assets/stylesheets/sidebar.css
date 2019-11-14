@@ -78,8 +78,40 @@
   border-radius: 3px;
   margin-right: 3px;
 }
+.sidebar-member-online {
+  color: RGB(63, 14, 64);
+  background-color: RGB(43, 172, 118);
+  border: 2px solid RGB(43, 172, 118); 
+  font-size: 9px;
+  height: 6px;
+  width: 6px;
+  display: inline-block;
+  text-align: center;
+  vertical-align: middle;
+  border-radius: 50%;
+  margin-right: 3px;
+}
+.sidebar-member-offline {
+  font-size: 9px;
+  height: 6px;
+  width: 6px;
+  display: inline-block;
+  text-align: center;
+  vertical-align: middle;
+  border-radius: 50%;
+  margin-right: 3px;
+  border: 2px solid RGB(148, 123, 149); 
+}
 
 .selected .sidebar-member-count {
   color: RGB(23, 98, 163);
   background-color: RGB(172, 199, 222);
+}
+
+.selected .sidebar-member-online {
+  background-color: RGB(255, 255, 255);
+  border: 2px solid RGB(255, 255, 255); 
+}
+.selected .sidebar-member-offline {
+  border: 2px solid RGB(255, 255, 255); 
 }
