@@ -6,7 +6,7 @@ class Api::ChannelsController < ApplicationController
       broadcastNewChannelAll(@channel)
       params[:channel][:invitedUsersIds].each do |userId|
         @membership = Membership.create(user_id: userId.to_i, memberable_id: @channel.id, memberable_type: Channel)
-        broadcastNewChannel(@channel, @membership.user_id)
+        # broadcastNewChannel(@channel, @membership.user_id)
         broadcastNewMembership(@membership)
       end
       render :show
@@ -53,9 +53,9 @@ class Api::ChannelsController < ApplicationController
  def broadcastNewMembership(membership)
     ActionCable.server.broadcast "notifications_#{membership.user_id}", {membership: membership, type: 'membershipAdd'}
   end
-  def broadcastNewChannel(channel, user)
-    ActionCable.server.broadcast "notifications_#{user}", {channelId: channel.id, type: 'channelAdd'}
-  end
+  # def broadcastNewChannel(channel, user)
+  #   ActionCable.server.broadcast "notifications_#{user}", {channelId: channel.id, type: 'channelAdd'}
+  # end
   def broadcastNewChannelAll(channel)
     ActionCable.server.broadcast "notifications_all", {channelId: channel.id, type: 'channelAdd'}
   end
