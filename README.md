@@ -16,6 +16,7 @@
 + Create, browse, and join channels for topic-based discussion
 + Privacy feature on channels for protection of sensitive discussions
 + Direct messaging between individuals and groups
++ Online presence status
 
 ## Feature Highlights
 Live messaging
@@ -53,7 +54,7 @@ end
 ```
 ## Future Features
 + Notifications
-+ Online presence status
++ Internet loss handling
 + Emoji reactions 🎉
 
 ## How To Use
