@@ -51,7 +51,7 @@ class Greeting extends React.Component {
     if (this.props.currentUser && !onRoot) {
       let name = this.props.currentUser.display_name;
       let image_location = this.props.currentUser.image_url.split(".")[0];
-      debugger
+
       return (
         <div id="grabber">
           <div
