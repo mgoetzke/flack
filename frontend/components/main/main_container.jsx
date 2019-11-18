@@ -6,7 +6,9 @@ import { fetchChannel, fetchAllChannels } from "../../actions/channel_actions";
 import { fetchAllDirects, fetchDirect } from "../../actions/direct_actions";
 import { fetchAllMessages } from "../../actions/message_actions";
 const mapState = state => {
-  return {};
+  return {
+    currentUserId: state.session.id,
+  };
 };
 
 const mapDispatch = dispatch => {

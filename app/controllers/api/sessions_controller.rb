@@ -1,6 +1,7 @@
 class Api::SessionsController < ApplicationController
   def destroy
     if(current_user)
+      cookies.signed[:user_id] = nil
       logout!
       render json: { text: "json text session destroyed" }
     else

@@ -20,7 +20,7 @@ class Main extends React.Component {
     )
 
     App.NotificationsChannel = App.cable.subscriptions.create(
-      { channel: "NotificationsChannel" },
+      { channel: "NotificationsChannel", currentUserId: this.props.currentUserId},
       {
         received: data => {
           switch (data.type) {
