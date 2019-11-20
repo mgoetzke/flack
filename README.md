@@ -54,7 +54,7 @@ end
 ```
 ## Future Features
 + Notifications
-+ Internet loss handling
++ Internet connection loss handling
 + Emoji reactions 🎉
 
 ## How To Use
